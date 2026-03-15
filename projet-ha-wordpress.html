@@ -85,8 +85,8 @@ footer span{color:var(--accent)}
 <body>
 
 <nav>
-  <a href="portfolio.html" class="nav-logo"><span>~/</span>portfolio<span>.sh</span></a>
-  <a href="portfolio.html" class="back-btn">&#8592; Retour au portfolio</a>
+  <a href="index.html" class="nav-logo"><span>~/</span>portfolio<span>.sh</span></a>
+  <a href="index.html" class="back-btn">&#8592; Retour au portfolio</a>
 </nav>
 
 <div class="container">
@@ -387,7 +387,7 @@ upstream wordpress {
     <div class="code-block"><code><span class="code-comment"># Sur WP1 :</span>
 ssh-keygen -t ed25519
 <span class="code-comment"># Transmettre la clé publique à WP2 :</span>
-cat ~/.ssh/wp1-wp2.pub | ssh root@192.168.160.22 \
+cat ~/.ssh/wp1-wp2.pub | ssh <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81f3eeeef5c1b0b8b3afb0b7b9afb0b7b1afb3b3">[email&#160;protected]</a> \
   "cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
 
 <span class="code-comment"># Lancer la synchronisation manuellement :</span>
@@ -506,12 +506,3 @@ systemctl status keepalived</code></div>
       <div class="result-card"><div class="result-num">&lt;2s</div><div class="result-label">Bascule BDD</div></div>
     </div>
     <p style="margin-top:1.5rem">L'infrastructure assure la continuité de service en cas de panne de n'importe quel composant : si WP1 tombe, le FRONT route vers WP2 ; si BDD1 tombe, la VIP Keepalived bascule sur BDD2. La réplication maître-maître garantit la cohérence des données.</p>
-  </div>
-
-</div>
-
-<footer>
-  <code>// Nicolas LUONG · <span>HA WordPress</span> · 2025</code>
-</footer>
-</body>
-</html>

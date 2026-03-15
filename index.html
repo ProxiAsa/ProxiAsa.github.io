@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicolas LUONG — Réseau &amp; Infrastructure</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080c12;--bg2:#0d1320;--bg3:#111827;--bg4:#1a2235;
+  --accent:#00d4ff;--accent3:#7c3aed;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
+  --green:#10b981;--orange:#f59e0b;--red:#ef4444;
+  --border:#1e2d45;--border2:#2a3f5f;
+  --font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,18,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:.1em}
+.nav-logo span{color:var(--text2)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text2);font-size:13px;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover::after{width:100%}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;margin-right:6px;display:inline-block}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(16,185,129,.4)}50%{opacity:.8;box-shadow:0 0 0 6px rgba(16,185,129,0)}}
+section{position:relative;z-index:1;padding:100px 0 60px}
+.container{max-width:1100px;margin:0 auto;padding:0 2rem}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:60px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-tag{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.hero-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--accent)}
+h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;line-height:1.1;margin-bottom:.5rem}
+h1 .name{display:block}
+h1 .role{display:block;color:var(--accent);font-weight:300}
+.hero-bio{color:var(--text2);line-height:1.8;margin:1.5rem 0 2rem;max-width:480px;font-size:15px}
+.hero-links{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;border-radius:4px;font-size:14px;font-weight:500;text-decoration:none;transition:all .25s;cursor:pointer;border:none;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#000}
+.btn-primary:hover{background:#00b8d9;transform:translateY(-2px)}
+.btn-outline{border:1px solid var(--border2);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.social-row{display:flex;gap:.75rem;margin-top:1.5rem}
+.social-btn{width:40px;height:40px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--text2);font-size:13px;font-weight:600;transition:all .2s}
+.social-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.05)}
+.avatar-card{position:relative;display:flex;justify-content:center}
+.avatar-ring{position:relative;width:280px;height:280px}
+.avatar-img{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,var(--bg3),var(--bg4));border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:80px;overflow:hidden}
+.avatar-ring::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(0,212,255,.2);animation:rotate 20s linear infinite}
+.avatar-ring::after{content:'';position:absolute;inset:-20px;border-radius:50%;border:1px dashed rgba(0,212,255,.08);animation:rotate 35s linear infinite reverse}
+@keyframes rotate{to{transform:rotate(360deg)}}
+.status-badge{position:absolute;bottom:16px;right:0;background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:.4rem 1rem;font-size:12px;display:flex;align-items:center;gap:.4rem;color:var(--text2)}
+.skills-float{position:absolute;top:10px;left:-30px;display:flex;flex-direction:column;gap:.5rem}
+.skill-pill{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:.3rem .8rem;font-size:11px;font-family:var(--mono);color:var(--text2);white-space:nowrap;transition:all .3s}
+.skill-pill:hover{border-color:var(--accent);color:var(--accent)}
+.section-header{margin-bottom:3rem}
+.section-tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.section-tag::after{content:'';flex:1;height:1px;background:var(--border);max-width:60px}
+h2{font-size:2rem;font-weight:700;line-height:1.2}
+h2 span{color:var(--text3)}
+.stats-bar{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:4rem}
+.stat-item{background:var(--bg2);padding:1.5rem;text-align:center}
+.stat-num{font-size:1.8rem;font-weight:700;color:var(--accent);font-family:var(--mono)}
+.stat-label{font-size:12px;color:var(--text3);margin-top:.25rem;text-transform:uppercase;letter-spacing:.08em}
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--border),transparent)}
+.timeline-item{position:relative;margin-bottom:2.5rem}
+.timeline-dot{position:absolute;left:-2.45rem;top:.5rem;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 10px var(--accent)}
+.timeline-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:border-color .2s}
+.timeline-card:hover{border-color:var(--border2)}
+.timeline-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem}
+.job-title{font-size:16px;font-weight:600;color:var(--text)}
+.job-company{font-size:14px;color:var(--accent);margin-top:.2rem}
+.job-date{font-family:var(--mono);font-size:12px;color:var(--text3);background:var(--bg3);padding:.25rem .75rem;border-radius:20px;border:1px solid var(--border);text-align:right;line-height:1.8}
+.job-desc{color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:1rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{font-family:var(--mono);font-size:11px;padding:.2rem .6rem;border-radius:3px;border:1px solid var(--border)}
+.tag-blue{color:#38bdf8;border-color:rgba(56,189,248,.2);background:rgba(56,189,248,.05)}
+.tag-green{color:var(--green);border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.05)}
+.tag-purple{color:#a78bfa;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.05)}
+.tag-orange{color:var(--orange);border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)}
+.tag-red{color:var(--red);border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.05)}
+.formation-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+.formation-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;position:relative;overflow:hidden;transition:all .3s}
+.formation-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--accent),var(--accent3))}
+.formation-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.formation-icon{width:36px;height:36px;border-radius:6px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15);display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:.75rem}
+.formation-degree{font-size:14px;font-weight:600;margin-bottom:.2rem}
+.formation-school{font-size:13px;color:var(--accent);margin-bottom:.2rem}
+.formation-year{font-family:var(--mono);font-size:11px;color:var(--text3)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.project-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all .3s;display:block;text-decoration:none;color:inherit}
+.project-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.project-header{padding:1.5rem 1.5rem 1rem;display:flex;justify-content:space-between;align-items:flex-start}
+.project-icon{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.project-arrow{width:32px;height:32px;border-radius:6px;border:1px solid var(--border);background:var(--bg3);display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:16px;transition:all .2s}
+.project-card:hover .project-arrow{border-color:var(--accent);color:var(--accent)}
+.project-body{padding:0 1.5rem 1.5rem}
+.project-title{font-size:17px;font-weight:600;margin-bottom:.5rem}
+.project-desc{color:var(--text2);font-size:14px;line-height:1.6;margin-bottom:1rem}
+.project-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.project-status{display:flex;align-items:center;gap:.4rem;font-size:12px}
+.dot-green{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.dot-orange{width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.veille-feed{display:flex;flex-direction:column;gap:1rem}
+.veille-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:all .2s}
+.veille-item:hover{border-color:var(--border2)}
+.veille-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.veille-badge{font-family:var(--mono);font-size:10px;padding:.15rem .5rem;border-radius:3px;text-transform:uppercase;letter-spacing:.08em}
+.badge-trend{color:var(--orange);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)}
+.veille-date{font-family:var(--mono);font-size:11px;color:var(--text3)}
+.veille-title{font-size:16px;font-weight:600;margin-bottom:.6rem}
+.veille-summary{font-size:14px;color:var(--text2);line-height:1.7}
+.terminal-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:2rem}
+.terminal-bar{background:var(--bg3);padding:.5rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--border)}
+.t-dot{width:10px;height:10px;border-radius:50%}
+.t-red{background:#ff5f57}.t-yellow{background:#ffbd2e}.t-green{background:#28ca42}
+.terminal-body{padding:1rem 1.5rem;font-family:var(--mono);font-size:13px;color:var(--text2);line-height:2}
+.t-prompt{color:var(--accent)}
+.t-output{color:var(--text3)}
+.t-success{color:var(--green)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text3);font-size:13px;font-family:var(--mono)}
+footer span{color:var(--accent)}
+@media(max-width:768px){
+  .hero-grid,.two-col{grid-template-columns:1fr}
+  .avatar-card{display:none}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>~/</span>portfolio<span>.sh</span></div>
+  <ul class="nav-links">
+    <li><a href="#hero">Accueil</a></li>
+    <li><a href="#experience">Expérience</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#veille">Veille</a></li>
+    <li><a href="#contact" style="color:var(--accent)"><span class="nav-dot"></span>Disponible</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-tag">Administrateur Réseau &amp; Systèmes</div>
+        <h1>
+          <span class="name">Nicolas LUONG</span>
+          <span class="role">Infrastructure &amp; Systèmes</span>
+        </h1>
+        <p class="hero-bio">Passionné par l'administration de réseaux, la virtualisation et la cybersécurité. Je conçois et maintiens des infrastructures robustes, sécurisées et scalables.</p>
+        <div class="hero-links">
+          <a href="#" class="btn btn-primary">&#11015; Télécharger CV</a>
+          <a href="#projets" class="btn btn-outline">Voir mes projets &#8594;</a>
+        </div>
+        <div class="social-row">
+          <a href="https://www.linkedin.com/in/nicolas-luong-575546347" target="_blank" class="social-btn" title="LinkedIn">LI</a>
+          <a href="mailto:Nicolas.l.parcoursup@gmail.com" class="social-btn" title="Email">@</a>
+        </div>
+      </div>
+      <div class="avatar-card">
+        <div class="avatar-ring">
+          <div class="avatar-img">&#128421;</div>
+          <div class="status-badge">
+            <span class="nav-dot" style="width:7px;height:7px;margin:0"></span>
+            Open to work
+          </div>
+        </div>
+        <div class="skills-float">
+          <div class="skill-pill">Cisco IOS</div>
+          <div class="skill-pill">VMware</div>
+          <div class="skill-pill">Linux</div>
+          <div class="skill-pill">Active Directory</div>
+          <div class="skill-pill">Proxmox</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="container reveal">
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">1+</div><div class="stat-label">An d'expérience</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Projets réalisés</div></div>
+  </div>
+</div>
+
+<!-- EXPERIENCE & FORMATION -->
+<section id="experience">
+  <div class="container">
+    <div class="two-col">
+
+      <div class="reveal">
+        <div class="section-header">
+          <div class="section-tag">Carrière</div>
+          <h2>Expériences <span>pro.</span></h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <div class="job-title">Administration Réseau &amp; Systèmes</div>
+                  <div class="job-company">Aintranet · Prestation de service</div>
+                </div>
+                <div class="job-date">Juin — Juil. 2025<br>Jan. — Fév. 2026</div>
+              </div>
+              <div class="job-desc">Gestion de plusieurs parcs informatiques dans le cadre d'une entreprise de prestation de service. Administration réseau et système pour des mairies et des entreprises clientes. Déploiement et supervision de fermes RDS.</div>
+              <div class="tags">
+                <span class="tag tag-blue">RDS</span>
+                <span class="tag tag-green">Active Directory</span>
+                <span class="tag tag-purple">Windows Server</span>
+                <span class="tag tag-orange">Multi-site</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="section-header">
+          <div class="section-tag">Parcours académique</div>
+          <h2>Formation <span>&amp;</span> Diplômes</h2>
+        </div>
+        <div class="formation-grid">
+          <div class="formation-card">
+            <div class="formation-icon">&#127891;</div>
+            <div class="formation-degree">BTS SIO — Option SISR</div>
+            <div class="formation-school">Lycée Carriat, Bourg-en-Bresse</div>
+            <div class="formation-year">2024 — 2026 · En cours</div>
+          </div>
+          <div class="formation-card">
+            <div class="formation-icon">&#127891;</div>
+            <div class="formation-degree">BUT Informatique — 1ère année</div>
+            <div class="formation-school">IUT Bourg-en-Bresse · Université Lyon 1 Claude Bernard</div>
+            <div class="formation-year">2023 — 2024</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Réalisations</div>
+      <h2>Projets <span>techniques</span></h2>
+    </div>
+    <div class="terminal-block reveal">
+      <div class="terminal-bar">
+        <div class="t-dot t-red"></div>
+        <div class="t-dot t-yellow"></div>
+        <div class="t-dot t-green"></div>
+        <span style="font-size:12px;color:var(--text3);margin-left:.5rem;font-family:var(--mono)">bash — nicolas@homelab</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-prompt">nicolas@homelab:~$</span> ls ./projets/ --detail</div>
+        <div class="t-output">total 4 projets actifs</div>
+        <div class="t-success">&#10003; Ferme RDS HA, Ferme RDS Mairie FSLogix, HA WordPress, Infrastructure Complète</div>
+      </div>
+    </div>
+    <div class="projects-grid reveal">
+
+      <a href="projet-rds-aintranet.html" class="project-card">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15)">&#128421;</div>
+          <div class="project-arrow">&#8594;</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Ferme RDS HA — 2 Brokers</div>
+          <div class="project-desc">Ferme RDS haute disponibilité avec 2 RD Connection Brokers en actif/actif, 4 Session Hosts répartis en 2 collections et gestion des profils utilisateurs par User Profile Disks (UPD).</div>
+          <div class="tags">
+            <span class="tag tag-blue">RDS HA</span>
+            <span class="tag tag-green">2 Brokers</span>
+            <span class="tag tag-orange">UPD</span>
+            <span class="tag tag-red">SQL Server</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <div class="project-status"><div class="dot-green"></div><span style="font-size:12px;color:var(--text2)">Réalisé</span></div>
+          <span style="font-size:12px;font-family:var(--mono);color:var(--text3)">Pro · 2025</span>
+        </div>
+      </a>
+
+      <a href="projet-rds-mairie.html" class="project-card">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15)">&#127970;</div>
+          <div class="project-arrow">&#8594;</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Ferme RDS Mairie — FSLogix</div>
+          <div class="project-desc">Ferme RDS pour une mairie avec 1 broker et 2 Session Hosts. Gestion des profils utilisateurs par FSLogix Profile Containers — chaque agent retrouve son environnement identique quel que soit le serveur.</div>
+          <div class="tags">
+            <span class="tag tag-purple">FSLogix</span>
+            <span class="tag tag-blue">RDS</span>
+            <span class="tag tag-green">Windows Server</span>
+            <span class="tag tag-orange">GPO</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <div class="project-status"><div class="dot-green"></div><span style="font-size:12px;color:var(--text2)">Réalisé</span></div>
+          <span style="font-size:12px;font-family:var(--mono);color:var(--text3)">Pro · 2025</span>
+        </div>
+      </a>
+
+      <a href="projet-ha-wordpress.html" class="project-card">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15)">&#9881;</div>
+          <div class="project-arrow">&#8594;</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Haute Disponibilité WordPress &amp; Web</div>
+          <div class="project-desc">Mise en place d'une architecture HA pour WordPress avec répartition de charge (HAProxy/Nginx), réplication de base de données MariaDB en cluster Galera, et stockage partagé GlusterFS. Basculement automatique en cas de panne.</div>
+          <div class="tags">
+            <span class="tag tag-blue">HAProxy</span>
+            <span class="tag tag-green">MariaDB Galera</span>
+            <span class="tag tag-purple">GlusterFS</span>
+            <span class="tag tag-orange">WordPress</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <div class="project-status"><div class="dot-green"></div><span style="font-size:12px;color:var(--text2)">Réalisé</span></div>
+          <span style="font-size:12px;font-family:var(--mono);color:var(--text3)">Scolaire · 2025</span>
+        </div>
+      </a>
+
+      <a href="projet-infra-complete.html" class="project-card">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15)">&#127760;</div>
+          <div class="project-arrow">&#8594;</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Infrastructure Complète d'Entreprise</div>
+          <div class="project-desc">Conception et déploiement d'une infrastructure complète : pare-feu pfSense, serveur web Nginx, base de données PostgreSQL, Active Directory, NAS Synology et ERP Odoo. Segmentation réseau par VLAN et politique de sécurité unifiée.</div>
+          <div class="tags">
+            <span class="tag tag-red">pfSense</span>
+            <span class="tag tag-blue">Active Directory</span>
+            <span class="tag tag-green">Odoo</span>
+            <span class="tag tag-purple">NAS</span>
+            <span class="tag tag-orange">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <div class="project-status"><div class="dot-green"></div><span style="font-size:12px;color:var(--text2)">Réalisé</span></div>
+          <span style="font-size:12px;font-family:var(--mono);color:var(--text3)">Scolaire · 2025</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- VEILLE -->
+<section id="veille">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Actualités tech</div>
+      <h2>Veille <span>technologique</span></h2>
+    </div>
+    <div class="veille-feed reveal">
+      <div class="veille-item">
+        <div class="veille-item-header">
+          <span class="veille-badge badge-trend">Tendance</span>
+          <span class="veille-date">Mars 2026</span>
+        </div>
+        <div class="veille-title">Les LLM (Large Language Models) — état de l'art et usages en infrastructure</div>
+        <div class="veille-summary">Les grands modèles de langage comme GPT-4, Claude ou Mistral transforment progressivement les métiers IT. En infrastructure et systèmes, ils s'intègrent dans des outils d'automatisation (génération de scripts Ansible/Terraform, analyse de logs, détection d'anomalies réseau). Des solutions comme GitHub Copilot ou des assistants intégrés aux ITSM commencent à accélérer le traitement des incidents. Les LLM locaux (Ollama, LM Studio) permettent désormais de faire tourner des modèles sur des serveurs internes sans dépendance cloud, ce qui soulève des enjeux de souveraineté des données et de sécurité particulièrement pertinents pour les DSI et collectivités.</div>
+        <div class="tags" style="margin-top:.75rem">
+          <span class="tag tag-purple">LLM</span>
+          <span class="tag tag-blue">IA Générative</span>
+          <span class="tag tag-green">Ollama</span>
+          <span class="tag tag-orange">Automatisation</span>
+          <span class="tag tag-red">Sécurité IA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div style="text-align:center;max-width:600px;margin:0 auto" class="reveal">
+      <div class="section-tag" style="justify-content:center">Contact</div>
+      <h2 style="margin-bottom:1rem">On se <span>connecte</span> ?</h2>
+      <p style="color:var(--text2);line-height:1.8;margin-bottom:2rem">Disponible pour des opportunités en alternance ou stage. N'hésitez pas à me contacter pour discuter de vos projets infrastructure.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="mailto:Nicolas.l.parcoursup@gmail.com" class="btn btn-primary">&#9993; Nicolas.l.parcoursup@gmail.com</a>
+        <a href="https://www.linkedin.com/in/nicolas-luong-575546347" target="_blank" class="btn btn-outline">LinkedIn &#8594;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <code>// Nicolas LUONG · <span>réseau &amp; infrastructure</span> · 2025</code>
+</footer>
+
+<script>
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+</script>
+</body>
+</html>
