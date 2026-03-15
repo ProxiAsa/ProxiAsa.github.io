@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ferme RDS Mairie — FSLogix — Nicolas LUONG</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080c12;--bg2:#0d1320;--bg3:#111827;--bg4:#1a2235;
+  --accent:#00d4ff;--accent3:#7c3aed;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
+  --green:#10b981;--orange:#f59e0b;--red:#ef4444;
+  --border:#1e2d45;--border2:#2a3f5f;
+  --font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,18,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:.1em;text-decoration:none}
+.nav-logo span{color:var(--text2)}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:4px;font-size:13px;font-weight:500;text-decoration:none;border:1px solid var(--border2);color:var(--text2);transition:all .2s;font-family:var(--font)}
+.back-btn:hover{border-color:var(--accent);color:var(--accent)}
+.container{max-width:900px;margin:0 auto;padding:0 2rem}
+.hero-project{padding-top:100px;padding-bottom:60px;border-bottom:1px solid var(--border);margin-bottom:3rem}
+.project-tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.project-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--accent)}
+h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
+.project-meta{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
+.meta-item{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--text2);font-family:var(--mono)}
+.meta-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.tag{font-family:var(--mono);font-size:11px;padding:.2rem .6rem;border-radius:3px;border:1px solid var(--border)}
+.tag-blue{color:#38bdf8;border-color:rgba(56,189,248,.2);background:rgba(56,189,248,.05)}
+.tag-green{color:var(--green);border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.05)}
+.tag-purple{color:#a78bfa;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.05)}
+.tag-orange{color:var(--orange);border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)}
+.tag-red{color:var(--red);border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.05)}
+.content-block{margin-bottom:3rem;scroll-margin-top:80px}
+h2{font-size:1.4rem;font-weight:600;margin-bottom:1.25rem;color:var(--text);display:flex;align-items:center;gap:.75rem}
+h2::after{content:'';flex:1;height:1px;background:var(--border)}
+p{color:var(--text2);line-height:1.8;font-size:15px;margin-bottom:1rem}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+.info-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.info-card-title{font-size:12px;font-family:var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem}
+.info-card p{font-size:14px;margin:0;color:var(--text2)}
+.arch-diagram{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2rem;margin-top:1rem;font-family:var(--mono);font-size:13px;color:var(--text2);line-height:2.4;overflow-x:auto}
+.n-accent{color:var(--accent)}
+.n-green{color:var(--green)}
+.n-orange{color:var(--orange)}
+.n-purple{color:#a78bfa}
+.n-gray{color:var(--text3)}
+.step-list{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-top:1rem}
+.step-list li{display:flex;align-items:flex-start;gap:1rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.step-num{font-family:var(--mono);font-size:12px;color:var(--accent);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15);border-radius:4px;padding:.2rem .6rem;white-space:nowrap;margin-top:.1rem}
+.step-text{font-size:14px;color:var(--text2);line-height:1.6}
+.step-text strong{color:var(--text);font-weight:600}
+.note-box{background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.15);border-radius:8px;padding:1.25rem;margin:.75rem 0}
+.note-box p{margin:0;font-size:14px}
+.fslogix-box{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.25);border-radius:8px;padding:1.5rem;margin:1rem 0}
+.fslogix-box h3{font-size:1rem;font-weight:600;color:#a78bfa;margin-bottom:.75rem}
+.fslogix-box p{font-size:14px;margin-bottom:.5rem}
+.fslogix-box p:last-child{margin:0}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-top:1rem}
+.result-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;text-align:center}
+.result-num{font-size:1.6rem;font-weight:700;color:var(--accent);font-family:var(--mono)}
+.result-label{font-size:12px;color:var(--text3);margin-top:.25rem}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.compare-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.compare-title{font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem}
+.compare-card ul{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.compare-card ul li{font-size:13px;color:var(--text2);padding-left:1rem;position:relative}
+.compare-card ul li::before{content:'—';position:absolute;left:0;color:var(--text3)}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text3);font-size:13px;font-family:var(--mono);margin-top:4rem}
+footer span{color:var(--accent)}
+@media(max-width:600px){.compare-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="portfolio.html" class="nav-logo"><span>~/</span>portfolio<span>.sh</span></a>
+  <a href="portfolio.html" class="back-btn">&#8592; Retour au portfolio</a>
+</nav>
+
+<div class="container">
+
+  <div class="hero-project">
+    <div class="project-tag">Projet · Pro · Aintranet · Mairie · 2025</div>
+    <h1>Ferme RDS Mairie<br><span style="color:var(--accent);font-weight:300">1 Broker — 2 Session Hosts — FSLogix</span></h1>
+    <p style="font-size:16px;color:var(--text2);max-width:720px;line-height:1.8">Déploiement d'une ferme Remote Desktop Services pour une mairie cliente d'Aintranet. Architecture simple et efficace avec un broker, deux Session Hosts et FSLogix pour la gestion des profils utilisateurs — permettant aux agents de retrouver leur environnement identique quel que soit le serveur sur lequel ils atterrissent.</p>
+    <div class="project-meta">
+      <div class="meta-item"><div class="meta-dot"></div>Réalisé</div>
+      <div class="meta-item">&#128197; 2025</div>
+      <div class="meta-item">&#127970; Aintranet — Client mairie</div>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">RDS</span>
+      <span class="tag tag-green">Windows Server 2022</span>
+      <span class="tag tag-purple">FSLogix</span>
+      <span class="tag tag-orange">Active Directory</span>
+      <span class="tag tag-blue">GPO</span>
+      <span class="tag tag-green">RemoteApp</span>
+      <span class="tag tag-red">Partage SMB</span>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h2>Contexte &amp; objectifs</h2>
+    <p>Une mairie cliente d'Aintranet souhaitait centraliser l'accès à ses applications métier (logiciel de gestion communale, suite bureautique) pour une trentaine d'agents. Le besoin principal : que chaque agent retrouve son environnement personnel (bureau, favoris, paramètres applicatifs) quel que soit le Session Host sur lequel il se connecte — c'est précisément ce que FSLogix résout.</p>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="info-card-title">Client</div>
+        <p>Mairie — ~30 agents</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Profils</div>
+        <p>FSLogix Profile Containers stockés sur partage SMB</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Architecture</div>
+        <p>1 Broker + 2 Session Hosts + 1 partage de profils NAS</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Environnement</div>
+        <p>Windows Server 2022, AD existant de la mairie</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h2>Qu'est-ce que FSLogix ?</h2>
+    <div class="fslogix-box">
+      <h3>&#128193; FSLogix Profile Containers</h3>
+      <p>FSLogix est une solution Microsoft de gestion de profils utilisateurs pour les environnements RDS et VDI. Au lieu de copier le profil à l'ouverture de session (comme les profils itinérants classiques), FSLogix monte un disque virtuel VHD(X) contenant l'intégralité du profil de l'utilisateur directement depuis un partage réseau.</p>
+      <p><strong style="color:#a78bfa">Avantages clés :</strong> ouverture de session rapide (&lt;10s), profil cohérent sur tous les Session Hosts, pas de problème de synchronisation, support natif Office 365 et Outlook (cache OST inclus dans le container).</p>
+      <p><strong style="color:#a78bfa">Stockage :</strong> Chaque utilisateur possède un fichier <code style="color:var(--accent);font-family:var(--mono)">NomPrenom_SID.vhdx</code> sur le partage SMB, monté automatiquement à la connexion et démonté à la déconnexion.</p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-title" style="color:var(--text3)">Profils itinérants classiques</div>
+        <ul>
+          <li>Copie du profil à chaque connexion</li>
+          <li>Lente sur gros profils</li>
+          <li>Conflits de synchro fréquents</li>
+          <li>OST Outlook non supporté</li>
+          <li>Problèmes avec Office 365</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="border-color:rgba(167,139,250,.3)">
+        <div class="compare-title" style="color:#a78bfa">FSLogix Profile Containers</div>
+        <ul>
+          <li>Montage VHD(X) à la connexion</li>
+          <li>Rapide quelle que soit la taille</li>
+          <li>Aucun conflit de synchro</li>
+          <li>OST Outlook inclus dans le container</li>
+          <li>Compatible Office 365 nativement</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h2>Architecture déployée</h2>
+    <div class="arch-diagram">
+<span class="n-gray">Agents mairie / Postes clients</span>
+<span class="n-gray">        |  RDP / RemoteApp</span>
+<span class="n-accent">  [RD Gateway]</span>  <span class="n-gray">— Accès sécurisé, certificat SSL</span>
+<span class="n-gray">        |</span>
+<span class="n-accent">  [RD Web Access]</span>  <span class="n-gray">— Portail applications mairie</span>
+<span class="n-gray">        |</span>
+<span class="n-accent">  [RD Connection Broker]</span>  <span class="n-gray">— Répartition de charge</span>
+<span class="n-gray">     ____|____</span>
+<span class="n-gray">    |         |</span>
+<span class="n-green"> [RDSH-01]  [RDSH-02]</span>  <span class="n-gray">— Session Hosts Windows Server 2022</span>
+<span class="n-gray">    |         |</span>
+<span class="n-gray">    |_________|</span>
+<span class="n-gray">        |  SMB (montage VHD(X) profil)</span>
+<span class="n-purple"> [Partage FSLogix \\SRV\Profils\]</span>  <span class="n-gray">— NAS ou serveur de fichiers</span>
+<span class="n-gray">        |</span>
+<span class="n-orange"> [Active Directory / GPO]</span>  <span class="n-gray">— Auth, groupes FSLogix, politiques</span>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h2>Étapes de déploiement</h2>
+    <ul class="step-list">
+      <li><span class="step-num">01</span><div class="step-text"><strong>Préparation de l'AD existant</strong> — Création des OUs pour les serveurs RDS et les utilisateurs. Création du groupe de sécurité <code style="color:var(--accent);font-family:var(--mono)">GRP_FSLogix_Users</code>. Attribution des licences CAL RDS.</div></li>
+      <li><span class="step-num">02</span><div class="step-text"><strong>Installation des rôles RDS</strong> — Via Server Manager, déploiement des rôles RD Connection Broker, RD Session Host (x2), RD Gateway et RD Web Access sur les serveurs désignés sous Windows Server 2022.</div></li>
+      <li><span class="step-num">03</span><div class="step-text"><strong>Création de la collection de sessions</strong> — Configuration d'une collection unique avec les deux Session Hosts. Load balancing équilibré (50/50). Publication des applications métier en RemoteApp.</div></li>
+      <li><span class="step-num">04</span><div class="step-text"><strong>Préparation du partage FSLogix</strong> — Création du partage SMB <code style="color:var(--accent);font-family:var(--mono)">\\SRV-FICHIERS\Profils$</code>. Permissions NTFS : les comptes machines des Session Hosts et le groupe <code style="color:var(--accent);font-family:var(--mono)">GRP_FSLogix_Users</code> ont le contrôle total. Les utilisateurs n'ont pas d'accès direct au dossier racine.</div></li>
+      <li><span class="step-num">05</span><div class="step-text"><strong>Installation de FSLogix sur les Session Hosts</strong> — Téléchargement de l'agent FSLogix depuis le portail Microsoft (inclus dans les licences Microsoft 365). Installation sur RDSH-01 et RDSH-02.</div></li>
+      <li><span class="step-num">06</span><div class="step-text"><strong>Configuration FSLogix via GPO</strong> — Création d'une GPO liée à l'OU des Session Hosts. Paramètres clés : <code style="color:var(--accent);font-family:var(--mono)">Enabled = 1</code>, <code style="color:var(--accent);font-family:var(--mono)">VHDLocations = \\SRV-FICHIERS\Profils$</code>, <code style="color:var(--accent);font-family:var(--mono)">DeleteLocalProfileWhenVHDShouldApply = 1</code>. Type VHD(X) sélectionné pour de meilleures performances.</div></li>
+      <li><span class="step-num">07</span><div class="step-text"><strong>Configuration RD Gateway &amp; certificat SSL</strong> — Génération et installation du certificat SSL. Politiques CAP (qui peut se connecter) et RAP (vers quelles ressources) configurées par groupe AD.</div></li>
+      <li><span class="step-num">08</span><div class="step-text"><strong>GPO complémentaires</strong> — Redirection du dossier Documents vers le serveur de fichiers (en complément du profil FSLogix), timeout de session après 30 min d'inactivité, restrictions logicielles sur les Session Hosts.</div></li>
+      <li><span class="step-num">09</span><div class="step-text"><strong>Tests &amp; validation</strong> — Connexion d'un agent sur RDSH-01 : vérification de la création du <code style="color:var(--accent);font-family:var(--mono)">NomPrenom_SID.vhdx</code> sur le partage. Déconnexion et reconnexion sur RDSH-02 : le profil est identique. Test de montée en charge avec 10 sessions simultanées.</div></li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h2>Configuration FSLogix — paramètres clés</h2>
+    <div class="fslogix-box">
+      <h3>&#127759; Clé de registre / GPO (HKLM\SOFTWARE\FSLogix\Profiles)</h3>
+      <p><code style="color:var(--accent);font-family:var(--mono)">Enabled</code> = <strong style="color:var(--green)">1</strong> — Active FSLogix Profile Containers</p>
+      <p><code style="color:var(--accent);font-family:var(--mono)">VHDLocations</code> = <strong style="color:var(--green)">\\SRV-FICHIERS\Profils$</strong> — Chemin du partage SMB</p>
+      <p><code style="color:var(--accent);font-family:var(--mono)">VolumeType</code> = <strong style="color:var(--green)">VHDX</strong> — Format de disque virtuel (VHDX recommandé)</p>
+      <p><code style="color:var(--accent);font-family:var(--mono)">SizeInMBs</code> = <strong style="color:var(--green)">30000</strong> — Taille max du container (30 Go)</p>
+      <p><code style="color:var(--accent);font-family:var(--mono)">DeleteLocalProfileWhenVHDShouldApply</code> = <strong style="color:var(--green)">1</strong> — Supprime l'éventuel profil local résiduel</p>
+      <p><code style="color:var(--accent);font-family:var(--mono)">FlipFlopProfileDirectoryName</code> = <strong style="color:var(--green)">1</strong> — Format de dossier <code style="font-family:var(--mono);color:var(--text2)">Prénom_NOM_SID</code> plus lisible</p>
+    </div>
+    <div class="note-box" style="margin-top:1rem">
+      <p>&#128274; <strong style="color:var(--text)">Permissions NTFS sur le partage :</strong> Les comptes machines <code style="color:var(--accent);font-family:var(--mono)">RDSH-01$</code> et <code style="color:var(--accent);font-family:var(--mono)">RDSH-02$</code> doivent avoir le contrôle total sur le partage racine pour pouvoir créer et monter les VHD(X) des utilisateurs.</p>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h2>Résultats</h2>
+    <div class="result-grid">
+      <div class="result-card"><div class="result-num">30</div><div class="result-label">Agents migrés</div></div>
+      <div class="result-card"><div class="result-num">2</div><div class="result-label">Session Hosts</div></div>
+      <div class="result-card"><div class="result-num">&lt;10s</div><div class="result-label">Ouverture de session</div></div>
+      <div class="result-card"><div class="result-num">0</div><div class="result-label">Conflits de profil</div></div>
+    </div>
+    <p style="margin-top:1.5rem">FSLogix a permis d'éliminer complètement les problèmes de profil itinérant que rencontrait la mairie (lenteur, conflits Office). Les agents retrouvent leur environnement en moins de 10 secondes, quel que soit le Session Host sur lequel le broker les route. Zéro incident de profil depuis la mise en production.</p>
+  </div>
+
+</div>
+
+<footer>
+  <code>// Nicolas LUONG · <span>Ferme RDS Mairie — FSLogix</span> · 2025</code>
+</footer>
+</body>
+</html>

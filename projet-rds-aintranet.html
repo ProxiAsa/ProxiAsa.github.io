@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ferme RDS — 2 Brokers / 4 Session Hosts — Nicolas LUONG</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080c12;--bg2:#0d1320;--bg3:#111827;--bg4:#1a2235;
+  --accent:#00d4ff;--accent3:#7c3aed;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
+  --green:#10b981;--orange:#f59e0b;--red:#ef4444;
+  --border:#1e2d45;--border2:#2a3f5f;
+  --font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,18,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:.1em;text-decoration:none}
+.nav-logo span{color:var(--text2)}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:4px;font-size:13px;font-weight:500;text-decoration:none;border:1px solid var(--border2);color:var(--text2);transition:all .2s;font-family:var(--font)}
+.back-btn:hover{border-color:var(--accent);color:var(--accent)}
+.container{max-width:900px;margin:0 auto;padding:0 2rem}
+.hero-project{padding-top:100px;padding-bottom:60px;border-bottom:1px solid var(--border);margin-bottom:3rem}
+.project-tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.project-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--accent)}
+h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
+.project-meta{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
+.meta-item{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--text2);font-family:var(--mono)}
+.meta-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.tag{font-family:var(--mono);font-size:11px;padding:.2rem .6rem;border-radius:3px;border:1px solid var(--border)}
+.tag-blue{color:#38bdf8;border-color:rgba(56,189,248,.2);background:rgba(56,189,248,.05)}
+.tag-green{color:var(--green);border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.05)}
+.tag-purple{color:#a78bfa;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.05)}
+.tag-orange{color:var(--orange);border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)}
+.tag-red{color:var(--red);border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.05)}
+.content-block{margin-bottom:3rem;scroll-margin-top:80px}
+h2{font-size:1.4rem;font-weight:600;margin-bottom:1.25rem;color:var(--text);display:flex;align-items:center;gap:.75rem}
+h2::after{content:'';flex:1;height:1px;background:var(--border)}
+p{color:var(--text2);line-height:1.8;font-size:15px;margin-bottom:1rem}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+.info-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.info-card-title{font-size:12px;font-family:var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem}
+.info-card p{font-size:14px;margin:0;color:var(--text2)}
+.arch-diagram{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2rem;margin-top:1rem;font-family:var(--mono);font-size:13px;color:var(--text2);line-height:2.4;overflow-x:auto}
+.n-accent{color:var(--accent)}
+.n-green{color:var(--green)}
+.n-orange{color:var(--orange)}
+.n-gray{color:var(--text3)}
+.step-list{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-top:1rem}
+.step-list li{display:flex;align-items:flex-start;gap:1rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.step-num{font-family:var(--mono);font-size:12px;color:var(--accent);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15);border-radius:4px;padding:.2rem .6rem;white-space:nowrap;margin-top:.1rem}
+.step-text{font-size:14px;color:var(--text2);line-height:1.6}
+.step-text strong{color:var(--text);font-weight:600}
+.note-box{background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.15);border-radius:8px;padding:1.25rem;margin:.75rem 0}
+.note-box p{margin:0;font-size:14px}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-top:1rem}
+.result-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;text-align:center}
+.result-num{font-size:1.6rem;font-weight:700;color:var(--accent);font-family:var(--mono)}
+.result-label{font-size:12px;color:var(--text3);margin-top:.25rem}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text3);font-size:13px;font-family:var(--mono);margin-top:4rem}
+footer span{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="portfolio.html" class="nav-logo"><span>~/</span>portfolio<span>.sh</span></a>
+  <a href="portfolio.html" class="back-btn">&#8592; Retour au portfolio</a>
+</nav>
+
+<div class="container">
+
+  <div class="hero-project">
+    <div class="project-tag">Projet · Pro · Aintranet · 2025</div>
+    <h1>Ferme RDS Haute Disponibilité<br><span style="color:var(--accent);font-weight:300">2 Brokers — 4 Session Hosts — UPD</span></h1>
+    <p style="font-size:16px;color:var(--text2);max-width:720px;line-height:1.8">Déploiement d'une ferme Remote Desktop Services haute disponibilité pour un client entreprise d'Aintranet. Architecture redondée avec deux RD Connection Brokers en actif/actif et quatre Session Hosts répartis en deux collections, gestion des profils utilisateurs via User Profile Disks (UPD).</p>
+    <div class="project-meta">
+      <div class="meta-item"><div class="meta-dot"></div>Réalisé</div>
+      <div class="meta-item">&#128197; 2025</div>
+      <div class="meta-item">&#127970; Aintranet — Client entreprise</div>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">RDS</span>
+      <span class="tag tag-green">Windows Server 2022</span>
+      <span class="tag tag-purple">Active Directory</span>
+      <span class="tag tag-orange">UPD</span>
+      <span class="tag tag-blue">Connection Broker HA</span>
+      <span class="tag tag-green">RemoteApp</span>
+      <span class="tag tag-red">SQL Server</span>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h2>Contexte &amp; objectifs</h2>
+    <p>Dans le cadre d'une mission pour Aintranet, j'ai été chargé de déployer une ferme RDS pour un client entreprise nécessitant une haute disponibilité. Contrairement à une installation mono-broker, cette architecture utilise deux RD Connection Brokers synchronisés via une base SQL partagée, garantissant la continuité de service en cas de panne d'un broker. Les profils utilisateurs sont gérés par User Profile Disks (UPD), permettant à chaque utilisateur de retrouver son environnement identique quel que soit le Session Host sur lequel il est routé.</p>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="info-card-title">Contexte</div>
+        <p>Client entreprise — besoin de HA et de performances réseau optimisées</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Session Hosts</div>
+        <p>4 serveurs répartis en 2 collections de 2 RDSH</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Brokers</div>
+        <p>2 RD Connection Brokers en actif/actif avec BDD SQL partagée</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Profils utilisateurs</div>
+        <p>User Profile Disks (UPD) — disques VHD montés à la connexion sur chaque Session Host</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h2>Architecture déployée</h2>
+    <div class="arch-diagram">
+<span class="n-gray">Utilisateurs / Clients RDP</span>
+<span class="n-gray">          |  HTTPS / RDP</span>
+<span class="n-accent">    [RD Gateway]</span>   <span class="n-gray">— Accès sécurisé depuis l'extérieur</span>
+<span class="n-gray">          |</span>
+<span class="n-accent">    [RD Web Access]</span>  <span class="n-gray">— Portail RemoteApp</span>
+<span class="n-gray">          |</span>
+<span class="n-gray">    ______|______</span>
+<span class="n-gray">   |             |</span>
+<span class="n-accent">[Broker-01]   [Broker-02]</span>  <span class="n-gray">— Actif/Actif, SQL Server partagé</span>
+<span class="n-gray">   |_____________|</span>
+<span class="n-gray">          |</span>
+<span class="n-orange">   [SQL Server]</span>   <span class="n-gray">— Base partagée pour la HA Broker</span>
+<span class="n-gray">          |</span>
+<span class="n-gray">   _______|_______</span>
+<span class="n-gray">  |   |   |   |</span>
+<span class="n-green">[SH1][SH2][SH3][SH4]</span>  <span class="n-gray">— 4 Session Hosts (2 collections)</span>
+<span class="n-gray">  |___|   |___|</span>
+<span class="n-gray">Coll. A   Coll. B</span>   <span class="n-gray">— Applications publiées par collection</span>
+    </div>
+    <div class="note-box" style="margin-top:1rem">
+      <p>&#128193; <strong style="color:var(--text)">User Profile Disks (UPD) :</strong> Les UPD sont des disques virtuels VHD stockés sur un partage réseau et montés automatiquement à l'ouverture de session sur le Session Host. Chaque utilisateur possède son propre fichier <code style="color:var(--accent);font-family:var(--mono)">.vhdx</code> contenant son profil complet. Contrairement aux profils itinérants classiques, le profil n'est pas copié — il est monté directement, ce qui rend les connexions plus rapides et évite les conflits de synchronisation.</p>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h2>Étapes de déploiement</h2>
+    <ul class="step-list">
+      <li><span class="step-num">01</span><div class="step-text"><strong>Préparation AD &amp; DNS</strong> — Création des OUs dédiées (Serveurs RDS, Utilisateurs RDS), enregistrement DNS des brokers, attribution des licences CAL utilisateur dans AD.</div></li>
+      <li><span class="step-num">02</span><div class="step-text"><strong>Installation SQL Server</strong> — Déploiement de SQL Server (Express ou Standard) sur un serveur dédié. Création de la base de données partagée pour la haute disponibilité des brokers. Ajout des comptes machines Broker-01 et Broker-02 avec droits db_owner.</div></li>
+      <li><span class="step-num">03</span><div class="step-text"><strong>Déploiement des rôles RDS</strong> — Installation via Server Manager des rôles : RD Connection Broker (x2), RD Session Host (x4), RD Gateway, RD Web Access sur les serveurs désignés.</div></li>
+      <li><span class="step-num">04</span><div class="step-text"><strong>Configuration HA des brokers</strong> — Dans le Gestionnaire de serveur &gt; Services Bureau à distance, configurer la haute disponibilité du broker : renseigner la chaîne de connexion SQL, le DNS RoundRobin partagé entre Broker-01 et Broker-02.</div></li>
+      <li><span class="step-num">05</span><div class="step-text"><strong>Création des collections</strong> — Création de deux collections de sessions : Collection A (SH1 + SH2) pour les applications métier, Collection B (SH3 + SH4) pour les usages bureautiques. Configuration du load balancing par poids entre les Session Hosts.</div></li>
+      <li><span class="step-num">06</span><div class="step-text"><strong>Configuration des User Profile Disks (UPD)</strong> — Activation des UPD dans les propriétés de chaque collection RDS. Création du partage réseau dédié au stockage des fichiers VHD(X) de profils. Configuration de la taille maximale des disques et des permissions NTFS sur le partage (comptes machines des Session Hosts en contrôle total).</div></li>
+      <li><span class="step-num">07</span><div class="step-text"><strong>Configuration RD Gateway &amp; Web Access</strong> — Déploiement du certificat SSL, création des politiques CAP/RAP sur le Gateway, publication des RemoteApp sur le portail Web Access. Test d'accès depuis l'extérieur.</div></li>
+      <li><span class="step-num">08</span><div class="step-text"><strong>GPO &amp; sécurisation</strong> — Déploiement des GPO : timeout de session, redirection imprimante, profils itinérants, restriction des droits locaux sur les Session Hosts, désactivation du bureau local.</div></li>
+      <li><span class="step-num">09</span><div class="step-text"><strong>Tests de basculement &amp; profils</strong> — Simulation de panne du Broker-01 : vérification que les nouvelles sessions sont prises en charge par Broker-02. Test de reconnexion des sessions existantes. Vérification que le profil UPD est bien monté depuis le partage réseau sur les deux Session Hosts.</div></li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h2>Résultats</h2>
+    <div class="result-grid">
+      <div class="result-card"><div class="result-num">2</div><div class="result-label">Brokers HA</div></div>
+      <div class="result-card"><div class="result-num">4</div><div class="result-label">Session Hosts</div></div>
+      <div class="result-card"><div class="result-num">2</div><div class="result-label">Collections</div></div>
+      <div class="result-card"><div class="result-num">UPD</div><div class="result-label">Profils activés</div></div>
+      <div class="result-card"><div class="result-num">0</div><div class="result-label">Interruption bascule</div></div>
+    </div>
+    <p style="margin-top:1.5rem">La ferme est opérationnelle avec une tolérance de panne sur le broker. Les User Profile Disks permettent à chaque utilisateur de retrouver son environnement identique sur n'importe lequel des quatre Session Hosts. Les deux collections assurent une séparation des usages et une meilleure gestion de la charge.</p>
+  </div>
+
+</div>
+
+<footer>
+  <code>// Nicolas LUONG · <span>Ferme RDS HA — Aintranet</span> · 2025</code>
+</footer>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infrastructure Complète d'Entreprise — Nicolas LUONG</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080c12;--bg2:#0d1320;--bg3:#111827;--bg4:#1a2235;
+  --accent:#00d4ff;--accent3:#7c3aed;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
+  --green:#10b981;--orange:#f59e0b;--red:#ef4444;
+  --border:#1e2d45;--border2:#2a3f5f;
+  --font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,18,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:.1em;text-decoration:none}
+.nav-logo span{color:var(--text2)}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:4px;font-size:13px;font-weight:500;text-decoration:none;border:1px solid var(--border2);color:var(--text2);transition:all .2s;font-family:var(--font)}
+.back-btn:hover{border-color:var(--accent);color:var(--accent)}
+.container{max-width:900px;margin:0 auto;padding:0 2rem}
+.hero-project{padding-top:100px;padding-bottom:60px;border-bottom:1px solid var(--border);margin-bottom:3rem}
+.project-tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.project-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--accent)}
+h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
+.project-meta{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
+.meta-item{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--text2);font-family:var(--mono)}
+.meta-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.tag{font-family:var(--mono);font-size:11px;padding:.2rem .6rem;border-radius:3px;border:1px solid var(--border)}
+.tag-blue{color:#38bdf8;border-color:rgba(56,189,248,.2);background:rgba(56,189,248,.05)}
+.tag-green{color:var(--green);border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.05)}
+.tag-purple{color:#a78bfa;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.05)}
+.tag-orange{color:var(--orange);border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)}
+.tag-red{color:var(--red);border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.05)}
+.content-block{margin-bottom:3rem}
+h2{font-size:1.4rem;font-weight:600;margin-bottom:1.25rem;color:var(--text);display:flex;align-items:center;gap:.75rem}
+h2::after{content:'';flex:1;height:1px;background:var(--border)}
+p{color:var(--text2);line-height:1.8;font-size:15px;margin-bottom:1rem}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem}
+.info-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.info-card-title{font-size:12px;font-family:var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem}
+.info-card p{font-size:14px;margin:0}
+.component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1rem}
+.component-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;border-left:3px solid var(--accent)}
+.component-card.c-red{border-left-color:var(--red)}
+.component-card.c-blue{border-left-color:#38bdf8}
+.component-card.c-green{border-left-color:var(--green)}
+.component-card.c-purple{border-left-color:#a78bfa}
+.component-card.c-orange{border-left-color:var(--orange)}
+.component-name{font-size:14px;font-weight:600;margin-bottom:.4rem}
+.component-tech{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:.5rem}
+.component-desc{font-size:13px;color:var(--text2);line-height:1.6}
+.step-list{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-top:1rem}
+.step-list li{display:flex;align-items:flex-start;gap:1rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.step-num{font-family:var(--mono);font-size:12px;color:var(--accent);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15);border-radius:4px;padding:.2rem .6rem;white-space:nowrap;margin-top:.1rem}
+.step-text{font-size:14px;color:var(--text2);line-height:1.6}
+.step-text strong{color:var(--text);font-weight:600}
+.arch-diagram{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2rem;margin-top:1rem;font-family:var(--mono);font-size:13px;color:var(--text2);line-height:2.2;overflow-x:auto}
+.arch-diagram .node{color:var(--accent)}
+.arch-diagram .node-red{color:var(--red)}
+.arch-diagram .node-green{color:var(--green)}
+.arch-diagram .node-purple{color:#a78bfa}
+.arch-diagram .node-orange{color:var(--orange)}
+.arch-diagram .arrow{color:var(--text3)}
+.vlan-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:14px}
+.vlan-table th{text-align:left;padding:.75rem 1rem;font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--border);background:var(--bg3)}
+.vlan-table td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text2)}
+.vlan-table tr:hover td{background:var(--bg2)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1rem}
+.result-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;text-align:center}
+.result-num{font-size:1.6rem;font-weight:700;color:var(--accent);font-family:var(--mono)}
+.result-label{font-size:12px;color:var(--text3);margin-top:.25rem}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text3);font-size:13px;font-family:var(--mono);margin-top:4rem}
+footer span{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="portfolio.html" class="nav-logo"><span>~/</span>portfolio<span>.sh</span></a>
+  <a href="portfolio.html" class="back-btn">&#8592; Retour au portfolio</a>
+</nav>
+
+<div class="container">
+  <div class="hero-project">
+    <div class="project-tag">Projet · Scolaire · 2025</div>
+    <h1>Infrastructure Complète d'Entreprise</h1>
+    <p style="font-size:16px;color:var(--text2);max-width:700px;line-height:1.8">Conception et déploiement d'une infrastructure d'entreprise complète intégrant pare-feu, serveur web, base de données, annuaire Active Directory, stockage NAS et ERP Odoo. Segmentation réseau par VLAN avec politique de sécurité unifiée.</p>
+    <div class="project-meta">
+      <div class="meta-item"><div class="meta-dot"></div>Réalisé</div>
+      <div class="meta-item">&#128197; 2025</div>
+      <div class="meta-item">&#127979; Projet scolaire BTS SIO</div>
+    </div>
+    <div class="tags">
+      <span class="tag tag-red">pfSense</span>
+      <span class="tag tag-blue">Active Directory</span>
+      <span class="tag tag-green">Odoo</span>
+      <span class="tag tag-purple">NAS Synology</span>
+      <span class="tag tag-orange">PostgreSQL</span>
+      <span class="tag tag-green">Nginx</span>
+      <span class="tag tag-blue">VLAN</span>
+      <span class="tag tag-red">Linux Debian</span>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h2>Contexte</h2>
+    <p>Projet de fin d'année BTS SIO : simuler le déploiement d'une infrastructure informatique complète pour une PME fictive. L'objectif était de couvrir l'ensemble du périmètre SI : sécurité réseau, services d'annuaire, hébergement web, stockage, base de données et ERP métier, avec une segmentation réseau par VLAN.</p>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="info-card-title">Périmètre</div>
+        <p>Infrastructure complète PME fictive (~50 postes)</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Virtualisation</div>
+        <p>Proxmox VE — toutes les VMs sur un cluster local</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Réseau</div>
+        <p>Segmentation VLAN, pare-feu pfSense, routage inter-VLAN</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h2>Composants de l'infrastructure</h2>
+    <div class="component-grid">
+      <div class="component-card c-red">
+        <div class="component-name">Pare-feu &amp; Routeur</div>
+        <div class="component-tech">pfSense</div>
+        <div class="component-desc">Filtrage du trafic entrant/sortant, routage inter-VLAN, règles de firewall par zone, VPN site-à-site, portail captif Wi-Fi invités.</div>
+      </div>
+      <div class="component-card c-blue">
+        <div class="component-name">Annuaire d'entreprise</div>
+        <div class="component-tech">Active Directory — Windows Server 2022</div>
+        <div class="component-desc">Gestion des utilisateurs, groupes et ordinateurs. GPO déployées par OU. DNS et DHCP intégrés. Authentification centralisée pour tous les services.</div>
+      </div>
+      <div class="component-card c-green">
+        <div class="component-name">Serveur Web</div>
+        <div class="component-tech">Nginx — Debian 12</div>
+        <div class="component-desc">Hébergement du site vitrine et de l'interface web d'Odoo. Reverse proxy HTTPS avec certificats SSL auto-signés. Virtual hosts configurés par domaine.</div>
+      </div>
+      <div class="component-card c-orange">
+        <div class="component-name">Base de données</div>
+        <div class="component-tech">PostgreSQL — Debian 12</div>
+        <div class="component-desc">Base de données principale utilisée par Odoo. Accès restreint au VLAN serveurs uniquement. Sauvegardes automatiques planifiées vers le NAS.</div>
+      </div>
+      <div class="component-card c-purple">
+        <div class="component-name">Stockage NAS</div>
+        <div class="component-tech">Synology DSM</div>
+        <div class="component-desc">Partages SMB/CIFS pour les dossiers utilisateurs, sauvegardes des VMs via Hyper Backup, synchronisation des profils AD. Quotas par utilisateur et par groupe.</div>
+      </div>
+      <div class="component-card c-green">
+        <div class="component-name">ERP Métier</div>
+        <div class="component-tech">Odoo 17 Community</div>
+        <div class="component-desc">Gestion comptabilité, stocks, CRM et ressources humaines. Déployé sur VM Debian avec PostgreSQL dédié. Accessible via Nginx en HTTPS.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h2>Segmentation réseau VLAN</h2>
+    <table class="vlan-table">
+      <thead>
+        <tr><th>VLAN</th><th>Nom</th><th>Sous-réseau</th><th>Équipements</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>10</td><td>Serveurs</td><td>192.168.10.0/24</td><td>AD, Web, BDD, Odoo</td></tr>
+        <tr><td>20</td><td>Utilisateurs</td><td>192.168.20.0/24</td><td>Postes de travail</td></tr>
+        <tr><td>30</td><td>NAS &amp; Sauvegardes</td><td>192.168.30.0/24</td><td>NAS Synology</td></tr>
+        <tr><td>40</td><td>DMZ</td><td>192.168.40.0/24</td><td>Serveur web exposé</td></tr>
+        <tr><td>99</td><td>Management</td><td>192.168.99.0/24</td><td>Interfaces admin, pfSense</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="content-block">
+    <h2>Étapes de déploiement</h2>
+    <ul class="step-list">
+      <li><span class="step-num">01</span><div class="step-text"><strong>Conception du plan réseau</strong> — Définition des VLANs, plan d'adressage IP, schéma de routage et matrice de flux autorisés entre zones.</div></li>
+      <li><span class="step-num">02</span><div class="step-text"><strong>Déploiement pfSense</strong> — Installation et configuration du pare-feu : interfaces VLAN, règles de filtrage, NAT, DHCP par VLAN, DNS Resolver.</div></li>
+      <li><span class="step-num">03</span><div class="step-text"><strong>Active Directory &amp; GPO</strong> — Promotion du contrôleur de domaine, création de l'arborescence OU, déploiement des GPO de sécurité (écran de veille, restrictions logicielles, mappage des lecteurs réseau).</div></li>
+      <li><span class="step-num">04</span><div class="step-text"><strong>NAS Synology</strong> — Configuration des partages SMB, intégration au domaine AD, activation des quotas, mise en place des tâches de sauvegarde automatiques.</div></li>
+      <li><span class="step-num">05</span><div class="step-text"><strong>Serveur web Nginx</strong> — Installation de Nginx sur Debian 12, configuration des virtual hosts, mise en place du reverse proxy vers Odoo et génération des certificats SSL.</div></li>
+      <li><span class="step-num">06</span><div class="step-text"><strong>PostgreSQL &amp; Odoo</strong> — Déploiement de PostgreSQL, création de la base Odoo, installation et configuration d'Odoo 17 Community avec les modules comptabilité, stocks et CRM.</div></li>
+      <li><span class="step-num">07</span><div class="step-text"><strong>Tests et documentation</strong> — Vérification de la matrice de flux (ping, telnet), tests de connexion AD depuis les postes clients, accès Odoo via HTTPS, rédaction du dossier technique.</div></li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h2>Résultats</h2>
+    <div class="result-grid">
+      <div class="result-card"><div class="result-num">6</div><div class="result-label">Services déployés</div></div>
+      <div class="result-card"><div class="result-num">5</div><div class="result-label">VLANs configurés</div></div>
+      <div class="result-card"><div class="result-num">8+</div><div class="result-label">VMs déployées</div></div>
+      <div class="result-card"><div class="result-num">100%</div><div class="result-label">Tests validés</div></div>
+    </div>
+    <p style="margin-top:1.5rem">L'infrastructure couvre l'ensemble du périmètre SI d'une PME type. La segmentation VLAN assure l'isolation des flux sensibles, pfSense filtre tout le trafic inter-zones, et Odoo offre aux utilisateurs une solution ERP complète accessible de manière sécurisée via leur compte Active Directory.</p>
+  </div>
+
+</div>
+
+<footer>
+  <code>// Nicolas LUONG · <span>Infrastructure Complète</span> · 2025</code>
+</footer>
+</body>
+</html>

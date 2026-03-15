@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haute Disponibilité WordPress — Nicolas LUONG</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080c12;--bg2:#0d1320;--bg3:#111827;--bg4:#1a2235;
+  --accent:#00d4ff;--accent3:#7c3aed;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
+  --green:#10b981;--orange:#f59e0b;--red:#ef4444;
+  --border:#1e2d45;--border2:#2a3f5f;
+  --font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,18,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:.1em;text-decoration:none}
+.nav-logo span{color:var(--text2)}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:4px;font-size:13px;font-weight:500;text-decoration:none;border:1px solid var(--border2);color:var(--text2);transition:all .2s;font-family:var(--font)}
+.back-btn:hover{border-color:var(--accent);color:var(--accent)}
+.container{max-width:900px;margin:0 auto;padding:0 2rem}
+.hero-project{padding-top:100px;padding-bottom:60px;border-bottom:1px solid var(--border);margin-bottom:3rem}
+.project-tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.project-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--accent)}
+h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
+.project-meta{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
+.meta-item{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--text2);font-family:var(--mono)}
+.meta-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.tag{font-family:var(--mono);font-size:11px;padding:.2rem .6rem;border-radius:3px;border:1px solid var(--border)}
+.tag-blue{color:#38bdf8;border-color:rgba(56,189,248,.2);background:rgba(56,189,248,.05)}
+.tag-green{color:var(--green);border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.05)}
+.tag-purple{color:#a78bfa;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.05)}
+.tag-orange{color:var(--orange);border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)}
+.tag-red{color:var(--red);border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.05)}
+.content-block{margin-bottom:3rem}
+h2{font-size:1.4rem;font-weight:600;margin-bottom:1.25rem;color:var(--text);display:flex;align-items:center;gap:.75rem}
+h2::after{content:'';flex:1;height:1px;background:var(--border)}
+p{color:var(--text2);line-height:1.8;font-size:15px;margin-bottom:1rem}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem}
+.info-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.info-card-title{font-size:12px;font-family:var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem}
+.info-card p{font-size:14px;margin:0;color:var(--text2)}
+/* SOMMAIRE */
+.toc{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:1.5rem;margin-bottom:3rem}
+.toc-title{font-family:var(--mono);font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.15em;margin-bottom:1rem}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.toc-list li a{color:var(--text2);text-decoration:none;font-size:14px;display:flex;align-items:center;gap:.75rem;transition:color .2s}
+.toc-list li a:hover{color:var(--accent)}
+.toc-num{font-family:var(--mono);font-size:11px;color:var(--text3);min-width:1.5rem}
+/* STEPS */
+.step-block{margin-bottom:2.5rem;scroll-margin-top:80px}
+.step-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.step-number{font-family:var(--mono);font-size:13px;color:var(--accent);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:4px;padding:.3rem .8rem;white-space:nowrap}
+.step-title{font-size:1.2rem;font-weight:600;color:var(--text)}
+/* CODE BLOCKS */
+.code-block{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.25rem;margin:.75rem 0;overflow-x:auto}
+.code-block code{font-family:var(--mono);font-size:13px;color:#7dd3fc;line-height:1.8;white-space:pre}
+.code-comment{color:var(--text3)}
+.code-cmd{color:#86efac}
+/* ARCH */
+.arch-diagram{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2rem;margin-top:1rem;font-family:var(--mono);font-size:13px;color:var(--text2);line-height:2.4;overflow-x:auto}
+.node-accent{color:var(--accent)}
+.node-green{color:var(--green)}
+.node-orange{color:var(--orange)}
+.arrow-txt{color:var(--text3)}
+/* NOTE BOX */
+.note-box{background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.15);border-radius:8px;padding:1.25rem;margin:.75rem 0}
+.note-box p{margin:0;font-size:14px}
+.warn-box{background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:1.25rem;margin:.75rem 0}
+.warn-box p{margin:0;font-size:14px;color:var(--text2)}
+/* RESULT */
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1rem}
+.result-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;text-align:center}
+.result-num{font-size:1.6rem;font-weight:700;color:var(--accent);font-family:var(--mono)}
+.result-label{font-size:12px;color:var(--text3);margin-top:.25rem}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text3);font-size:13px;font-family:var(--mono);margin-top:4rem}
+footer span{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="portfolio.html" class="nav-logo"><span>~/</span>portfolio<span>.sh</span></a>
+  <a href="portfolio.html" class="back-btn">&#8592; Retour au portfolio</a>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero-project">
+    <div class="project-tag">Projet · Scolaire BTS SIO SISR · 2025</div>
+    <h1>Haute Disponibilité WordPress &amp; Serveur Web</h1>
+    <p style="font-size:16px;color:var(--text2);max-width:720px;line-height:1.8">Déploiement d'une infrastructure WordPress haute disponibilité avec load balancing Nginx, réplication MariaDB maître-maître, synchronisation des fichiers via Unison et VIP Keepalived pour la base de données.</p>
+    <div class="project-meta">
+      <div class="meta-item"><div class="meta-dot"></div>Réalisé</div>
+      <div class="meta-item">&#128197; 2025</div>
+      <div class="meta-item">&#127979; BTS SIO SISR — Lycée Carriat</div>
+      <div class="meta-item">&#127760; etu11.sio-carriat.com</div>
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">MariaDB</span>
+      <span class="tag tag-blue">Nginx</span>
+      <span class="tag tag-orange">WordPress</span>
+      <span class="tag tag-purple">Keepalived</span>
+      <span class="tag tag-green">Unison</span>
+      <span class="tag tag-blue">Let's Encrypt</span>
+      <span class="tag tag-red">Debian 12</span>
+      <span class="tag tag-orange">phpMyAdmin</span>
+    </div>
+  </div>
+
+  <!-- SOMMAIRE -->
+  <div class="toc">
+    <div class="toc-title">Sommaire</div>
+    <ol class="toc-list">
+      <li><a href="#s1"><span class="toc-num">01</span> Architecture globale</a></li>
+      <li><a href="#s2"><span class="toc-num">02</span> Installation sécurisée de MariaDB</a></li>
+      <li><a href="#s3"><span class="toc-num">03</span> Création de l'utilisateur admin SQL</a></li>
+      <li><a href="#s4"><span class="toc-num">04</span> Autoriser les connexions externes</a></li>
+      <li><a href="#s5"><span class="toc-num">05</span> Installation de Nginx &amp; WordPress</a></li>
+      <li><a href="#s6"><span class="toc-num">06</span> Création de la base de données WordPress</a></li>
+      <li><a href="#s7"><span class="toc-num">07</span> Téléchargement et configuration de WordPress</a></li>
+      <li><a href="#s8"><span class="toc-num">08</span> Redirection via le FRONT + SSL</a></li>
+      <li><a href="#s9"><span class="toc-num">09</span> Certificat Let's Encrypt</a></li>
+      <li><a href="#s10"><span class="toc-num">10</span> Installation phpMyAdmin</a></li>
+      <li><a href="#s11"><span class="toc-num">11</span> Répartition de charge (Load Balancing)</a></li>
+      <li><a href="#s12"><span class="toc-num">12</span> Réplication de la base de données</a></li>
+      <li><a href="#s13"><span class="toc-num">13</span> Haute disponibilité BDD avec Keepalived</a></li>
+    </ol>
+  </div>
+
+  <!-- ARCHITECTURE -->
+  <div class="content-block" id="s1">
+    <h2>Architecture globale</h2>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="info-card-title">FRONT (Load Balancer)</div>
+        <p>192.168.111.174 — Nginx reverse proxy, SSL Let's Encrypt, phpMyAdmin</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">WP1 + WP2 (Serveurs Web)</div>
+        <p>192.168.160.21 / .22 — Nginx + WordPress + PHP-FPM, sync Unison</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">BDD1 + BDD2 (Base de données)</div>
+        <p>192.168.160.31 / .32 — MariaDB réplication maître-maître, VIP Keepalived 192.168.160.30</p>
+      </div>
+    </div>
+    <div class="arch-diagram" style="margin-top:1.5rem">
+<span class="arrow-txt">Internet / Client</span>
+<span class="arrow-txt">        |  HTTPS (443)</span>
+<span class="node-accent">   [FRONT — Nginx — 192.168.111.174]</span>  <span class="arrow-txt">SSL Let's Encrypt · phpMyAdmin :4443</span>
+<span class="arrow-txt">        |  round-robin / ip_hash</span>
+<span class="arrow-txt">   _____|_____</span>
+<span class="arrow-txt">  |           |</span>
+<span class="node-green">[WP1]       [WP2]</span>  <span class="arrow-txt">.21 / .22 — Nginx + WordPress</span>
+<span class="arrow-txt">  |           |  Unison (sync wp-content toutes les 2 min)</span>
+<span class="arrow-txt">        |</span>
+<span class="node-orange">  [VIP Keepalived — 192.168.160.30]</span>
+<span class="arrow-txt">   _____|_____</span>
+<span class="arrow-txt">  |           |</span>
+<span class="node-green">[BDD1]      [BDD2]</span>  <span class="arrow-txt">.31 / .32 — MariaDB réplication maître-maître</span>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 1 -->
+  <div class="step-block" id="s2">
+    <div class="step-header">
+      <span class="step-number">01</span>
+      <div class="step-title">Installation sécurisée de MariaDB</div>
+    </div>
+    <p>Sur le serveur BDD1, mettre à jour le système puis installer et sécuriser MariaDB :</p>
+    <div class="code-block"><code>apt update -y && apt upgrade -y
+apt install mariadb-server -y
+mariadb-secure-installation</code></div>
+    <p>L'assistant <code style="color:var(--accent);font-family:var(--mono)">mariadb-secure-installation</code> demande de définir le mot de passe root, supprimer les utilisateurs anonymes, désactiver la connexion root à distance et supprimer la base de test.</p>
+  </div>
+
+  <!-- ÉTAPE 2 -->
+  <div class="step-block" id="s3">
+    <div class="step-header">
+      <span class="step-number">02</span>
+      <div class="step-title">Création de l'utilisateur admin SQL</div>
+    </div>
+    <p>Se connecter à MariaDB et créer un utilisateur administrateur avec tous les privilèges :</p>
+    <div class="code-block"><code>mysql --user=root mysql
+
+CREATE USER 'sql_adm'@'%' IDENTIFIED BY 'Azerty_123';
+GRANT ALL PRIVILEGES ON *.* TO 'sql_adm'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;</code></div>
+    <p>L'utilisateur <code style="color:var(--accent);font-family:var(--mono)">sql_adm</code> pourra se connecter depuis n'importe quelle adresse IP (wildcard <code style="color:var(--accent);font-family:var(--mono)">%</code>).</p>
+  </div>
+
+  <!-- ÉTAPE 3 -->
+  <div class="step-block" id="s4">
+    <div class="step-header">
+      <span class="step-number">03</span>
+      <div class="step-title">Autoriser les connexions externes</div>
+    </div>
+    <p>Par défaut MariaDB n'écoute que sur localhost. Modifier le fichier de configuration pour écouter sur toutes les interfaces :</p>
+    <div class="code-block"><code>nano /etc/mysql/mariadb.conf.d/50-server.cnf
+<span class="code-comment"># Trouver la ligne bind-address et remplacer par :</span>
+bind-address = 0.0.0.0</code></div>
+    <div class="code-block"><code>systemctl restart mariadb</code></div>
+    <p>Pour tester la connexion depuis un serveur distant, installer le client MariaDB et tester :</p>
+    <div class="code-block"><code>apt install mariadb-client
+mysql -u sql_adm -p -h [IP_BDD] -P 3306</code></div>
+  </div>
+
+  <!-- ÉTAPE 4 -->
+  <div class="step-block" id="s5">
+    <div class="step-header">
+      <span class="step-number">04</span>
+      <div class="step-title">Installation de Nginx sur les serveurs WordPress</div>
+    </div>
+    <p>Sur WP1 (et WP2), mettre à jour et installer Nginx et PHP :</p>
+    <div class="code-block"><code>apt update -y && apt upgrade -y
+apt install nginx -y
+
+<span class="code-comment"># Vérification avec lynx</span>
+apt install lynx
+lynx 192.168.160.21</code></div>
+    <p>Installer ensuite PHP et toutes les extensions nécessaires à WordPress :</p>
+    <div class="code-block"><code>apt install php php-curl php-fpm php-bcmath php-gd php-soap \
+  php-zip php-mbstring php-mysqlnd php-xml php-intl</code></div>
+  </div>
+
+  <!-- ÉTAPE 5 -->
+  <div class="step-block" id="s6">
+    <div class="step-header">
+      <span class="step-number">05</span>
+      <div class="step-title">Création de la base de données WordPress</div>
+    </div>
+    <p>Sur BDD1, créer la base dédiée à WordPress et l'utilisateur associé :</p>
+    <div class="code-block"><code>mysql -u sql_adm -p
+
+CREATE DATABASE NLU_Wordpress;
+
+GRANT ALL PRIVILEGES ON NLU_Wordpress.* TO "nluwordpressuser"@"%"
+  IDENTIFIED BY "Azerty_123";
+FLUSH PRIVILEGES;
+
+<span class="code-comment"># Vérification</span>
+SHOW DATABASES;</code></div>
+  </div>
+
+  <!-- ÉTAPE 6 -->
+  <div class="step-block" id="s7">
+    <div class="step-header">
+      <span class="step-number">06</span>
+      <div class="step-title">Téléchargement et configuration de WordPress</div>
+    </div>
+    <p>Sur WP1, télécharger et décompresser WordPress dans le répertoire web :</p>
+    <div class="code-block"><code>wget https://fr.wordpress.org/latest-fr_FR.zip
+apt install unzip
+unzip latest-fr_FR.zip -d /var/www/html</code></div>
+    <p>Configurer WordPress en copiant et éditant le fichier de configuration :</p>
+    <div class="code-block"><code>cd /var/www/html/wordpress
+cp wp-config-sample.php wp-config.php
+nano wp-config.php
+
+<span class="code-comment"># Modifier les valeurs suivantes :</span>
+define('DB_NAME',     'NLU_Wordpress');
+define('DB_USER',     'nluwordpressuser');
+define('DB_PASSWORD', 'Azerty_123');
+define('DB_HOST',     '192.168.160.31');</code></div>
+    <p>Attribuer les droits à l'utilisateur Nginx :</p>
+    <div class="code-block"><code>chown -R www-data:www-data /var/www/html/wordpress</code></div>
+    <p>Configurer le virtual host Nginx pour WordPress :</p>
+    <div class="code-block"><code>nano /etc/nginx/sites-enabled/default
+
+<span class="code-comment"># Bloc server avec root /var/www/html/wordpress,</span>
+<span class="code-comment"># index index.php, try_files et fastcgi_pass vers php-fpm</span></code></div>
+  </div>
+
+  <!-- ÉTAPE 7 -->
+  <div class="step-block" id="s8">
+    <div class="step-header">
+      <span class="step-number">07</span>
+      <div class="step-title">Redirection via le FRONT + SSL auto-signé</div>
+    </div>
+    <p>Sur le FRONT, installer Nginx et créer le fichier de configuration reverse proxy :</p>
+    <div class="code-block"><code>apt install nginx -y
+nano /etc/nginx/sites-available/wordpress
+
+<span class="code-comment"># Contenu du fichier :</span>
+upstream wordpress {
+    server 192.168.160.21;
+}
+server {
+    listen 80;
+    location / {
+        proxy_pass http://wordpress;
+    }
+}</code></div>
+    <div class="code-block"><code>ln -s /etc/nginx/sites-available/wordpress \
+      /etc/nginx/sites-enabled/wordpress
+systemctl restart nginx</code></div>
+    <p>Générer un certificat auto-signé (2048 bits, valable 3000 jours) :</p>
+    <div class="code-block"><code>mkdir /etc/nginx/ssl
+openssl req -x509 -nodes -days 3000 -newkey rsa:2048 \
+  -keyout /etc/nginx/ssl/front.tp.labo.key \
+  -out /etc/nginx/ssl/front.tp.labo.crt</code></div>
+    <p>Ajouter le bloc SSL dans le fichier de configuration wordpress du FRONT (port 443) et rediriger HTTP vers HTTPS. Pour corriger le problème de CSS lié au proxy, ajouter dans wp-config.php :</p>
+    <div class="code-block"><code>nano /var/www/html/wordpress/wp-config.php
+
+<span class="code-comment"># Avant la ligne require_once ABSPATH . 'wp-settings.php' :</span>
+if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+    $_SERVER['HTTPS'] = 'on';</code></div>
+  </div>
+
+  <!-- ÉTAPE 8 -->
+  <div class="step-block" id="s9">
+    <div class="step-header">
+      <span class="step-number">08</span>
+      <div class="step-title">Certificat Let's Encrypt</div>
+    </div>
+    <p>Sur le FRONT, installer Certbot et générer un certificat pour le domaine <code style="color:var(--accent);font-family:var(--mono)">etu11.sio-carriat.com</code> via challenge DNS :</p>
+    <div class="code-block"><code>apt install python3-certbot-nginx
+
+certbot -d etu11.sio-carriat.com --manual \
+  --preferred-challenges dns certonly</code></div>
+    <p>Suivre les instructions : ajouter l'entrée DNS TXT indiquée sur <a href="https://dns.sio-carriat.com" style="color:var(--accent)">https://dns.sio-carriat.com</a>, puis valider. Le certificat est généré dans <code style="color:var(--accent);font-family:var(--mono)">/etc/letsencrypt/live/etu11.sio-carriat.com/</code>. Mettre à jour la configuration Nginx pour utiliser les nouveaux certificats :</p>
+    <div class="code-block"><code>nano /etc/nginx/sites-enabled/wordpress
+
+<span class="code-comment"># Modifier les lignes ssl_certificate :</span>
+ssl_certificate     /etc/letsencrypt/live/etu11.sio-carriat.com/cert.pem;
+ssl_certificate_key /etc/letsencrypt/live/etu11.sio-carriat.com/privkey.pem;</code></div>
+    <div class="note-box"><p>&#127760; <strong style="color:var(--text)">Accès final :</strong> Le site WordPress est accessible en HTTPS sur <strong style="color:var(--accent)">https://etu11.sio-carriat.com</strong> avec un certificat valide Let's Encrypt. Ajouter l'entrée dans le fichier hosts Windows pour les tests locaux.</p></div>
+  </div>
+
+  <!-- ÉTAPE 9 -->
+  <div class="step-block" id="s10">
+    <div class="step-header">
+      <span class="step-number">09</span>
+      <div class="step-title">Installation de phpMyAdmin</div>
+    </div>
+    <p>Sur le FRONT, installer phpMyAdmin pour administrer les bases de données :</p>
+    <div class="code-block"><code>apt install phpmyadmin
+<span class="code-comment"># Ne rien cocher lors de l'installation, choisir NON pour dbconfig</span>
+
+apt install php-fpm php-mbstring php-bcmath php-xml php-mysql \
+  php-common php-gd php-cli php-curl php-zip</code></div>
+    <p>Créer un virtual host Nginx pour phpMyAdmin sur le port 4443 avec SSL. Reconfigurer phpMyAdmin pour pointer vers BDD1 :</p>
+    <div class="code-block"><code>dpkg-reconfigure phpmyadmin
+<span class="code-comment"># Choisir : Oui → TCP/IP → New host → IP de BDD1 → port 3306 → Default</span></code></div>
+    <p>Ajouter BDD2 dans la configuration pour pouvoir switcher entre les serveurs :</p>
+    <div class="code-block"><code>nano /etc/phpmyadmin/config.inc.php
+<span class="code-comment"># Ajouter un second bloc $cfg['Servers'][$i] pointant vers 192.168.160.32</span></code></div>
+    <div class="note-box"><p>&#128274; phpMyAdmin est accessible sur <strong style="color:var(--accent)">https://etu11.sio-carriat.com:4443/</strong></p></div>
+  </div>
+
+  <!-- ÉTAPE 10 -->
+  <div class="step-block" id="s11">
+    <div class="step-header">
+      <span class="step-number">10</span>
+      <div class="step-title">Répartition de charge (Load Balancing)</div>
+    </div>
+    <p>Dupliquer WP1 en WP2 (clone VM), modifier le hostname et l'adresse IP :</p>
+    <div class="code-block"><code>hostnamectl set-hostname NLU-WP2-TPLABO
+nano /etc/hosts
+<span class="code-comment"># Modifier la ligne pour NLU-WP2-TPLABO avec l'IP 192.168.160.22</span></code></div>
+    <p>Sur le FRONT, ajouter WP2 dans le bloc upstream pour activer le load balancing en round-robin (comportement par défaut) :</p>
+    <div class="code-block"><code>nano /etc/nginx/sites-available/wordpress
+
+upstream wordpress {
+    server 192.168.160.21;
+    server 192.168.160.22;
+}</code></div>
+    <p>Pour du load balancing par poids (weight), modifier le upstream :</p>
+    <div class="code-block"><code>upstream wordpress {
+    server 192.168.160.21 weight=3;
+    server 192.168.160.22 weight=1;
+}</code></div>
+    <p>Pour de la persistance de session (sticky sessions), utiliser ip_hash — garantit qu'un même client est toujours routé vers le même serveur :</p>
+    <div class="code-block"><code>upstream wordpress {
+    ip_hash;
+    server 192.168.160.21;
+    server 192.168.160.22;
+}</code></div>
+    <p>Synchroniser les fichiers WordPress entre WP1 et WP2 avec Unison. Créer d'abord une paire de clés SSH :</p>
+    <div class="code-block"><code><span class="code-comment"># Sur WP1 :</span>
+ssh-keygen -t ed25519
+<span class="code-comment"># Transmettre la clé publique à WP2 :</span>
+cat ~/.ssh/wp1-wp2.pub | ssh root@192.168.160.22 \
+  "cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+
+<span class="code-comment"># Lancer la synchronisation manuellement :</span>
+unison /var/www/html/wordpress/wp-content/uploads \
+       ssh://192.168.160.22//var/www/html/wordpress/wp-content/uploads</code></div>
+    <p>Automatiser la synchronisation toutes les 2 minutes via crontab :</p>
+    <div class="code-block"><code>crontab -e
+<span class="code-comment"># Ajouter la ligne :</span>
+*/2 * * * * /usr/bin/unison default</code></div>
+    <div class="warn-box"><p>&#9888;&#65039; <strong style="color:var(--orange)">Autoriser SSH root</strong> sur WP2 pour que la clé fonctionne : <code style="color:var(--accent);font-family:var(--mono)">nano /etc/ssh/sshd_config</code> → ajouter <code style="color:var(--accent);font-family:var(--mono)">PermitRootLogin yes</code></p></div>
+  </div>
+
+  <!-- ÉTAPE 11 -->
+  <div class="step-block" id="s12">
+    <div class="step-header">
+      <span class="step-number">11</span>
+      <div class="step-title">Réplication de la base de données (Maître-Maître)</div>
+    </div>
+    <p>Sur BDD1, créer l'utilisateur de réplication :</p>
+    <div class="code-block"><code>CREATE USER 'wp_replication'@'%' IDENTIFIED BY 'Azerty_123';
+GRANT REPLICATION SLAVE ON *.* TO 'wp_replication'@'%';
+FLUSH PRIVILEGES;</code></div>
+    <p>Configurer BDD1 comme maître dans le fichier de configuration MariaDB :</p>
+    <div class="code-block"><code>nano /etc/mysql/mariadb.conf.d/50-server.cnf
+<span class="code-comment"># Ajouter :</span>
+log_bin         = /var/log/mysql/mysql-bin
+server_id       = 1
+binlog_do_db    = NLU_Wordpress</code></div>
+    <div class="code-block"><code>mkdir /var/log/mysql/mysql-bin.index
+chown -R mysql:mysql /var/log/mysql
+chmod 750 /var/log/mysql
+systemctl restart mariadb.service
+
+<span class="code-comment"># Vérifier le statut maître :</span>
+mariadb
+SHOW MASTER STATUS;</code></div>
+    <p>Configurer l'esclave sur BDD1 (qui pointe vers BDD2) en récupérant le fichier log et la position depuis BDD2 :</p>
+    <div class="code-block"><code>STOP SLAVE;
+CHANGE MASTER TO
+  MASTER_HOST     = '192.168.160.32',
+  MASTER_USER     = 'wp_replication',
+  MASTER_PASSWORD = 'Azerty_123',
+  MASTER_LOG_FILE = 'mysql-bin.000001',
+  MASTER_LOG_POS  = 328;
+START SLAVE;</code></div>
+    <p>Répéter la même procédure sur BDD2 (server_id = 2), en pointant vers BDD1 :</p>
+    <div class="code-block"><code>CHANGE MASTER TO
+  MASTER_HOST     = '192.168.160.31',
+  MASTER_USER     = 'wp_replication',
+  MASTER_PASSWORD = 'Azerty_123',
+  MASTER_LOG_FILE = 'mysql-bin.000002',
+  MASTER_LOG_POS  = 328;
+START SLAVE;</code></div>
+    <div class="note-box"><p>&#9851;&#65039; <strong style="color:var(--text)">Réplication maître-maître :</strong> BDD1 et BDD2 se répliquent mutuellement. Toute écriture sur l'un est propagée à l'autre automatiquement.</p></div>
+  </div>
+
+  <!-- ÉTAPE 12 -->
+  <div class="step-block" id="s13">
+    <div class="step-header">
+      <span class="step-number">12</span>
+      <div class="step-title">Haute disponibilité BDD avec Keepalived (VIP)</div>
+    </div>
+    <p>Sur BDD1 et BDD2, installer Keepalived pour gérer une IP virtuelle partagée :</p>
+    <div class="code-block"><code>apt install keepalived
+nano /etc/keepalived/keepalived.conf</code></div>
+    <p>Configuration sur BDD1 (MASTER) :</p>
+    <div class="code-block"><code>global_defs {
+    enable_script_security
+}
+
+vrrp_script check_mariadb {
+    script "/usr/bin/pgrep mariadb"
+    interval 1    <span class="code-comment"># vérifie toutes les secondes</span>
+    fall    2     <span class="code-comment"># 2 échecs → DOWN</span>
+    rise    2     <span class="code-comment"># 2 succès → UP</span>
+}
+
+vrrp_instance VirtualIP {
+    state         MASTER
+    interface     ens33
+    virtual_router_id 1
+    priority      100        <span class="code-comment"># 50 sur BDD2</span>
+    authentication {
+        auth_type PASS
+        auth_pass MonMotDePasse
+    }
+    virtual_ipaddress {
+        192.168.160.30       <span class="code-comment"># VIP partagée</span>
+    }
+    track_script {
+        check_mariadb
+    }
+}</code></div>
+    <div class="code-block"><code>chmod 600 /etc/keepalived/keepalived.conf
+
+<span class="code-comment"># Créer l'utilisateur système requis par Keepalived :</span>
+useradd -U -M -s /sbin/nologin keepalived_script
+
+systemctl restart keepalived
+systemctl status keepalived</code></div>
+    <p>Sur BDD2, utiliser la même configuration avec <code style="color:var(--accent);font-family:var(--mono)">state BACKUP</code> et <code style="color:var(--accent);font-family:var(--mono)">priority 50</code>.</p>
+    <p>Mettre à jour les fichiers <code style="color:var(--accent);font-family:var(--mono)">wp-config.php</code> de WP1 et WP2 pour pointer vers la VIP :</p>
+    <div class="code-block"><code>define('DB_HOST', '192.168.160.30');
+<span class="code-comment"># Les deux serveurs web se connectent désormais à la VIP.</span>
+<span class="code-comment"># En cas de panne de BDD1, la VIP bascule automatiquement sur BDD2.</span></code></div>
+    <div class="note-box"><p>&#128994; <strong style="color:var(--text)">Fonctionnement :</strong> Si MariaDB s'arrête sur BDD1, le script <code style="color:var(--accent);font-family:var(--mono)">pgrep mariadb</code> échoue 2 fois → Keepalived baisse la priorité de BDD1 → BDD2 (priorité 50) devient MASTER et hérite de la VIP <strong style="color:var(--accent)">192.168.160.30</strong> → WordPress continue de fonctionner sans interruption.</p></div>
+  </div>
+
+  <!-- RÉSULTATS -->
+  <div class="content-block">
+    <h2>Résultats</h2>
+    <div class="result-grid">
+      <div class="result-card"><div class="result-num">5</div><div class="result-label">Serveurs déployés</div></div>
+      <div class="result-card"><div class="result-num">1</div><div class="result-label">VIP Keepalived</div></div>
+      <div class="result-card"><div class="result-num">2 min</div><div class="result-label">Sync Unison</div></div>
+      <div class="result-card"><div class="result-num">&lt;2s</div><div class="result-label">Bascule BDD</div></div>
+    </div>
+    <p style="margin-top:1.5rem">L'infrastructure assure la continuité de service en cas de panne de n'importe quel composant : si WP1 tombe, le FRONT route vers WP2 ; si BDD1 tombe, la VIP Keepalived bascule sur BDD2. La réplication maître-maître garantit la cohérence des données.</p>
+  </div>
+
+</div>
+
+<footer>
+  <code>// Nicolas LUONG · <span>HA WordPress</span> · 2025</code>
+</footer>
+</body>
+</html>
