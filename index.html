@@ -7,14 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#080c12;--bg2:#0d1320;--bg3:#111827;--bg4:#1a2235;
-  --accent:#00d4ff;--accent3:#7c3aed;
-  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
-  --green:#10b981;--orange:#f59e0b;--red:#ef4444;
-  --border:#1e2d45;--border2:#2a3f5f;
-  --font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;
-}
+:root{--bg:#080c12;--bg2:#0d1320;--bg3:#111827;--bg4:#1a2235;--accent:#00d4ff;--accent3:#7c3aed;--text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;--green:#10b981;--orange:#f59e0b;--red:#ef4444;--border:#1e2d45;--border2:#2a3f5f;--font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,18,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
@@ -70,11 +63,11 @@ h2 span{color:var(--text3)}
 .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--border),transparent)}
 .timeline-item{position:relative;margin-bottom:2.5rem}
 .timeline-dot{position:absolute;left:-2.45rem;top:.5rem;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 10px var(--accent)}
-.timeline-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:border-color .2s}
-.timeline-card:hover{border-color:var(--border2)}
-.timeline-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem}
+.timeline-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:all .2s}
+.timeline-card:hover{border-color:var(--accent)}
 .job-title{font-size:16px;font-weight:600;color:var(--text)}
 .job-company{font-size:14px;color:var(--accent);margin-top:.2rem}
+.timeline-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem}
 .job-date{font-family:var(--mono);font-size:12px;color:var(--text3);background:var(--bg3);padding:.25rem .75rem;border-radius:20px;border:1px solid var(--border);text-align:right;line-height:1.8}
 .job-desc{color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:1rem}
 .tags{display:flex;flex-wrap:wrap;gap:.4rem}
@@ -126,15 +119,10 @@ h2 span{color:var(--text3)}
 .reveal.visible{opacity:1;transform:none}
 footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text3);font-size:13px;font-family:var(--mono)}
 footer span{color:var(--accent)}
-@media(max-width:768px){
-  .hero-grid,.two-col{grid-template-columns:1fr}
-  .avatar-card{display:none}
-  .nav-links{display:none}
-}
+@media(max-width:768px){.hero-grid,.two-col{grid-template-columns:1fr}.avatar-card{display:none}.nav-links{display:none}}
 </style>
 </head>
 <body>
-
 <nav>
   <div class="nav-logo"><span>~/</span>portfolio<span>.sh</span></div>
   <ul class="nav-links">
@@ -151,10 +139,7 @@ footer span{color:var(--accent)}
     <div class="hero-grid">
       <div>
         <div class="hero-tag">Administrateur Réseau &amp; Systèmes</div>
-        <h1>
-          <span class="name">Nicolas LUONG</span>
-          <span class="role">Infrastructure &amp; Systèmes</span>
-        </h1>
+        <h1><span class="name">Nicolas LUONG</span><span class="role">Infrastructure &amp; Systèmes</span></h1>
         <p class="hero-bio">Passionné par l'administration de réseaux, la virtualisation et la cybersécurité. Je conçois et maintiens des infrastructures robustes, sécurisées et scalables.</p>
         <div class="hero-links">
           <a href="NicolasLUONG_CV.pdf" download="NicolasLUONG_CV.pdf" class="btn btn-primary">&#11015; Télécharger CV</a>
@@ -168,10 +153,7 @@ footer span{color:var(--accent)}
       <div class="avatar-card">
         <div class="avatar-ring">
           <div class="avatar-img">&#128421;</div>
-          <div class="status-badge">
-            <span class="nav-dot" style="width:7px;height:7px;margin:0"></span>
-            Open to work
-          </div>
+          <div class="status-badge"><span class="nav-dot" style="width:7px;height:7px;margin:0"></span>Open to work</div>
         </div>
         <div class="skills-float">
           <div class="skill-pill">Cisco IOS</div>
@@ -203,22 +185,25 @@ footer span{color:var(--accent)}
         <div class="timeline">
           <div class="timeline-item">
             <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-header">
-                <div>
-                  <div class="job-title">Administration Réseau &amp; Systèmes</div>
-                  <div class="job-company">Aintranet · Prestation de service</div>
+            <a href="stage-aintranet.html" style="text-decoration:none;display:block">
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div>
+                    <div class="job-title">Administration Réseau &amp; Systèmes</div>
+                    <div class="job-company">Aintranet · Prestation de service</div>
+                  </div>
+                  <div class="job-date">Mai — Juil. 2025<br>Jan. — Fév. 2026</div>
                 </div>
-                <div class="job-date">Juin — Juil. 2025<br>Jan. — Fév. 2026</div>
+                <div class="job-desc">Gestion de plusieurs parcs informatiques dans le cadre d'une entreprise de prestation de service. Administration réseau et système pour des mairies et des entreprises clientes. Déploiement et supervision de fermes RDS.</div>
+                <div class="tags">
+                  <span class="tag tag-blue">RDS</span>
+                  <span class="tag tag-green">Active Directory</span>
+                  <span class="tag tag-purple">Windows Server</span>
+                  <span class="tag tag-orange">Multi-site</span>
+                </div>
+                <div style="margin-top:.75rem;font-size:12px;color:var(--accent);font-family:var(--mono)">Voir le détail du stage &#8594;</div>
               </div>
-              <div class="job-desc">Gestion de plusieurs parcs informatiques dans le cadre d'une entreprise de prestation de service. Administration réseau et système pour des mairies et des entreprises clientes. Déploiement et supervision de fermes RDS.</div>
-              <div class="tags">
-                <span class="tag tag-blue">RDS</span>
-                <span class="tag tag-green">Active Directory</span>
-                <span class="tag tag-purple">Windows Server</span>
-                <span class="tag tag-orange">Multi-site</span>
-              </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -260,9 +245,7 @@ footer span{color:var(--accent)}
     </div>
     <div class="terminal-block reveal">
       <div class="terminal-bar">
-        <div class="t-dot t-red"></div>
-        <div class="t-dot t-yellow"></div>
-        <div class="t-dot t-green"></div>
+        <div class="t-dot t-red"></div><div class="t-dot t-yellow"></div><div class="t-dot t-green"></div>
         <span style="font-size:12px;color:var(--text3);margin-left:.5rem;font-family:var(--mono)">bash — nicolas@homelab</span>
       </div>
       <div class="terminal-body">
@@ -282,10 +265,7 @@ footer span{color:var(--accent)}
           <div class="project-title">Ferme RDS HA — 2 Brokers</div>
           <div class="project-desc">Ferme RDS haute disponibilité avec 2 RD Connection Brokers en actif/actif, 4 Session Hosts répartis en 2 collections et gestion des profils utilisateurs par User Profile Disks (UPD).</div>
           <div class="tags">
-            <span class="tag tag-blue">RDS HA</span>
-            <span class="tag tag-green">2 Brokers</span>
-            <span class="tag tag-orange">UPD</span>
-            <span class="tag tag-red">SQL Server</span>
+            <span class="tag tag-blue">RDS HA</span><span class="tag tag-green">2 Brokers</span><span class="tag tag-orange">UPD</span><span class="tag tag-red">SQL Server</span>
           </div>
         </div>
         <div class="project-footer">
@@ -303,10 +283,7 @@ footer span{color:var(--accent)}
           <div class="project-title">Ferme RDS Mairie — FSLogix</div>
           <div class="project-desc">Ferme RDS pour une mairie avec 1 broker et 2 Session Hosts. Gestion des profils utilisateurs par FSLogix Profile Containers — chaque agent retrouve son environnement identique quel que soit le serveur.</div>
           <div class="tags">
-            <span class="tag tag-purple">FSLogix</span>
-            <span class="tag tag-blue">RDS</span>
-            <span class="tag tag-green">Windows Server</span>
-            <span class="tag tag-orange">GPO</span>
+            <span class="tag tag-purple">FSLogix</span><span class="tag tag-blue">RDS</span><span class="tag tag-green">Windows Server</span><span class="tag tag-orange">GPO</span>
           </div>
         </div>
         <div class="project-footer">
@@ -324,10 +301,7 @@ footer span{color:var(--accent)}
           <div class="project-title">Haute Disponibilité WordPress &amp; Web</div>
           <div class="project-desc">Mise en place d'une architecture HA pour WordPress avec répartition de charge Nginx, réplication MariaDB maître-maître, synchronisation Unison et VIP Keepalived.</div>
           <div class="tags">
-            <span class="tag tag-blue">Nginx</span>
-            <span class="tag tag-green">MariaDB</span>
-            <span class="tag tag-purple">Keepalived</span>
-            <span class="tag tag-orange">WordPress</span>
+            <span class="tag tag-blue">Nginx</span><span class="tag tag-green">MariaDB</span><span class="tag tag-purple">Keepalived</span><span class="tag tag-orange">WordPress</span>
           </div>
         </div>
         <div class="project-footer">
@@ -345,10 +319,7 @@ footer span{color:var(--accent)}
           <div class="project-title">Infrastructure Complète d'Entreprise</div>
           <div class="project-desc">Conception et déploiement d'une infrastructure complète : pare-feu pfSense, serveur web Nginx, base de données PostgreSQL, Active Directory, NAS Synology et ERP Odoo. Segmentation réseau par VLAN.</div>
           <div class="tags">
-            <span class="tag tag-red">pfSense</span>
-            <span class="tag tag-blue">Active Directory</span>
-            <span class="tag tag-green">Odoo</span>
-            <span class="tag tag-purple">NAS</span>
+            <span class="tag tag-red">pfSense</span><span class="tag tag-blue">Active Directory</span><span class="tag tag-green">Odoo</span><span class="tag tag-purple">NAS</span>
           </div>
         </div>
         <div class="project-footer">
@@ -376,11 +347,7 @@ footer span{color:var(--accent)}
         <div class="veille-title">Les LLM (Large Language Models) — état de l'art et usages en infrastructure</div>
         <div class="veille-summary">Les grands modèles de langage comme GPT-4, Claude ou Mistral transforment progressivement les métiers IT. En infrastructure et systèmes, ils s'intègrent dans des outils d'automatisation (génération de scripts Ansible/Terraform, analyse de logs, détection d'anomalies réseau). Des solutions comme GitHub Copilot ou des assistants intégrés aux ITSM commencent à accélérer le traitement des incidents. Les LLM locaux (Ollama, LM Studio) permettent désormais de faire tourner des modèles sur des serveurs internes sans dépendance cloud, ce qui soulève des enjeux de souveraineté des données et de sécurité particulièrement pertinents pour les DSI et collectivités.</div>
         <div class="tags" style="margin-top:.75rem">
-          <span class="tag tag-purple">LLM</span>
-          <span class="tag tag-blue">IA Générative</span>
-          <span class="tag tag-green">Ollama</span>
-          <span class="tag tag-orange">Automatisation</span>
-          <span class="tag tag-red">Sécurité IA</span>
+          <span class="tag tag-purple">LLM</span><span class="tag tag-blue">IA Générative</span><span class="tag tag-green">Ollama</span><span class="tag tag-orange">Automatisation</span><span class="tag tag-red">Sécurité IA</span>
         </div>
       </div>
     </div>

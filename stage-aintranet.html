@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stage Aintranet 2025 — Nicolas LUONG</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080c12;--bg2:#0d1320;--bg3:#111827;--bg4:#1a2235;
+  --accent:#00d4ff;--accent3:#7c3aed;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
+  --green:#10b981;--orange:#f59e0b;--red:#ef4444;
+  --border:#1e2d45;--border2:#2a3f5f;
+  --font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,18,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:.1em;text-decoration:none}
+.nav-logo span{color:var(--text2)}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:4px;font-size:13px;font-weight:500;text-decoration:none;border:1px solid var(--border2);color:var(--text2);transition:all .2s;font-family:var(--font)}
+.back-btn:hover{border-color:var(--accent);color:var(--accent)}
+.container{max-width:960px;margin:0 auto;padding:0 2rem}
+.hero-project{padding-top:100px;padding-bottom:60px;border-bottom:1px solid var(--border);margin-bottom:3rem}
+.project-tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.project-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--accent)}
+h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
+.project-meta{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
+.meta-item{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--text2);font-family:var(--mono)}
+.meta-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.tag{font-family:var(--mono);font-size:11px;padding:.2rem .6rem;border-radius:3px;border:1px solid var(--border)}
+.tag-blue{color:#38bdf8;border-color:rgba(56,189,248,.2);background:rgba(56,189,248,.05)}
+.tag-green{color:var(--green);border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.05)}
+.tag-purple{color:#a78bfa;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.05)}
+.tag-orange{color:var(--orange);border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)}
+.tag-red{color:var(--red);border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.05)}
+.content-block{margin-bottom:3rem}
+h2{font-size:1.4rem;font-weight:600;margin-bottom:1.5rem;color:var(--text);display:flex;align-items:center;gap:.75rem}
+h2::after{content:'';flex:1;height:1px;background:var(--border)}
+p{color:var(--text2);line-height:1.8;font-size:15px;margin-bottom:1rem}
+/* PERIODE TABS */
+.period-tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.period-tab{padding:.5rem 1.25rem;border-radius:4px;border:1px solid var(--border);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;background:transparent;color:var(--text2);font-family:var(--font)}
+.period-tab.active{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.06)}
+.period-tab:hover{border-color:var(--border2);color:var(--text)}
+.period-content{display:none}
+.period-content.active{display:block}
+/* JOURNAL */
+.journal{display:flex;flex-direction:column;gap:1rem}
+.day-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .2s}
+.day-card:hover{border-color:var(--border2)}
+.day-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.day-date{font-family:var(--mono);font-size:12px;color:var(--accent);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15);border-radius:4px;padding:.2rem .7rem;white-space:nowrap}
+.day-title{font-size:14px;font-weight:600;flex:1}
+.day-toggle{font-size:16px;color:var(--text3);transition:transform .2s}
+.day-toggle.open{transform:rotate(180deg)}
+.day-body{padding:1.25rem;display:none}
+.day-body.open{display:block}
+.task-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.task-list li{display:flex;align-items:flex-start;gap:.75rem;font-size:14px;color:var(--text2);line-height:1.6}
+.task-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:.45rem;flex-shrink:0}
+.task-list li strong{color:var(--text)}
+/* CARD GRID */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+.info-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.info-card-title{font-size:12px;font-family:var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem}
+.info-card p{font-size:14px;margin:0;color:var(--text2)}
+/* COMPETENCES */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1rem}
+.skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;border-left:3px solid var(--accent)}
+.skill-card.c-purple{border-left-color:#a78bfa}
+.skill-card.c-green{border-left-color:var(--green)}
+.skill-card.c-orange{border-left-color:var(--orange)}
+.skill-name{font-size:14px;font-weight:600;margin-bottom:.5rem}
+.skill-desc{font-size:13px;color:var(--text2);line-height:1.6}
+/* RESULT */
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-top:1rem}
+.result-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;text-align:center}
+.result-num{font-size:1.6rem;font-weight:700;color:var(--accent);font-family:var(--mono)}
+.result-label{font-size:12px;color:var(--text3);margin-top:.25rem}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text3);font-size:13px;font-family:var(--mono);margin-top:4rem}
+footer span{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>~/</span>portfolio<span>.sh</span></a>
+  <a href="index.html" class="back-btn">&#8592; Retour au portfolio</a>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero-project">
+    <div class="project-tag">Stage · Aintranet · 2025 &amp; 2026</div>
+    <h1>Stage chez Aintranet<br><span style="color:var(--accent);font-weight:300">Technicien Réseau &amp; Systèmes</span></h1>
+    <p style="font-size:16px;color:var(--text2);max-width:720px;line-height:1.8">Deux périodes de stage au sein d'Aintranet, entreprise de prestation de service informatique intervenant pour des mairies, écoles et entreprises. Missions variées allant de la configuration réseau et déploiement de serveurs au déploiement complet de fermes RDS avec haute disponibilité.</p>
+    <div class="project-meta">
+      <div class="meta-item"><div class="meta-dot"></div>Réalisé</div>
+      <div class="meta-item">&#128197; Mai — Juin 2025</div>
+      <div class="meta-item">&#128197; Janvier — Février 2026</div>
+      <div class="meta-item">&#127970; Aintranet, prestation de service</div>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">Windows Server</span>
+      <span class="tag tag-green">Proxmox</span>
+      <span class="tag tag-purple">RDS</span>
+      <span class="tag tag-orange">FSLogix</span>
+      <span class="tag tag-blue">Active Directory</span>
+      <span class="tag tag-green">Aruba</span>
+      <span class="tag tag-red">Réseau</span>
+      <span class="tag tag-purple">Raspberry Pi</span>
+    </div>
+  </div>
+
+  <!-- CONTEXTE -->
+  <div class="content-block">
+    <h2>Contexte</h2>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="info-card-title">Entreprise</div>
+        <p>Aintranet — prestation de service IT multi-clients (mairies, écoles, entreprises)</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Période 1</div>
+        <p>Mai — Juin 2025 : déploiements réseau, serveurs, ferme RDS Anjos Ventilation</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Période 2</div>
+        <p>Janvier — Février 2026 : finalisation RDS, FSLogix, déploiements mairie Lagnieu</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Outils principaux</div>
+        <p>Proxmox, Windows Server 2022, Remote Desktop Manager, FSLogix, Aruba, Sophos</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ONGLETS PERIODES -->
+  <div class="content-block">
+    <h2>Journal de bord</h2>
+    <div class="period-tabs">
+      <button class="period-tab active" onclick="showPeriod('p1', this)">&#128197; Mai — Juin 2025</button>
+      <button class="period-tab" onclick="showPeriod('p2', this)">&#128197; Janvier — Février 2026</button>
+    </div>
+
+    <!-- PERIODE 1 : MAI-JUIN 2025 -->
+    <div id="p1" class="period-content active">
+      <div class="journal">
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">27 mai</span>
+            <span class="day-title">Borne Wi-Fi Anjos — Imprimante — Plan d'adressage</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Intervention borne Wi-Fi</strong> Anjos Ventilation — configuration et mise en service.</li>
+              <li><strong>Imprimante réseau</strong> — suppression des anciens ports, ajout d'un nouveau port avec l'adresse IP souhaitée, impression d'une page de test.</li>
+              <li><strong>Changement de plan d'adressage IP</strong> service technique et configuration de l'adresse IP de l'imprimante LVM.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">28 mai</span>
+            <span class="day-title">Installation serveurs Proxmox — VMs Windows Server — Switch VLAN Voix</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Installation physique de deux serveurs</strong> Proxmox chez Anjos Ventilation.</li>
+              <li><strong>Création de 3 VMs Windows Server 2022</strong> par Proxmox à distance. Point clé : importer les ISO dans le serveur avant utilisation et installer le pilote VirtIO-Win comme add-on.</li>
+              <li><strong>Jonction des Windows Server au domaine</strong> Anjos, configuration IP.</li>
+              <li><strong>Activation RDP</strong> sur Windows Server 2022 + règle pare-feu + redémarrage.</li>
+              <li><strong>Installation antivirus</strong> sur les VMs.</li>
+              <li><strong>Configuration de 6 switchs Anjos Ventilation</strong> — ajout de la fonctionnalité voice sur le VLAN 40 pour la téléphonie. Point clé : sauvegarder après la commande voice.</li>
+              <li><strong>Installation des switchs dans la baie</strong>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">2 juin</span>
+            <span class="day-title">Déploiement PC école — Borne Wi-Fi Lagnieu</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Installation de 3 PC DW Agent</strong> pour l'école de Toison d'Or — jonction au domaine VLM, installation LibreOffice, remise en main propre.</li>
+              <li><strong>Mise en place d'une borne Wi-Fi</strong> à Lagnieu avec un réseau invité isolé dans un VLAN dédié — configuration du routeur.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">3 juin</span>
+            <span class="day-title">Proxmox 2 — VirtIO — Antivirus Sophos</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Suite projet RDS Anjos</strong> — second serveur Proxmox : installation VirtIO, configuration des cartes réseau virtuelles, configuration IP.</li>
+              <li><strong>Installation antivirus Sophos</strong> sur les nouvelles VMs.</li>
+              <li><strong>Mise en place borne Wi-Fi Lagnieu</strong> — réseau invité isolé dans un VLAN dédié, configuration du routeur.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">4 juin</span>
+            <span class="day-title">RDS Anjos — Déploiement du premier Broker</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Avancée RDS</strong> — déploiement du broker, premier déploiement terminé.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">5 juin</span>
+            <span class="day-title">5 switchs Aruba — Mise à jour firmware — Remplacement baie</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Configuration complète de 5 switchs Aruba</strong> pour Anjos — mise à jour du firmware + configuration totale.</li>
+              <li><strong>Remplacement des anciens switchs</strong> par les nouveaux dans la baie + nouveau connecteur fibre 10 Gb.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">6 juin</span>
+            <span class="day-title">RDS Haute Disponibilité — Configuration Broker HA — SSMS</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Création du groupe broker</strong> avec les deux brokers.</li>
+              <li><strong>Création d'un DNS commun</strong> aux deux brokers.</li>
+              <li><strong>Création de la base de données</strong> pour les brokers sur SQL Server Management Studio (SSMS).</li>
+              <li><strong>Ajout d'une connexion et attribution des droits</strong> sur la BDD pour le groupe broker : db_creator + db_owner.</li>
+              <li><strong>Configuration du broker 2</strong> pour la HA — une fois actif, NLB évalué mais non nécessaire à ce stade.</li>
+              <li><strong>Lagnieu</strong> : installation d'une station + résolution de problèmes réseau.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">10 juin</span>
+            <span class="day-title">SDA — Carte réseau bond — Documentation</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>SDA</strong> — ligne fixe, configuration carte réseau bond.</li>
+              <li><strong>Avancée documentation RDS</strong> et rapport de stage.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">11 — 12 juin</span>
+            <span class="day-title">Doc RDS — Packet Tracer — Tests logiciels</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Avancée documentation RDS</strong> + schéma Packet Tracer pour la mairie de Lagnieu.</li>
+              <li><strong>Tests RDS Anjos</strong> dans l'infrastructure — installation .NET Framework sur RDS 1, 2, 3, 4 et des logiciels métier (CodeSoft).</li>
+              <li><strong>Restauration d'un utilisateur</strong> dans l'AD + attribution de licence Microsoft 365.</li>
+              <li><strong>Test d'un logiciel sur les lignes de production</strong> en RDS — erreur : le logiciel ne communique pas avec sa base de données.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">13 — 14 juin</span>
+            <span class="day-title">Baie réseau — Vidéo surveillance — Routage MPLS</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Rangement d'une baie</strong>, formatage et vérification de disques.</li>
+              <li><strong>Intervention VLM Centre Innovance</strong> — vidéo surveillance.</li>
+              <li><strong>Intervention Château Gaillard</strong> — routage MPLS : attribution de routes pour relier le site des Ravinelles à l'école et à la mairie pour la vidéo surveillance.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">15 juin</span>
+            <span class="day-title">Wi-Fi invité — Authentification Google (portail captif)</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Réunion Lagnieu</strong> le matin.</li>
+              <li><strong>Test borne Wi-Fi SSID invité</strong> par authentification Google — les pages sont injoignables lors de la confirmation d'authentification (timeout).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">19 juin</span>
+            <span class="day-title">Correction script — Connexions à distance — Switch Aruba SSL</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Correction du code scrdom</strong> — solution validée et testée en production.</li>
+              <li><strong>Mise en place de deux connexions à distance.</strong></li>
+              <li><strong>Configuration switch Aruba U09</strong> — activation du web management + SSL.</li>
+              <li><strong>Pilote Zebra</strong> — installation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">20 juin</span>
+            <span class="day-title">Château Gaillard — Remplacement switch v2/v3 — Routage mairie</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Remplacement du switch v2 par un switch v3</strong> à Château Gaillard pour activer le routage.</li>
+              <li><strong>Mise à jour des routes</strong> mairie + école.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">23 juin</span>
+            <span class="day-title">NLB Brokers — Raspberry Pi 5 — Remmina RDP</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Installation NLB</strong> — obligatoire pour une vraie HA au niveau des brokers.</li>
+              <li><strong>Setup d'un Raspberry Pi 5</strong> avec Raspberry Pi OS — installation de Remmina pour les connexions RDP.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">24 juin</span>
+            <span class="day-title">Panne RDS — NLB — Réinstallation Broker 2 — Portail captif Google</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Mise à jour du listing IP.</strong></li>
+              <li><strong>Panne générale RDS</strong> causée par le NLB — surcharge des switchs avec des adresses MAC. Broker 2 réinstallé intégralement depuis zéro, nouveaux certificats mis en place.</li>
+              <li><strong>Mise en service de la borne Wi-Fi</strong> avec authentification Google opérationnelle.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">25 — 26 juin</span>
+            <span class="day-title">Raspberry Pi autostart Remmina — Portail captif Google</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Programmation Raspberry Pi 5</strong> — autostart de Remmina pour connexion RDP automatique au démarrage.</li>
+              <li><strong>Mise en place d'un portail captif</strong> par authentification Google sur un Wi-Fi public.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">1er juillet</span>
+            <span class="day-title">Profils RDS — Applications métier — Modification .ini</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Création et configuration des profils RDS</strong> — QuickStep ensacheuse, laser, CodeSoft.</li>
+              <li><strong>Modification des fichiers .ini</strong> des applications.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PERIODE 2 : JAN-FEV 2026 -->
+    <div id="p2" class="period-content">
+      <div class="journal">
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">19 — 21 jan.</span>
+            <span class="day-title">Proxmox — VMs AD/Broker/RDS — Certificats — FSLogix</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Installation Proxmox</strong> — création des VMs : Active Directory, Broker, RDS1, RDS2.</li>
+              <li><strong>Déploiement complet de la ferme RDS</strong>.</li>
+              <li><strong>Génération de certificats auto-signés</strong> pour les connexions RDS.</li>
+              <li><strong>Recherche et documentation sur FSLogix</strong> — profils containers pour les sessions RDS.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">23 jan.</span>
+            <span class="day-title">PC portable PM Lagnieu</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Installation et configuration d'un PC portable</strong> pour le personnel de la mairie de Lagnieu (PM).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">26 jan.</span>
+            <span class="day-title">Sessions RDS — Configuration Remote Desktop Manager</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Création et configuration des sessions RDS</strong> dans Remote Desktop Manager 19.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">3 fév.</span>
+            <span class="day-title">Raccourcis RDS clients — GPO FSLogix — Office 365</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Installation des raccourcis de connexion RDS</strong> chez les clients.</li>
+              <li><strong>Correction de GPO</strong> — politique de mot de passe, FSLogix Profile Container, Office 365 Container.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">4 fév.</span>
+            <span class="day-title">Groupe Berger Levrault — Recréation profils mairie</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Création du groupe Berger Levrault</strong> dans l'Active Directory.</li>
+              <li><strong>Recréation des profils mairie</strong> — connexion sur Berger Levrault avec les profils correspondants.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">5 fév.</span>
+            <span class="day-title">PC RSE — Imprimante serveur d'impression — Scans DGA/DGS</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Commande d'écrans</strong> + préparation PC RSE.</li>
+              <li><strong>Installation imprimante</strong> depuis un serveur d'impression.</li>
+              <li><strong>Configuration des scans</strong> des deux imprimantes vers les dossiers <code style="color:var(--accent);font-family:var(--mono)">adm\DGA\zzzscaner</code>.</li>
+              <li><strong>Vérification des comptes et PC</strong> RSE (U8 et U2) — PC portable Aintranet, compte DW Agent, création utilisateur chef PM, Office 365, VPN Sophos.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">8 fév.</span>
+            <span class="day-title">Règles serveur RDS — Compte Microsoft — Fichiers temp FSLogix</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Règles serveur RDS</strong> — configuration du compte Microsoft et gestion des fichiers temporaires FSLogix.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">9 fév.</span>
+            <span class="day-title">Formation utilisateurs RDS — GPO Sédi — Partage calendrier</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Mise en place de la connexion RDS</strong> pour 2 utilisateurs + petite formation pour leur prise en main.</li>
+              <li><strong>À faire</strong> : GPO raccourci Sédi, partage de calendrier DGS/RH, installation Google Earth Pro sur RDS, résolution InDesign sur serveurs RDS.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">11 fév.</span>
+            <span class="day-title">Connexions bibliothèque — Résolution InDesign RDS (registre GPO)</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Installation des connexions RDS</strong> pour les gérants de bibliothèque.</li>
+              <li><strong>Résolution du problème InDesign sur RDS</strong> — clé de registre mal poussée par GPO, correction et redeploiement.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">12 fév.</span>
+            <span class="day-title">Renommage switch U07-res-01</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Renommage du switch</strong> U07-res-01 selon la convention de nommage.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">16 — 17 fév.</span>
+            <span class="day-title">Expérimentation Windows sur Raspberry Pi</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Expérimentation de Windows</strong> sur Raspberry Pi — tests de compatibilité et d'usage.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header" onclick="toggleDay(this)">
+            <span class="day-date">18 fév.</span>
+            <span class="day-title">Raspberry Pi mairie Lagnieu — Connexions RDP Remmina</span>
+            <span class="day-toggle">&#8964;</span>
+          </div>
+          <div class="day-body">
+            <ul class="task-list">
+              <li><strong>Installation des Raspberry Pi</strong> à la mairie de Lagnieu — configuration des connexions RDP via Remmina (17 + 10 connexions).</li>
+              <li><strong>Mise à jour Office</strong> sur RDS1 et RDS2.</li>
+              <li><strong>Création des comptes / équivalences email</strong> — vérification de la taille des disques.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPETENCES ACQUISES -->
+  <div class="content-block">
+    <h2>Compétences acquises</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-name">Virtualisation Proxmox</div>
+        <div class="skill-desc">Déploiement de VMs Windows Server 2022, installation VirtIO, gestion des cartes réseau virtuelles, import d'ISO.</div>
+      </div>
+      <div class="skill-card c-purple">
+        <div class="skill-name">Ferme RDS complète</div>
+        <div class="skill-desc">Architecture HA avec 2 brokers, SQL Server, NLB, certificats, profils FSLogix et UPD, RemoteApp, GPO.</div>
+      </div>
+      <div class="skill-card c-green">
+        <div class="skill-name">Réseau — Aruba / VLAN</div>
+        <div class="skill-desc">Configuration complète de switchs Aruba (firmware, VLAN voix, routage), remplacement de baie, fibre 10 Gb.</div>
+      </div>
+      <div class="skill-card c-orange">
+        <div class="skill-name">Wi-Fi &amp; portail captif</div>
+        <div class="skill-desc">Mise en place de bornes Wi-Fi avec VLAN invité isolé et portail captif par authentification Google.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Active Directory &amp; GPO</div>
+        <div class="skill-desc">Gestion utilisateurs, groupes, restauration de comptes, licences 365, correction de GPO, partage d'imprimantes.</div>
+      </div>
+      <div class="skill-card c-purple">
+        <div class="skill-name">Raspberry Pi</div>
+        <div class="skill-desc">Configuration de Raspberry Pi 5 avec autostart Remmina pour connexion RDP automatique, expérimentation Windows.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BILAN -->
+  <div class="content-block">
+    <h2>Bilan</h2>
+    <div class="result-grid">
+      <div class="result-card"><div class="result-num">2</div><div class="result-label">Périodes de stage</div></div>
+      <div class="result-card"><div class="result-num">10+</div><div class="result-label">Clients intervenus</div></div>
+      <div class="result-card"><div class="result-num">2</div><div class="result-label">Fermes RDS déployées</div></div>
+      <div class="result-card"><div class="result-num">10+</div><div class="result-label">Switchs configurés</div></div>
+      <div class="result-card"><div class="result-num">5+</div><div class="result-label">Raspberry Pi installés</div></div>
+    </div>
+    <p style="margin-top:1.5rem">Ce stage m'a permis de mettre en pratique l'ensemble des compétences vues en formation dans un contexte professionnel réel et varié. De la configuration réseau à l'ingénierie de systèmes haute disponibilité, en passant par le support utilisateur et les interventions terrain, chaque journée a été une occasion d'apprendre en conditions réelles.</p>
+  </div>
+
+</div>
+
+<footer>
+  <code>// Nicolas LUONG · <span>Stage Aintranet</span> · 2025 — 2026</code>
+</footer>
+
+<script>
+function showPeriod(id, btn) {
+  document.querySelectorAll('.period-content').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('.period-tab').forEach(function(el) { el.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleDay(header) {
+  var body = header.nextElementSibling;
+  var toggle = header.querySelector('.day-toggle');
+  var isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  toggle.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>
