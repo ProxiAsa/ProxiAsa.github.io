@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Veille Technologique — Nicolas LUONG</title>
+<title>Veille Technologique — LLM — Nicolas LUONG</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -24,25 +24,23 @@ h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.2;margin-botto
 h2{font-size:1.4rem;font-weight:600;margin-bottom:1.25rem;color:var(--text);display:flex;align-items:center;gap:.75rem}
 h2::after{content:'';flex:1;height:1px;background:var(--border)}
 p{color:var(--text2);line-height:1.8;font-size:15px;margin-bottom:1rem}
-/* DEFINITION CARDS */
-.def-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1rem}
-.def-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem;border-left:3px solid var(--accent)}
+.def-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem}
+.def-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;border-left:3px solid var(--accent)}
 .def-card.c-purple{border-left-color:#a78bfa}
 .def-card.c-green{border-left-color:var(--green)}
 .def-card.c-orange{border-left-color:var(--orange)}
-.def-card-title{font-size:13px;font-weight:600;margin-bottom:.6rem;color:var(--text)}
+.def-card-title{font-size:13px;font-weight:600;margin-bottom:.5rem;color:var(--text)}
 .def-card-text{font-size:13px;color:var(--text2);line-height:1.6}
-/* ARTICLES */
-.articles-grid{display:flex;flex-direction:column;gap:1.5rem}
-.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all .3s}
-.article-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.articles-grid{display:flex;flex-direction:column;gap:2rem}
+.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .2s}
+.article-card:hover{border-color:var(--border2)}
 .article-header{padding:1.5rem 1.5rem 0}
 .article-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem}
 .article-badge{font-family:var(--mono);font-size:10px;padding:.2rem .6rem;border-radius:3px;text-transform:uppercase;letter-spacing:.08em}
-.badge-secu{color:var(--red);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2)}
-.badge-sys{color:#38bdf8;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2)}
-.badge-reg{color:#a78bfa;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.2)}
-.badge-ia{color:var(--orange);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)}
+.badge-llm{color:var(--orange);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)}
+.badge-os{color:var(--green);background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2)}
+.badge-infra{color:#38bdf8;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2)}
+.badge-tendance{color:#a78bfa;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.2)}
 .article-date{font-family:var(--mono);font-size:11px;color:var(--text3)}
 .article-source{font-family:var(--mono);font-size:11px;color:var(--accent)}
 .article-title{font-size:18px;font-weight:700;margin-bottom:.75rem;line-height:1.3}
@@ -72,140 +70,148 @@ footer span{color:var(--accent)}
 <div class="container">
 
   <div class="hero-project">
-    <div class="project-tag">BTS SIO SISR · 2025 — 2026</div>
-    <h1>Veille Technologique</h1>
-    <p style="font-size:16px;color:var(--text2);max-width:720px;line-height:1.8">Suivi des évolutions du secteur informatique : cybersécurité, systèmes, réseaux et nouvelles technologies. Cette veille couvre la période de janvier 2026 à aujourd'hui.</p>
+    <div class="project-tag">BTS SIO SISR · Veille technologique · 2026</div>
+    <h1>Veille Technologique<br><span style="color:var(--accent);font-weight:300">Les LLM — Grands Modèles de Langage</span></h1>
+    <p style="font-size:16px;color:var(--text2);max-width:720px;line-height:1.8">Suivi des évolutions majeures autour des Large Language Models (LLM) de janvier à avril 2026 : nouveaux modèles, essor de l'open source, usages en infrastructure IT et enjeux de souveraineté.</p>
   </div>
 
-  <!-- DEFINITION -->
+  <!-- DÉFINITION -->
   <div class="content-block">
     <h2>Qu'est-ce que la veille technologique ?</h2>
-    <p>La veille technologique est un processus continu de surveillance, de collecte et d'analyse d'informations sur les évolutions techniques, scientifiques et numériques d'un domaine. Elle permet à un professionnel ou une organisation d'anticiper les changements, d'adapter ses pratiques et de rester compétitif face à un environnement qui évolue rapidement.</p>
-    <p>Dans le domaine des systèmes et réseaux, la veille technologique est particulièrement critique : une faille non surveillée peut exposer une infrastructure en quelques heures, et une technologie non maîtrisée peut rendre obsolètes des solutions en production.</p>
+    <p>La veille technologique est un processus continu de surveillance, de collecte et d'analyse des évolutions techniques et numériques d'un domaine. Elle permet d'anticiper les changements, d'adapter ses pratiques professionnelles et de rester compétitif dans un secteur en mutation permanente.</p>
+    <p>Dans le domaine des systèmes et réseaux, elle est essentielle : une technologie ignorée peut rapidement rendre obsolètes les solutions en production, tandis qu'une technologie bien comprise peut transformer la manière dont on administre une infrastructure.</p>
     <div class="def-grid">
       <div class="def-card">
-        <div class="def-card-title">&#128270; Collecte d'information</div>
-        <div class="def-card-text">Surveiller les sources fiables : ANSSI, CERT-FR, éditeurs (Microsoft, Cisco), blogs techniques spécialisés (IT-Connect, LeMagIT), presses professionnelles.</div>
+        <div class="def-card-title">&#128270; Collecter</div>
+        <div class="def-card-text">Surveiller les sources fiables : blogs techniques, publications de recherche, annonces d'éditeurs (OpenAI, Anthropic, Meta, Mistral), presses IT spécialisées.</div>
       </div>
       <div class="def-card c-purple">
-        <div class="def-card-title">&#128200; Analyse &amp; filtrage</div>
-        <div class="def-card-text">Trier les informations pertinentes selon son périmètre technique, évaluer leur impact potentiel sur ses infrastructures et identifier les actions à mener.</div>
+        <div class="def-card-title">&#128200; Analyser</div>
+        <div class="def-card-text">Évaluer l'impact des évolutions sur son périmètre technique, identifier les opportunités et les risques, distinguer les effets d'annonce des vrais changements.</div>
       </div>
       <div class="def-card c-green">
-        <div class="def-card-title">&#128161; Exploitation &amp; adaptation</div>
-        <div class="def-card-text">Intégrer les connaissances acquises dans ses pratiques professionnelles : mise à jour des configurations, application de correctifs, évolution des architectures.</div>
+        <div class="def-card-title">&#128161; Exploiter</div>
+        <div class="def-card-text">Intégrer les connaissances dans ses pratiques : tester de nouveaux outils, adapter les architectures, partager les découvertes avec son équipe.</div>
       </div>
       <div class="def-card c-orange">
-        <div class="def-card-title">&#127891; Apports pour le professionnel</div>
-        <div class="def-card-text">Compétences à jour, réactivité face aux menaces, légitimité technique, capacité à conseiller les clients et à proposer des solutions innovantes.</div>
+        <div class="def-card-title">&#127891; Apports métier</div>
+        <div class="def-card-text">Compétences à jour, capacité à conseiller les clients, légitimité technique, et aptitude à proposer des solutions innovantes adaptées aux besoins réels.</div>
       </div>
     </div>
+  </div>
+
+  <!-- DÉFINITION LLM -->
+  <div class="content-block">
+    <h2>Qu'est-ce qu'un LLM ?</h2>
+    <p>Un <strong style="color:var(--text)">Large Language Model (LLM)</strong> est un modèle d'intelligence artificielle entraîné sur des volumes massifs de textes — livres, sites web, code, conversations — pour comprendre et générer du langage humain de façon cohérente. Basés sur l'architecture Transformer (introduite en 2017), les LLM apprennent à prédire le mot ou le token le plus probable dans un contexte donné, ce qui leur permet de réaliser des tâches très variées : rédaction, résumé, traduction, génération de code, réponse à des questions, raisonnement logique.</p>
+    <p>Les principaux acteurs en 2026 sont <strong style="color:var(--text)">OpenAI</strong> (GPT-5), <strong style="color:var(--text)">Anthropic</strong> (Claude), <strong style="color:var(--text)">Google DeepMind</strong> (Gemini), <strong style="color:var(--text)">Meta</strong> (Llama), <strong style="color:var(--text)">DeepSeek</strong> (R1, V3) et <strong style="color:var(--text)">Mistral AI</strong>. Au total, 239 modèles LLM sont évalués sur les principaux benchmarks début 2026, avec 65 % des organisations mondiales déclarant utiliser des outils d'IA générative.</p>
   </div>
 
   <!-- ARTICLES -->
   <div class="content-block">
     <h2>Articles marquants — Janvier à Avril 2026</h2>
-
-    <!-- ARTICLE 1 -->
     <div class="articles-grid">
 
+      <!-- ARTICLE 1 : DeepSeek -->
       <div class="article-card">
         <div class="article-header">
           <div class="article-meta">
-            <span class="article-badge badge-secu">Cybersécurité</span>
+            <span class="article-badge badge-os">Open Source</span>
+            <span class="article-date">Janvier 2026</span>
+            <span class="article-source">Hugging Face · CSIS · Capmad</span>
+          </div>
+          <div class="article-title">DeepSeek-R1 un an après : la Chine remodèle la course aux LLM open source</div>
+        </div>
+        <div class="article-body">
+          <div class="article-summary">Un an après son lancement le 20 janvier 2025, <strong style="color:var(--text)">DeepSeek-R1</strong> reste le modèle open source le plus téléchargé sur Hugging Face et continue de redéfinir les standards du secteur. Son impact est double : technologique et géopolitique. Sur le plan technique, DeepSeek V3 (base de R1) rivalise avec GPT-4o pour un coût d'entraînement 30 fois inférieur, grâce à une architecture Mixture-of-Experts (671 milliards de paramètres, dont seulement 37 milliards activés par token). Sa publication sous licence MIT permet à n'importe quelle entreprise de télécharger les poids, de les modifier et de les déployer localement sans frais de licence. Sur le plan géopolitique, le lancement de R1 a provoqué une chute de 17 % du titre Nvidia en janvier 2025 en remettant en question la nécessité des GPU les plus puissants pour produire des modèles de premier rang. En janvier 2026, DeepSeek prépare V4, rumoré supérieur à Claude et GPT sur les prompts longs et le coding, confirmant la montée en puissance des labs chinois malgré les restrictions d'export sur les puces américaines.</div>
+          <div class="article-apport">
+            <div class="article-apport-title">&#128161; Apport pour un technicien réseau &amp; systèmes</div>
+            <div class="article-apport-text">La disponibilité de LLM open source performants comme DeepSeek-R1 ou Llama via <strong style="color:var(--text)">Ollama</strong> ouvre une possibilité concrète : déployer un LLM localement sur un serveur interne (via Proxmox, par exemple) sans dépendance cloud, sans frais d'API et sans envoyer de données sensibles à l'extérieur. Pour une mairie ou une entreprise comme Aintranet, cela répond directement aux enjeux de souveraineté des données. La commande <code style="color:var(--accent);font-family:var(--mono)">ollama run deepseek-r1</code> suffit pour tester localement.</div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-green">DeepSeek-R1</span>
+            <span class="tag tag-blue">Open source</span>
+            <span class="tag tag-orange">MIT License</span>
+            <span class="tag tag-purple">Ollama</span>
+            <span class="tag tag-red">Souveraineté</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTICLE 2 : Démocratisation & LLM locaux -->
+      <div class="article-card">
+        <div class="article-header">
+          <div class="article-meta">
+            <span class="article-badge badge-tendance">Tendance</span>
             <span class="article-date">Janvier — Mars 2026</span>
-            <span class="article-source">ANSSI · LeMagIT · Cyberactualite.fr</span>
+            <span class="article-source">Euronews · Incremys · Accio</span>
           </div>
-          <div class="article-title">Vague de cyberattaques en France : 100+ piratages, 60 millions de lignes de données compromises</div>
+          <div class="article-title">Démocratisation des LLM : 239 modèles, petits modèles locaux et adoption massive en entreprise</div>
         </div>
         <div class="article-body">
-          <div class="article-summary">Le début de l'année 2026 marque une vague sans précédent de cyberattaques touchant des organisations françaises. Parmi les incidents les plus marquants : le piratage de Cegedim Santé (données administratives de 15 millions de patients), la violation du fichier FICOBA (1,2 million de comptes bancaires), des attaques DDoS contre La Poste et l'URSSAF, et des compromissions de nombreuses fédérations sportives. Au total, plus de 100 piratages sont recensés sur janvier-février, pour plus de 60 millions de lignes de données exfiltrées. Ces attaques s'appuient massivement sur du credential stuffing (test automatique d'identifiants volés), du phishing ciblé et des vulnérabilités de type supply chain.</div>
+          <div class="article-summary">Début 2026, le marché des LLM atteint une maturité inédite : <strong style="color:var(--text)">239 modèles</strong> sont évalués sur les principaux benchmarks, portés par 7 éditeurs majeurs. ChatGPT compte 900 millions d'utilisateurs hebdomadaires, et <strong style="color:var(--text)">65 % des organisations mondiales</strong> utilisent désormais des outils d'IA générative selon McKinsey. En parallèle, une tendance de fond émerge en Europe : les <strong style="color:var(--text)">petits modèles de langage</strong> (Small Language Models — SLM), versions allégées des LLM capables de tourner sur des ordinateurs peu puissants voire des smartphones, commencent à séduire les entreprises qui veulent de l'IA sans infrastructure GPU. Des modèles comme <strong style="color:var(--text)">Mistral Small 3</strong> ou <strong style="color:var(--text)">Microsoft Phi-4 (14B)</strong> offrent des performances proches des grands modèles à une fraction du coût. Côté coûts d'inférence, la baisse est spectaculaire : une performance équivalente à GPT-4 coûtait 20 $ par million de tokens fin 2022, contre environ 0,40 $ début 2026 — soit une réduction de 50x en 3 ans.</div>
           <div class="article-apport">
             <div class="article-apport-title">&#128161; Apport pour un technicien réseau &amp; systèmes</div>
-            <div class="article-apport-text">Ces incidents rappellent l'importance de l'authentification multi-facteurs (MFA/2FA) sur tous les accès, de la segmentation réseau pour limiter la propagation, et de la mise en place d'une politique de gestion des mots de passe rigoureuse (en lien direct avec Active Directory et les GPO). En tant que futur administrateur intervenant pour des mairies et des entreprises, comprendre ces vecteurs d'attaque est essentiel pour sécuriser les infrastructures des clients.</div>
+            <div class="article-apport-text">La chute des coûts rend les LLM accessibles même pour les petites structures comme les mairies. Un modèle léger comme <strong style="color:var(--text)">Phi-4</strong> ou <strong style="color:var(--text)">Mistral Small</strong> peut être déployé sur un serveur existant pour automatiser des tâches IT récurrentes : génération de scripts PowerShell, rédaction de documentation réseau, analyse de logs ou création de réponses aux tickets helpdesk. Les coûts d'infrastructure restent maîtrisables avec un GPU grand public.</div>
           </div>
           <div class="tags">
-            <span class="tag tag-red">Credential stuffing</span>
-            <span class="tag tag-blue">MFA</span>
-            <span class="tag tag-orange">Supply chain</span>
-            <span class="tag tag-purple">RGPD</span>
+            <span class="tag tag-blue">SLM</span>
+            <span class="tag tag-green">Mistral Small 3</span>
+            <span class="tag tag-orange">Phi-4</span>
+            <span class="tag tag-purple">Démocratisation</span>
+            <span class="tag tag-red">Coût d'inférence</span>
           </div>
         </div>
       </div>
 
-      <!-- ARTICLE 2 -->
+      <!-- ARTICLE 3 : LLM & IT / Automatisation -->
       <div class="article-card">
         <div class="article-header">
           <div class="article-meta">
-            <span class="article-badge badge-reg">Réglementation</span>
-            <span class="article-date">29 janvier 2026</span>
-            <span class="article-source">economie.gouv.fr · ANSSI</span>
-          </div>
-          <div class="article-title">Stratégie nationale de cybersécurité 2026-2030 : la France vise le rang de puissance cyber européenne</div>
-        </div>
-        <div class="article-body">
-          <div class="article-summary">Présentée le 29 janvier 2026 par la ministre déléguée Anne Le Hénanff, la Stratégie nationale de cybersécurité 2026-2030 structure l'ambition française en cinq piliers et quatorze objectifs. Elle couvre la formation dès le plus jeune âge, la préparation aux crises, le rehaussement du niveau de protection national, la mobilisation des acteurs privés dans la cyberdéfense, et le soutien à un marché européen de la cybersécurité. En parallèle, l'ANSSI déploie sa plateforme ReCyF (Référentiel de Cybersécurité Française) pour cadencer la mise en conformité des entités soumises à la directive NIS2, avec des jalons et niveaux de maturité attendus. La directive NIS2, transposée en droit français, oblige les entités essentielles et importantes à notifier les incidents sous 24 heures et à sécuriser leur chaîne d'approvisionnement.</div>
-          <div class="article-apport">
-            <div class="article-apport-title">&#128161; Apport pour un technicien réseau &amp; systèmes</div>
-            <div class="article-apport-text">La directive NIS2 s'applique directement aux collectivités locales (mairies, intercommunalités) et aux prestataires de services IT comme Aintranet. En tant que technicien intervenant pour ces structures, connaître les obligations NIS2 (gestion des risques, notification d'incidents, sécurité des tiers) permet d'anticiper les exigences des clients et de proposer des architectures conformes. La plateforme ReCyF de l'ANSSI devient un référentiel à suivre activement.</div>
-          </div>
-          <div class="tags">
-            <span class="tag tag-purple">NIS2</span>
-            <span class="tag tag-blue">ANSSI</span>
-            <span class="tag tag-green">ReCyF</span>
-            <span class="tag tag-orange">Conformité</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ARTICLE 3 -->
-      <div class="article-card">
-        <div class="article-header">
-          <div class="article-meta">
-            <span class="article-badge badge-sys">Systèmes</span>
-            <span class="article-date">Janvier 2026 — en cours</span>
-            <span class="article-source">Microsoft Learn · IT-Connect · LeMagIT</span>
-          </div>
-          <div class="article-title">Windows Server 2025 en production : Active Directory repensé, fin du protocole NTLM, Hotpatching</div>
-        </div>
-        <div class="article-body">
-          <div class="article-summary">Windows Server 2025, largement déployé depuis fin 2024, s'impose en 2026 comme le nouveau standard pour les infrastructures Windows. Les évolutions majeures concernent directement les administrateurs systèmes : Active Directory bénéficie d'un nouveau niveau fonctionnel avec une base de données passant de 8 Ko à 32 Ko de page size (meilleure scalabilité), des comptes de service managés délégués (dMSA), et le support de Kerberos AES SHA-256/384. La signature SMB est désormais obligatoire par défaut, et Microsoft a commencé la désactivation progressive de NTLM — protocole vieux de 30 ans, longtemps utilisé comme repli d'authentification — pour orienter vers Kerberos et les Passkeys. Le Hotpatching permet enfin d'appliquer des correctifs de sécurité critiques sans redémarrage du serveur, réduisant les fenêtres de vulnérabilité.</div>
-          <div class="article-apport">
-            <div class="article-apport-title">&#128161; Apport pour un technicien réseau &amp; systèmes</div>
-            <div class="article-apport-text">Ces évolutions ont un impact direct sur le quotidien d'un administrateur : la fin de NTLM impose de revoir les configurations d'authentification sur les partages réseau et les accès RDS (lien direct avec les fermes RDS déployées en stage). La migration vers Windows Server 2025 nécessite un niveau fonctionnel AD 2016 minimum — point critique à vérifier avant toute migration client. Le Hotpatching réduit les interruptions de service, un avantage clé pour les environnements de production comme les mairies.</div>
-          </div>
-          <div class="tags">
-            <span class="tag tag-blue">Windows Server 2025</span>
-            <span class="tag tag-green">Active Directory</span>
-            <span class="tag tag-purple">Kerberos</span>
-            <span class="tag tag-red">NTLM</span>
-            <span class="tag tag-orange">Hotpatching</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ARTICLE 4 -->
-      <div class="article-card">
-        <div class="article-header">
-          <div class="article-meta">
-            <span class="article-badge badge-ia">IA &amp; Automatisation</span>
+            <span class="article-badge badge-infra">IT &amp; Infrastructure</span>
             <span class="article-date">Janvier — Avril 2026</span>
-            <span class="article-source">Euronews · Fortinet · Google Cloud · LMI</span>
+            <span class="article-source">Cloud-Store · IT-Connect · Actuia</span>
           </div>
-          <div class="article-title">L'IA au service des cyberattaques : agents autonomes, spear-phishing à grande échelle et attaques OT</div>
+          <div class="article-title">LLM dans les métiers IT : automatisation des scripts, analyse de logs et agents IA pour l'infrastructure</div>
         </div>
         <div class="article-body">
-          <div class="article-summary">2026 marque un tournant dans l'industrialisation de la cybercriminalité. Les rapports de Google Cloud Security, Fortinet et Forrester convergent : les agents d'IA autonomes sont désormais utilisés par des acteurs malveillants pour cartographier des réseaux en quelques minutes, enchaîner des vulnérabilités sans intervention humaine, générer du spear-phishing ultra-ciblé à grande échelle, et contourner les outils de détection en modifiant dynamiquement leur code. Les infrastructures OT (Operational Technology : automates, systèmes industriels, réseaux énergétiques) sont particulièrement visées par ces attaques automatisées optimisées par l'IA. En parallèle, l'IA s'impose aussi côté défense : NinjaOne Vulnerability Management, CrowdStrike Falcon ou Sentinel One intègrent l'IA pour détecter et remédier automatiquement aux vulnérabilités.</div>
+          <div class="article-summary">En 2026, les LLM s'intègrent directement dans les workflows IT. Les usages les plus concrets pour les administrateurs systèmes et réseaux sont : la <strong style="color:var(--text)">génération automatique de scripts</strong> (PowerShell, Ansible, Bash) à partir d'une description en langage naturel, l'<strong style="color:var(--text)">analyse de logs</strong> et la détection d'anomalies réseau sans configuration manuelle de règles, la <strong style="color:var(--text)">documentation automatique</strong> d'infrastructure (schémas, procédures, README), et les <strong style="color:var(--text)">agents IA</strong> capables d'exécuter des tâches en plusieurs étapes de façon autonome (ouvrir un ticket, diagnostiquer, appliquer un correctif). Des solutions comme <strong style="color:var(--text)">GitHub Copilot</strong> pour le code, <strong style="color:var(--text)">NinjaOne</strong> avec gestion de vulnérabilités assistée par IA, ou des assistants intégrés aux ITSM commencent à réduire significativement le temps de traitement des incidents. Les LLM spécialisés en cybersécurité (comme SecureBERT) montrent également leur potentiel pour anticiper et analyser des menaces à partir de flux de données textuelles.</div>
           <div class="article-apport">
             <div class="article-apport-title">&#128161; Apport pour un technicien réseau &amp; systèmes</div>
-            <div class="article-apport-text">Face à des attaques de plus en plus automatisées, la supervision réseau (SNMP, Zabbix, Prometheus) et la détection d'anomalies prennent une dimension stratégique. Les environnements industriels comme Anjos Ventilation (client rencontré en stage) sont directement dans le viseur des attaques OT. Maîtriser la segmentation réseau (VLAN dédiés aux OT/IT), les politiques de pare-feu et la mise à jour des firmwares d'équipements réseau devient un prérequis incontournable pour tout administrateur infrastructure.</div>
+            <div class="article-apport-text">Ces évolutions sont directement applicables au quotidien d'un technicien Aintranet. Utiliser un LLM local pour générer une GPO PowerShell, rédiger la documentation d'une ferme RDS, ou analyser les logs d'un contrôleur de domaine représente un gain de temps mesurable. La maîtrise du <strong style="color:var(--text)">prompt engineering</strong> (formulation des requêtes) devient une compétence IT à part entière, au même titre que la maîtrise de Bash ou PowerShell.</div>
           </div>
           <div class="tags">
-            <span class="tag tag-orange">IA générative</span>
-            <span class="tag tag-red">Spear-phishing</span>
-            <span class="tag tag-blue">OT Security</span>
-            <span class="tag tag-green">SIEM</span>
-            <span class="tag tag-purple">Automatisation</span>
+            <span class="tag tag-blue">PowerShell IA</span>
+            <span class="tag tag-green">Agents IA</span>
+            <span class="tag tag-orange">GitHub Copilot</span>
+            <span class="tag tag-purple">Prompt engineering</span>
+            <span class="tag tag-red">Analyse de logs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTICLE 4 : Enjeux et limites -->
+      <div class="article-card">
+        <div class="article-header">
+          <div class="article-meta">
+            <span class="article-badge badge-llm">Enjeux &amp; Limites</span>
+            <span class="article-date">Janvier — Avril 2026</span>
+            <span class="article-source">UNESCO · Euronews · LMI</span>
+          </div>
+          <div class="article-title">Les limites des LLM : impact environnemental, hallucinations, souveraineté des données et éthique</div>
+        </div>
+        <div class="article-body">
+          <div class="article-summary">La démocratisation des LLM s'accompagne de limites et d'enjeux qu'un professionnel IT se doit de connaître. Sur le plan environnemental, l'entraînement d'un grand modèle peut émettre jusqu'à <strong style="color:var(--text)">626 000 livres de CO₂</strong>, et la consommation d'eau estimée pour le refroidissement de l'IA en 2026 atteint 1 200 milliards de litres. La consommation électrique de l'IA est 30 fois supérieure à celle d'une recherche Google. Sur le plan technique, les LLM souffrent d'<strong style="color:var(--text)">hallucinations</strong> — génération de réponses fausses mais présentées avec assurance — problème réduit mais non résolu avec les derniers modèles. Sur le plan des données, utiliser un LLM cloud implique d'envoyer les données vers des serveurs tiers : un problème majeur pour les mairies, les établissements de santé ou les administrations soumises au RGPD et à NIS2. C'est pourquoi le déploiement local (via Ollama, LM Studio) devient une alternative sérieuse. Enfin, l'essor des <strong style="color:var(--text)">agents IA autonomes</strong> pose des questions nouvelles sur la supervision humaine et la responsabilité en cas d'erreur automatisée.</div>
+          <div class="article-apport">
+            <div class="article-apport-title">&#128161; Apport pour un technicien réseau &amp; systèmes</div>
+            <div class="article-apport-text">Pour un technicien intervenant auprès de collectivités locales et d'entreprises, la question de la <strong style="color:var(--text)">souveraineté des données</strong> est centrale. Avant de déployer un LLM pour un client, il faut évaluer : les données traitées sont-elles sensibles ? Le modèle peut-il être hébergé en local ? Quelle est la politique de confidentialité de l'éditeur ? Ces questions s'inscrivent directement dans le cadre NIS2 et RGPD applicable aux mairies et aux prestataires IT comme Aintranet.</div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-red">Hallucinations</span>
+            <span class="tag tag-orange">Impact CO₂</span>
+            <span class="tag tag-blue">RGPD</span>
+            <span class="tag tag-purple">Souveraineté</span>
+            <span class="tag tag-green">LLM local</span>
           </div>
         </div>
       </div>
@@ -216,7 +222,7 @@ footer span{color:var(--accent)}
 </div>
 
 <footer>
-  <code>// Nicolas LUONG · <span>Veille Technologique</span> · 2026</code>
+  <code>// Nicolas LUONG · <span>Veille Technologique — LLM</span> · 2026</code>
 </footer>
 </body>
 </html>
