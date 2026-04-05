@@ -98,15 +98,23 @@ h2 span{color:var(--text3)}
 .project-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .project-status{display:flex;align-items:center;gap:.4rem;font-size:12px}
 .dot-green{width:6px;height:6px;border-radius:50%;background:var(--green)}
+/* VEILLE CLIQUABLE */
 .veille-feed{display:flex;flex-direction:column;gap:1rem}
-.veille-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:all .2s}
-.veille-item:hover{border-color:var(--border2)}
-.veille-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.veille-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:all .2s;text-decoration:none;color:inherit;display:block}
+.veille-item:hover{border-color:var(--accent);transform:translateY(-2px)}
+.veille-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem}
 .veille-badge{font-family:var(--mono);font-size:10px;padding:.15rem .5rem;border-radius:3px;text-transform:uppercase;letter-spacing:.08em}
 .badge-trend{color:var(--orange);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)}
 .veille-date{font-family:var(--mono);font-size:11px;color:var(--text3)}
 .veille-title{font-size:16px;font-weight:600;margin-bottom:.6rem}
 .veille-summary{font-size:14px;color:var(--text2);line-height:1.7}
+.veille-cta{margin-top:1rem;font-size:12px;color:var(--accent);font-family:var(--mono)}
+/* DOWNLOAD BAR */
+.download-bar{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:4rem}
+.download-info{display:flex;align-items:center;gap:1rem}
+.download-icon{width:44px;height:44px;border-radius:8px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.download-label{font-size:15px;font-weight:600}
+.download-sub{font-size:12px;color:var(--text3);font-family:var(--mono);margin-top:.2rem}
 .terminal-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:2rem}
 .terminal-bar{background:var(--bg3);padding:.5rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--border)}
 .t-dot{width:10px;height:10px;border-radius:50%}
@@ -255,7 +263,6 @@ footer span{color:var(--accent)}
       </div>
     </div>
     <div class="projects-grid reveal">
-
       <a href="projet-rds-aintranet.html" class="project-card">
         <div class="project-header">
           <div class="project-icon" style="background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15)">&#128421;</div>
@@ -264,16 +271,13 @@ footer span{color:var(--accent)}
         <div class="project-body">
           <div class="project-title">Ferme RDS HA — 2 Brokers</div>
           <div class="project-desc">Ferme RDS haute disponibilité avec 2 RD Connection Brokers en actif/actif, 4 Session Hosts répartis en 2 collections et gestion des profils utilisateurs par User Profile Disks (UPD).</div>
-          <div class="tags">
-            <span class="tag tag-blue">RDS HA</span><span class="tag tag-green">2 Brokers</span><span class="tag tag-orange">UPD</span><span class="tag tag-red">SQL Server</span>
-          </div>
+          <div class="tags"><span class="tag tag-blue">RDS HA</span><span class="tag tag-green">2 Brokers</span><span class="tag tag-orange">UPD</span><span class="tag tag-red">SQL Server</span></div>
         </div>
         <div class="project-footer">
           <div class="project-status"><div class="dot-green"></div><span style="font-size:12px;color:var(--text2)">Réalisé</span></div>
           <span style="font-size:12px;font-family:var(--mono);color:var(--text3)">Pro · 2025</span>
         </div>
       </a>
-
       <a href="projet-rds-mairie.html" class="project-card">
         <div class="project-header">
           <div class="project-icon" style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15)">&#127970;</div>
@@ -282,16 +286,13 @@ footer span{color:var(--accent)}
         <div class="project-body">
           <div class="project-title">Ferme RDS Mairie — FSLogix</div>
           <div class="project-desc">Ferme RDS pour une mairie avec 1 broker et 2 Session Hosts. Gestion des profils utilisateurs par FSLogix Profile Containers — chaque agent retrouve son environnement identique quel que soit le serveur.</div>
-          <div class="tags">
-            <span class="tag tag-purple">FSLogix</span><span class="tag tag-blue">RDS</span><span class="tag tag-green">Windows Server</span><span class="tag tag-orange">GPO</span>
-          </div>
+          <div class="tags"><span class="tag tag-purple">FSLogix</span><span class="tag tag-blue">RDS</span><span class="tag tag-green">Windows Server</span><span class="tag tag-orange">GPO</span></div>
         </div>
         <div class="project-footer">
           <div class="project-status"><div class="dot-green"></div><span style="font-size:12px;color:var(--text2)">Réalisé</span></div>
           <span style="font-size:12px;font-family:var(--mono);color:var(--text3)">Pro · 2025</span>
         </div>
       </a>
-
       <a href="projet-ha-wordpress.html" class="project-card">
         <div class="project-header">
           <div class="project-icon" style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15)">&#9881;</div>
@@ -300,16 +301,13 @@ footer span{color:var(--accent)}
         <div class="project-body">
           <div class="project-title">Haute Disponibilité WordPress &amp; Web</div>
           <div class="project-desc">Mise en place d'une architecture HA pour WordPress avec répartition de charge Nginx, réplication MariaDB maître-maître, synchronisation Unison et VIP Keepalived.</div>
-          <div class="tags">
-            <span class="tag tag-blue">Nginx</span><span class="tag tag-green">MariaDB</span><span class="tag tag-purple">Keepalived</span><span class="tag tag-orange">WordPress</span>
-          </div>
+          <div class="tags"><span class="tag tag-blue">Nginx</span><span class="tag tag-green">MariaDB</span><span class="tag tag-purple">Keepalived</span><span class="tag tag-orange">WordPress</span></div>
         </div>
         <div class="project-footer">
           <div class="project-status"><div class="dot-green"></div><span style="font-size:12px;color:var(--text2)">Réalisé</span></div>
           <span style="font-size:12px;font-family:var(--mono);color:var(--text3)">Scolaire · 2025</span>
         </div>
       </a>
-
       <a href="projet-infra-complete.html" class="project-card">
         <div class="project-header">
           <div class="project-icon" style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15)">&#127760;</div>
@@ -318,16 +316,13 @@ footer span{color:var(--accent)}
         <div class="project-body">
           <div class="project-title">Infrastructure Complète d'Entreprise</div>
           <div class="project-desc">Conception et déploiement d'une infrastructure complète : pare-feu pfSense, serveur web Nginx, base de données PostgreSQL, Active Directory, NAS Synology et ERP Odoo. Segmentation réseau par VLAN.</div>
-          <div class="tags">
-            <span class="tag tag-red">pfSense</span><span class="tag tag-blue">Active Directory</span><span class="tag tag-green">Odoo</span><span class="tag tag-purple">NAS</span>
-          </div>
+          <div class="tags"><span class="tag tag-red">pfSense</span><span class="tag tag-blue">Active Directory</span><span class="tag tag-green">Odoo</span><span class="tag tag-purple">NAS</span></div>
         </div>
         <div class="project-footer">
           <div class="project-status"><div class="dot-green"></div><span style="font-size:12px;color:var(--text2)">Réalisé</span></div>
           <span style="font-size:12px;font-family:var(--mono);color:var(--text3)">Scolaire · 2025</span>
         </div>
       </a>
-
     </div>
   </div>
 </section>
@@ -339,17 +334,21 @@ footer span{color:var(--accent)}
       <h2>Veille <span>technologique</span></h2>
     </div>
     <div class="veille-feed reveal">
-      <div class="veille-item">
+      <a href="veille-technologique.html" class="veille-item">
         <div class="veille-item-header">
-          <span class="veille-badge badge-trend">Tendance</span>
-          <span class="veille-date">Mars 2026</span>
+          <span class="veille-badge badge-trend">4 articles · Jan — Avr 2026</span>
+          <span class="veille-date">Mise à jour : Avril 2026</span>
         </div>
-        <div class="veille-title">Les LLM (Large Language Models) — état de l'art et usages en infrastructure</div>
-        <div class="veille-summary">Les grands modèles de langage comme GPT-4, Claude ou Mistral transforment progressivement les métiers IT. En infrastructure et systèmes, ils s'intègrent dans des outils d'automatisation (génération de scripts Ansible/Terraform, analyse de logs, détection d'anomalies réseau). Des solutions comme GitHub Copilot ou des assistants intégrés aux ITSM commencent à accélérer le traitement des incidents. Les LLM locaux (Ollama, LM Studio) permettent désormais de faire tourner des modèles sur des serveurs internes sans dépendance cloud, ce qui soulève des enjeux de souveraineté des données et de sécurité particulièrement pertinents pour les DSI et collectivités.</div>
+        <div class="veille-title">Cybersécurité, Windows Server 2025, IA et réglementation NIS2</div>
+        <div class="veille-summary">Vague de cyberattaques en France (60M+ données compromises), Stratégie nationale cyber 2026-2030, fin du protocole NTLM dans Windows Server 2025, et industrialisation des cyberattaques par l'IA. Quatre articles marquants couvrant la période janvier à avril 2026.</div>
         <div class="tags" style="margin-top:.75rem">
-          <span class="tag tag-purple">LLM</span><span class="tag tag-blue">IA Générative</span><span class="tag tag-green">Ollama</span><span class="tag tag-orange">Automatisation</span><span class="tag tag-red">Sécurité IA</span>
+          <span class="tag tag-red">Cybersécurité</span>
+          <span class="tag tag-blue">Windows Server 2025</span>
+          <span class="tag tag-purple">NIS2</span>
+          <span class="tag tag-orange">IA</span>
         </div>
-      </div>
+        <div class="veille-cta">Lire la veille complète &#8594;</div>
+      </a>
     </div>
   </div>
 </section>
@@ -367,6 +366,20 @@ footer span{color:var(--accent)}
     </div>
   </div>
 </section>
+
+<!-- TÉLÉCHARGEMENT TABLEAU DE SYNTHÈSE -->
+<div class="container">
+  <div class="download-bar reveal">
+    <div class="download-info">
+      <div class="download-icon">&#128196;</div>
+      <div>
+        <div class="download-label">Tableau de synthèse — Épreuve E5</div>
+        <div class="download-sub">BTS SIO SISR · SESSION 2026 · LUONG Nicolas</div>
+      </div>
+    </div>
+    <a href="Tableau_synthese_NicolasLUONG.xlsx" download="Tableau_synthese_NicolasLUONG.xlsx" class="btn btn-outline">&#11015; Télécharger le tableau (.xlsx)</a>
+  </div>
+</div>
 
 <footer>
   <code>// Nicolas LUONG · <span>réseau &amp; infrastructure</span> · 2025</code>

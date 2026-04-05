@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veille Technologique — Nicolas LUONG</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080c12;--bg2:#0d1320;--bg3:#111827;--accent:#00d4ff;--accent3:#7c3aed;--text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;--green:#10b981;--orange:#f59e0b;--red:#ef4444;--border:#1e2d45;--border2:#2a3f5f;--font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,18,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:.1em;text-decoration:none}
+.nav-logo span{color:var(--text2)}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:4px;font-size:13px;font-weight:500;text-decoration:none;border:1px solid var(--border2);color:var(--text2);transition:all .2s;font-family:var(--font)}
+.back-btn:hover{border-color:var(--accent);color:var(--accent)}
+.container{max-width:960px;margin:0 auto;padding:0 2rem}
+.hero-project{padding-top:100px;padding-bottom:60px;border-bottom:1px solid var(--border);margin-bottom:3rem}
+.project-tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.project-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--accent)}
+h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
+.content-block{margin-bottom:3rem}
+h2{font-size:1.4rem;font-weight:600;margin-bottom:1.25rem;color:var(--text);display:flex;align-items:center;gap:.75rem}
+h2::after{content:'';flex:1;height:1px;background:var(--border)}
+p{color:var(--text2);line-height:1.8;font-size:15px;margin-bottom:1rem}
+/* DEFINITION CARDS */
+.def-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1rem}
+.def-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem;border-left:3px solid var(--accent)}
+.def-card.c-purple{border-left-color:#a78bfa}
+.def-card.c-green{border-left-color:var(--green)}
+.def-card.c-orange{border-left-color:var(--orange)}
+.def-card-title{font-size:13px;font-weight:600;margin-bottom:.6rem;color:var(--text)}
+.def-card-text{font-size:13px;color:var(--text2);line-height:1.6}
+/* ARTICLES */
+.articles-grid{display:flex;flex-direction:column;gap:1.5rem}
+.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all .3s}
+.article-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.article-header{padding:1.5rem 1.5rem 0}
+.article-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem}
+.article-badge{font-family:var(--mono);font-size:10px;padding:.2rem .6rem;border-radius:3px;text-transform:uppercase;letter-spacing:.08em}
+.badge-secu{color:var(--red);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2)}
+.badge-sys{color:#38bdf8;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2)}
+.badge-reg{color:#a78bfa;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.2)}
+.badge-ia{color:var(--orange);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)}
+.article-date{font-family:var(--mono);font-size:11px;color:var(--text3)}
+.article-source{font-family:var(--mono);font-size:11px;color:var(--accent)}
+.article-title{font-size:18px;font-weight:700;margin-bottom:.75rem;line-height:1.3}
+.article-body{padding:0 1.5rem 1.5rem}
+.article-summary{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:1rem}
+.article-apport{background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.15);border-radius:6px;padding:1rem;margin-top:.75rem}
+.article-apport-title{font-family:var(--mono);font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.4rem}
+.article-apport-text{font-size:13px;color:var(--text2);line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.tag{font-family:var(--mono);font-size:11px;padding:.2rem .6rem;border-radius:3px;border:1px solid var(--border)}
+.tag-blue{color:#38bdf8;border-color:rgba(56,189,248,.2);background:rgba(56,189,248,.05)}
+.tag-green{color:var(--green);border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.05)}
+.tag-purple{color:#a78bfa;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.05)}
+.tag-orange{color:var(--orange);border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)}
+.tag-red{color:var(--red);border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.05)}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text3);font-size:13px;font-family:var(--mono);margin-top:4rem}
+footer span{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>~/</span>portfolio<span>.sh</span></a>
+  <a href="index.html" class="back-btn">&#8592; Retour au portfolio</a>
+</nav>
+
+<div class="container">
+
+  <div class="hero-project">
+    <div class="project-tag">BTS SIO SISR · 2025 — 2026</div>
+    <h1>Veille Technologique</h1>
+    <p style="font-size:16px;color:var(--text2);max-width:720px;line-height:1.8">Suivi des évolutions du secteur informatique : cybersécurité, systèmes, réseaux et nouvelles technologies. Cette veille couvre la période de janvier 2026 à aujourd'hui.</p>
+  </div>
+
+  <!-- DEFINITION -->
+  <div class="content-block">
+    <h2>Qu'est-ce que la veille technologique ?</h2>
+    <p>La veille technologique est un processus continu de surveillance, de collecte et d'analyse d'informations sur les évolutions techniques, scientifiques et numériques d'un domaine. Elle permet à un professionnel ou une organisation d'anticiper les changements, d'adapter ses pratiques et de rester compétitif face à un environnement qui évolue rapidement.</p>
+    <p>Dans le domaine des systèmes et réseaux, la veille technologique est particulièrement critique : une faille non surveillée peut exposer une infrastructure en quelques heures, et une technologie non maîtrisée peut rendre obsolètes des solutions en production.</p>
+    <div class="def-grid">
+      <div class="def-card">
+        <div class="def-card-title">&#128270; Collecte d'information</div>
+        <div class="def-card-text">Surveiller les sources fiables : ANSSI, CERT-FR, éditeurs (Microsoft, Cisco), blogs techniques spécialisés (IT-Connect, LeMagIT), presses professionnelles.</div>
+      </div>
+      <div class="def-card c-purple">
+        <div class="def-card-title">&#128200; Analyse &amp; filtrage</div>
+        <div class="def-card-text">Trier les informations pertinentes selon son périmètre technique, évaluer leur impact potentiel sur ses infrastructures et identifier les actions à mener.</div>
+      </div>
+      <div class="def-card c-green">
+        <div class="def-card-title">&#128161; Exploitation &amp; adaptation</div>
+        <div class="def-card-text">Intégrer les connaissances acquises dans ses pratiques professionnelles : mise à jour des configurations, application de correctifs, évolution des architectures.</div>
+      </div>
+      <div class="def-card c-orange">
+        <div class="def-card-title">&#127891; Apports pour le professionnel</div>
+        <div class="def-card-text">Compétences à jour, réactivité face aux menaces, légitimité technique, capacité à conseiller les clients et à proposer des solutions innovantes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLES -->
+  <div class="content-block">
+    <h2>Articles marquants — Janvier à Avril 2026</h2>
+
+    <!-- ARTICLE 1 -->
+    <div class="articles-grid">
+
+      <div class="article-card">
+        <div class="article-header">
+          <div class="article-meta">
+            <span class="article-badge badge-secu">Cybersécurité</span>
+            <span class="article-date">Janvier — Mars 2026</span>
+            <span class="article-source">ANSSI · LeMagIT · Cyberactualite.fr</span>
+          </div>
+          <div class="article-title">Vague de cyberattaques en France : 100+ piratages, 60 millions de lignes de données compromises</div>
+        </div>
+        <div class="article-body">
+          <div class="article-summary">Le début de l'année 2026 marque une vague sans précédent de cyberattaques touchant des organisations françaises. Parmi les incidents les plus marquants : le piratage de Cegedim Santé (données administratives de 15 millions de patients), la violation du fichier FICOBA (1,2 million de comptes bancaires), des attaques DDoS contre La Poste et l'URSSAF, et des compromissions de nombreuses fédérations sportives. Au total, plus de 100 piratages sont recensés sur janvier-février, pour plus de 60 millions de lignes de données exfiltrées. Ces attaques s'appuient massivement sur du credential stuffing (test automatique d'identifiants volés), du phishing ciblé et des vulnérabilités de type supply chain.</div>
+          <div class="article-apport">
+            <div class="article-apport-title">&#128161; Apport pour un technicien réseau &amp; systèmes</div>
+            <div class="article-apport-text">Ces incidents rappellent l'importance de l'authentification multi-facteurs (MFA/2FA) sur tous les accès, de la segmentation réseau pour limiter la propagation, et de la mise en place d'une politique de gestion des mots de passe rigoureuse (en lien direct avec Active Directory et les GPO). En tant que futur administrateur intervenant pour des mairies et des entreprises, comprendre ces vecteurs d'attaque est essentiel pour sécuriser les infrastructures des clients.</div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-red">Credential stuffing</span>
+            <span class="tag tag-blue">MFA</span>
+            <span class="tag tag-orange">Supply chain</span>
+            <span class="tag tag-purple">RGPD</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTICLE 2 -->
+      <div class="article-card">
+        <div class="article-header">
+          <div class="article-meta">
+            <span class="article-badge badge-reg">Réglementation</span>
+            <span class="article-date">29 janvier 2026</span>
+            <span class="article-source">economie.gouv.fr · ANSSI</span>
+          </div>
+          <div class="article-title">Stratégie nationale de cybersécurité 2026-2030 : la France vise le rang de puissance cyber européenne</div>
+        </div>
+        <div class="article-body">
+          <div class="article-summary">Présentée le 29 janvier 2026 par la ministre déléguée Anne Le Hénanff, la Stratégie nationale de cybersécurité 2026-2030 structure l'ambition française en cinq piliers et quatorze objectifs. Elle couvre la formation dès le plus jeune âge, la préparation aux crises, le rehaussement du niveau de protection national, la mobilisation des acteurs privés dans la cyberdéfense, et le soutien à un marché européen de la cybersécurité. En parallèle, l'ANSSI déploie sa plateforme ReCyF (Référentiel de Cybersécurité Française) pour cadencer la mise en conformité des entités soumises à la directive NIS2, avec des jalons et niveaux de maturité attendus. La directive NIS2, transposée en droit français, oblige les entités essentielles et importantes à notifier les incidents sous 24 heures et à sécuriser leur chaîne d'approvisionnement.</div>
+          <div class="article-apport">
+            <div class="article-apport-title">&#128161; Apport pour un technicien réseau &amp; systèmes</div>
+            <div class="article-apport-text">La directive NIS2 s'applique directement aux collectivités locales (mairies, intercommunalités) et aux prestataires de services IT comme Aintranet. En tant que technicien intervenant pour ces structures, connaître les obligations NIS2 (gestion des risques, notification d'incidents, sécurité des tiers) permet d'anticiper les exigences des clients et de proposer des architectures conformes. La plateforme ReCyF de l'ANSSI devient un référentiel à suivre activement.</div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-purple">NIS2</span>
+            <span class="tag tag-blue">ANSSI</span>
+            <span class="tag tag-green">ReCyF</span>
+            <span class="tag tag-orange">Conformité</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTICLE 3 -->
+      <div class="article-card">
+        <div class="article-header">
+          <div class="article-meta">
+            <span class="article-badge badge-sys">Systèmes</span>
+            <span class="article-date">Janvier 2026 — en cours</span>
+            <span class="article-source">Microsoft Learn · IT-Connect · LeMagIT</span>
+          </div>
+          <div class="article-title">Windows Server 2025 en production : Active Directory repensé, fin du protocole NTLM, Hotpatching</div>
+        </div>
+        <div class="article-body">
+          <div class="article-summary">Windows Server 2025, largement déployé depuis fin 2024, s'impose en 2026 comme le nouveau standard pour les infrastructures Windows. Les évolutions majeures concernent directement les administrateurs systèmes : Active Directory bénéficie d'un nouveau niveau fonctionnel avec une base de données passant de 8 Ko à 32 Ko de page size (meilleure scalabilité), des comptes de service managés délégués (dMSA), et le support de Kerberos AES SHA-256/384. La signature SMB est désormais obligatoire par défaut, et Microsoft a commencé la désactivation progressive de NTLM — protocole vieux de 30 ans, longtemps utilisé comme repli d'authentification — pour orienter vers Kerberos et les Passkeys. Le Hotpatching permet enfin d'appliquer des correctifs de sécurité critiques sans redémarrage du serveur, réduisant les fenêtres de vulnérabilité.</div>
+          <div class="article-apport">
+            <div class="article-apport-title">&#128161; Apport pour un technicien réseau &amp; systèmes</div>
+            <div class="article-apport-text">Ces évolutions ont un impact direct sur le quotidien d'un administrateur : la fin de NTLM impose de revoir les configurations d'authentification sur les partages réseau et les accès RDS (lien direct avec les fermes RDS déployées en stage). La migration vers Windows Server 2025 nécessite un niveau fonctionnel AD 2016 minimum — point critique à vérifier avant toute migration client. Le Hotpatching réduit les interruptions de service, un avantage clé pour les environnements de production comme les mairies.</div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-blue">Windows Server 2025</span>
+            <span class="tag tag-green">Active Directory</span>
+            <span class="tag tag-purple">Kerberos</span>
+            <span class="tag tag-red">NTLM</span>
+            <span class="tag tag-orange">Hotpatching</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTICLE 4 -->
+      <div class="article-card">
+        <div class="article-header">
+          <div class="article-meta">
+            <span class="article-badge badge-ia">IA &amp; Automatisation</span>
+            <span class="article-date">Janvier — Avril 2026</span>
+            <span class="article-source">Euronews · Fortinet · Google Cloud · LMI</span>
+          </div>
+          <div class="article-title">L'IA au service des cyberattaques : agents autonomes, spear-phishing à grande échelle et attaques OT</div>
+        </div>
+        <div class="article-body">
+          <div class="article-summary">2026 marque un tournant dans l'industrialisation de la cybercriminalité. Les rapports de Google Cloud Security, Fortinet et Forrester convergent : les agents d'IA autonomes sont désormais utilisés par des acteurs malveillants pour cartographier des réseaux en quelques minutes, enchaîner des vulnérabilités sans intervention humaine, générer du spear-phishing ultra-ciblé à grande échelle, et contourner les outils de détection en modifiant dynamiquement leur code. Les infrastructures OT (Operational Technology : automates, systèmes industriels, réseaux énergétiques) sont particulièrement visées par ces attaques automatisées optimisées par l'IA. En parallèle, l'IA s'impose aussi côté défense : NinjaOne Vulnerability Management, CrowdStrike Falcon ou Sentinel One intègrent l'IA pour détecter et remédier automatiquement aux vulnérabilités.</div>
+          <div class="article-apport">
+            <div class="article-apport-title">&#128161; Apport pour un technicien réseau &amp; systèmes</div>
+            <div class="article-apport-text">Face à des attaques de plus en plus automatisées, la supervision réseau (SNMP, Zabbix, Prometheus) et la détection d'anomalies prennent une dimension stratégique. Les environnements industriels comme Anjos Ventilation (client rencontré en stage) sont directement dans le viseur des attaques OT. Maîtriser la segmentation réseau (VLAN dédiés aux OT/IT), les politiques de pare-feu et la mise à jour des firmwares d'équipements réseau devient un prérequis incontournable pour tout administrateur infrastructure.</div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-orange">IA générative</span>
+            <span class="tag tag-red">Spear-phishing</span>
+            <span class="tag tag-blue">OT Security</span>
+            <span class="tag tag-green">SIEM</span>
+            <span class="tag tag-purple">Automatisation</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <code>// Nicolas LUONG · <span>Veille Technologique</span> · 2026</code>
+</footer>
+</body>
+</html>
