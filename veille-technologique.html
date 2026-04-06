@@ -32,8 +32,8 @@ p{color:var(--text2);line-height:1.8;font-size:15px;margin-bottom:1rem}
 .def-card-title{font-size:13px;font-weight:600;margin-bottom:.5rem;color:var(--text)}
 .def-card-text{font-size:13px;color:var(--text2);line-height:1.6}
 .articles-grid{display:flex;flex-direction:column;gap:2rem}
-.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .2s}
-.article-card:hover{border-color:var(--border2)}
+.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all .2s;display:block;text-decoration:none;color:inherit}
+.article-card:hover{border-color:var(--accent);transform:translateY(-2px)}
 .article-header{padding:1.5rem 1.5rem 0}
 .article-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem}
 .article-badge{font-family:var(--mono);font-size:10px;padding:.2rem .6rem;border-radius:3px;text-transform:uppercase;letter-spacing:.08em}
@@ -112,8 +112,7 @@ footer span{color:var(--accent)}
     <h2>Articles marquants — Janvier à Avril 2026</h2>
     <div class="articles-grid">
 
-      <!-- ARTICLE 1 : DeepSeek -->
-      <div class="article-card">
+      <a href="https://www.capmad.com/fr/technologie-fr/deepseek-r1-un-an-apres-la-chine-domine-lia-open-source-en-2026/" target="_blank" class="article-card">
         <div class="article-header">
           <div class="article-meta">
             <span class="article-badge badge-os">Open Source</span>
@@ -136,10 +135,9 @@ footer span{color:var(--accent)}
             <span class="tag tag-red">Souveraineté</span>
           </div>
         </div>
-      </div>
+      </a>
 
-      <!-- ARTICLE 2 : Démocratisation & LLM locaux -->
-      <div class="article-card">
+      <a href="https://www.incremys.com/ressources/blog/statistiques-llm" target="_blank" class="article-card">
         <div class="article-header">
           <div class="article-meta">
             <span class="article-badge badge-tendance">Tendance</span>
@@ -162,10 +160,9 @@ footer span{color:var(--accent)}
             <span class="tag tag-red">Coût d'inférence</span>
           </div>
         </div>
-      </div>
+      </a>
 
-      <!-- ARTICLE 3 : LLM & IT / Automatisation -->
-      <div class="article-card">
+      <a href="https://cloud-store.fr/blogs/nouveautes-logiciels-it-2026/" target="_blank" class="article-card">
         <div class="article-header">
           <div class="article-meta">
             <span class="article-badge badge-infra">IT &amp; Infrastructure</span>
@@ -188,10 +185,9 @@ footer span{color:var(--accent)}
             <span class="tag tag-red">Analyse de logs</span>
           </div>
         </div>
-      </div>
+      </a>
 
-      <!-- ARTICLE 4 : Enjeux et limites -->
-      <div class="article-card">
+      <a href="https://www.unesco.org/fr/articles/lintegration-des-llm-dans-lenseignement-superieur-une-analyse-critique-de-leurs-impacts" target="_blank" class="article-card">
         <div class="article-header">
           <div class="article-meta">
             <span class="article-badge badge-llm">Enjeux &amp; Limites</span>
@@ -214,7 +210,7 @@ footer span{color:var(--accent)}
             <span class="tag tag-green">LLM local</span>
           </div>
         </div>
-      </div>
+      </a>
 
     </div>
   </div>
