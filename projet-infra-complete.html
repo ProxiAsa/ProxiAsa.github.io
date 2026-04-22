@@ -15,8 +15,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,18,.88)
 .nav-logo span{color:var(--text2)}
 .back-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:4px;font-size:13px;font-weight:500;text-decoration:none;border:1px solid var(--border2);color:var(--text2);transition:all .2s;font-family:var(--font)}
 .back-btn:hover{border-color:var(--accent);color:var(--accent)}
-.container{max-width:900px;margin:0 auto;padding:0 2rem}
-/* HERO */
+.container{max-width:920px;margin:0 auto;padding:0 2rem}
 .hero-project{padding-top:100px;padding-bottom:60px;border-bottom:1px solid var(--border);margin-bottom:3rem}
 .project-tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
 .project-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--accent)}
@@ -31,67 +30,54 @@ h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.2;margin-botto
 .tag-purple{color:#a78bfa;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.05)}
 .tag-orange{color:var(--orange);border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)}
 .tag-red{color:var(--red);border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.05)}
-/* SECTIONS */
-.content-block{margin-bottom:3rem;scroll-margin-top:80px}
-h2{font-size:1.4rem;font-weight:600;margin-bottom:1.25rem;color:var(--text);display:flex;align-items:center;gap:.75rem}
-h2::after{content:'';flex:1;height:1px;background:var(--border)}
-h3{font-size:1rem;font-weight:600;color:var(--text);margin:1.5rem 0 .75rem;display:flex;align-items:center;gap:.6rem}
+.content-block{margin-bottom:3.5rem;scroll-margin-top:80px}
+h2{font-size:1.5rem;font-weight:700;margin-bottom:1.5rem;color:var(--text);display:flex;align-items:center;gap:.75rem;padding-bottom:.75rem;border-bottom:2px solid var(--border)}
+h3{font-size:1.05rem;font-weight:600;color:var(--text);margin:2rem 0 .75rem;display:flex;align-items:center;gap:.6rem}
 h3::before{content:'';display:block;width:3px;height:1rem;background:var(--accent);border-radius:2px;flex-shrink:0}
+h4{font-size:.95rem;font-weight:600;color:var(--text2);margin:1.25rem 0 .5rem;font-family:var(--mono)}
 p{color:var(--text2);line-height:1.8;font-size:14px;margin-bottom:.75rem}
-/* TOC */
 .toc{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:1.5rem;margin-bottom:3rem}
 .toc-title{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.15em;margin-bottom:1rem}
-.toc-list{list-style:none;display:flex;flex-direction:column;gap:.35rem}
-.toc-list li a{color:var(--text2);text-decoration:none;font-size:14px;display:flex;align-items:center;gap:.75rem;transition:color .2s}
-.toc-list li a:hover{color:var(--accent)}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:.3rem}
+.toc-list > li > a{color:var(--text2);text-decoration:none;font-size:14px;font-weight:500;display:flex;align-items:center;gap:.6rem;padding:.25rem 0;transition:color .2s}
+.toc-list > li > a:hover{color:var(--accent)}
 .toc-num{font-family:var(--mono);font-size:11px;color:var(--text3);min-width:1.8rem}
-.toc-list .sub{padding-left:1.8rem}
-.toc-list .sub a{font-size:13px;color:var(--text3)}
-/* CARDS */
-.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+.toc-sub{list-style:none;padding-left:1.8rem;margin-top:.2rem;display:flex;flex-direction:column;gap:.2rem}
+.toc-sub li a{color:var(--text3);text-decoration:none;font-size:13px;display:flex;align-items:center;gap:.5rem;padding:.15rem 0;transition:color .2s}
+.toc-sub li a:hover{color:var(--accent)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1rem}
 .info-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
-.info-card-title{font-size:12px;font-family:var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem}
-.info-card p{font-size:13px;margin:0;color:var(--text2)}
-/* COMPONENT CARDS */
-.component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1rem}
-.component-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;border-left:3px solid var(--accent)}
-.component-card.c-red{border-left-color:var(--red)}
-.component-card.c-blue{border-left-color:#38bdf8}
-.component-card.c-green{border-left-color:var(--green)}
-.component-card.c-purple{border-left-color:#a78bfa}
-.component-card.c-orange{border-left-color:var(--orange)}
-.component-name{font-size:14px;font-weight:600;margin-bottom:.3rem}
-.component-tech{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:.5rem}
-.component-desc{font-size:13px;color:var(--text2);line-height:1.6}
-/* CODE */
-.code-block{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.25rem;margin:.75rem 0;overflow-x:auto}
-.code-block code{font-family:var(--mono);font-size:13px;color:#7dd3fc;line-height:1.8;white-space:pre}
-.code-comment{color:var(--text3)}
-/* STEPS */
+.info-card-title{font-size:11px;font-family:var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem}
+.info-card p{font-size:13px;margin:0;color:var(--text2);line-height:1.6}
+.code-block{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.25rem;margin:.75rem 0;overflow-x:auto;position:relative}
+.code-label{font-family:var(--mono);font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem}
+.code-block code{font-family:var(--mono);font-size:13px;color:#7dd3fc;line-height:1.9;white-space:pre;display:block}
+.cc{color:var(--text3)}
+.ck{color:#c084fc}
+.cv{color:#86efac}
 .step-list{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-top:1rem}
-.step-list li{display:flex;align-items:flex-start;gap:1rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem}
-.step-num{font-family:var(--mono);font-size:12px;color:var(--accent);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15);border-radius:4px;padding:.2rem .6rem;white-space:nowrap;margin-top:.1rem;flex-shrink:0}
-.step-text{font-size:14px;color:var(--text2);line-height:1.6}
-.step-text strong{color:var(--text);font-weight:600}
-/* TABLES */
-.vlan-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:13px}
-.vlan-table th{text-align:left;padding:.6rem 1rem;font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--border);background:var(--bg3)}
-.vlan-table td{padding:.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text2);font-family:var(--mono);font-size:12px}
-.vlan-table tr:hover td{background:var(--bg2)}
-/* NOTE */
-.note-box{background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.15);border-radius:8px;padding:1rem;margin:.75rem 0}
-.note-box p{margin:0;font-size:13px}
-/* RESULT */
-.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-top:1rem}
+.step-list li{display:flex;align-items:flex-start;gap:1rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem}
+.sn{font-family:var(--mono);font-size:11px;color:var(--accent);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:4px;padding:.2rem .65rem;white-space:nowrap;margin-top:.1rem;flex-shrink:0}
+.st{font-size:14px;color:var(--text2);line-height:1.7}
+.st strong{color:var(--text);font-weight:600}
+.st code{font-family:var(--mono);font-size:12px;color:var(--accent);background:rgba(0,212,255,.06);padding:.1rem .35rem;border-radius:3px}
+.vlan-table{width:100%;border-collapse:collapse;margin:.75rem 0;font-size:13px}
+.vlan-table th{text-align:left;padding:.6rem .9rem;font-family:var(--mono);font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--border);background:var(--bg3);white-space:nowrap}
+.vlan-table td{padding:.55rem .9rem;border-bottom:1px solid var(--border);color:var(--text2);font-family:var(--mono);font-size:12px}
+.vlan-table tr:hover td{background:rgba(0,212,255,.03)}
+.note-box{background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.15);border-radius:8px;padding:1rem 1.25rem;margin:.75rem 0}
+.note-box p{margin:0;font-size:13px;line-height:1.7}
+.warn-box{background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:1rem 1.25rem;margin:.75rem 0}
+.warn-box p{margin:0;font-size:13px;line-height:1.7;color:var(--text2)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin-top:1rem}
 .result-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;text-align:center}
-.result-num{font-size:1.6rem;font-weight:700;color:var(--accent);font-family:var(--mono)}
-.result-label{font-size:12px;color:var(--text3);margin-top:.25rem}
+.result-num{font-size:1.5rem;font-weight:700;color:var(--accent);font-family:var(--mono)}
+.result-label{font-size:11px;color:var(--text3);margin-top:.25rem;text-transform:uppercase;letter-spacing:.05em}
 footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text3);font-size:13px;font-family:var(--mono);margin-top:4rem}
 footer span{color:var(--accent)}
 </style>
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="nav-logo"><span>~/</span>portfolio<span>.sh</span></a>
   <a href="index.html" class="back-btn">&#8592; Retour au portfolio</a>
@@ -99,11 +85,10 @@ footer span{color:var(--accent)}
 
 <div class="container">
 
-  <!-- HERO -->
   <div class="hero-project">
     <div class="project-tag">Projet · Scolaire BTS SIO SISR · 2025</div>
     <h1>Infrastructure Complète d'Entreprise</h1>
-    <p style="font-size:16px;color:var(--text2);max-width:720px;line-height:1.8">Conception et déploiement d'une infrastructure réseau et systèmes complète simulant un environnement d'entreprise : Active Directory, DHCP multi-VLAN, pare-feu pfSense, VPN OpenVPN, stockage NAS TrueNAS et ERP Odoo 19 derrière un reverse proxy Nginx.</p>
+    <p style="font-size:16px;color:var(--text2);max-width:740px;line-height:1.8">Conception et déploiement d'une infrastructure réseau et systèmes complète simulant un environnement PME : Active Directory avec PKI, 7 VLANs DHCP, pare-feu pfSense, authentification LDAPS, VPN OpenVPN intégré à l'AD, stockage TrueNAS RAID1 et ERP Odoo 19 derrière un reverse proxy Nginx.</p>
     <div class="project-meta">
       <div class="meta-item"><div class="meta-dot"></div>Réalisé</div>
       <div class="meta-item">&#128197; 2025</div>
@@ -111,16 +96,16 @@ footer span{color:var(--accent)}
       <div class="meta-item">&#127968; Domaine : hpk07.labo</div>
     </div>
     <div class="tags">
-      <span class="tag tag-red">pfSense</span>
       <span class="tag tag-blue">Active Directory</span>
-      <span class="tag tag-green">Odoo 19</span>
-      <span class="tag tag-purple">TrueNAS</span>
+      <span class="tag tag-red">pfSense</span>
       <span class="tag tag-orange">OpenVPN</span>
-      <span class="tag tag-blue">VLAN</span>
-      <span class="tag tag-green">PostgreSQL</span>
+      <span class="tag tag-purple">PKI / LDAPS</span>
+      <span class="tag tag-green">TrueNAS RAID1</span>
+      <span class="tag tag-blue">VLAN Cisco</span>
+      <span class="tag tag-green">Odoo 19</span>
+      <span class="tag tag-orange">PostgreSQL</span>
       <span class="tag tag-red">Nginx</span>
-      <span class="tag tag-orange">PKI / LDAPS</span>
-      <span class="tag tag-purple">Cisco IOS</span>
+      <span class="tag tag-purple">Windows Server 2022</span>
     </div>
   </div>
 
@@ -128,206 +113,434 @@ footer span{color:var(--accent)}
   <div class="toc">
     <div class="toc-title">Sommaire</div>
     <ol class="toc-list">
-      <li><a href="#s-archi"><span class="toc-num">00</span> Architecture globale</a></li>
-      <li><a href="#s1"><span class="toc-num">01</span> Mise en place de la ferme (AD, DHCP, BDD, Routage)</a></li>
-      <li class="sub"><a href="#s1a"><span class="toc-num">↳</span> Active Directory &amp; DNS</a></li>
-      <li class="sub"><a href="#s1b"><span class="toc-num">↳</span> Serveur DHCP multi-VLAN</a></li>
-      <li class="sub"><a href="#s1c"><span class="toc-num">↳</span> Base de données PostgreSQL</a></li>
-      <li class="sub"><a href="#s1d"><span class="toc-num">↳</span> Configuration routeur &amp; commutateur Cisco</a></li>
-      <li><a href="#s2"><span class="toc-num">02</span> Connexion internet, pare-feu pfSense &amp; VPN</a></li>
-      <li class="sub"><a href="#s2a"><span class="toc-num">↳</span> Configuration pfSense &amp; routes statiques</a></li>
-      <li class="sub"><a href="#s2b"><span class="toc-num">↳</span> PKI, LDAPS &amp; intégration AD</a></li>
-      <li class="sub"><a href="#s2c"><span class="toc-num">↳</span> VPN OpenVPN avec authentification AD</a></li>
-      <li><a href="#s3"><span class="toc-num">03</span> Stockage réseau — TrueNAS (SMB, FTP, RAID1)</a></li>
-      <li><a href="#s4"><span class="toc-num">04</span> ERP Odoo 19 &amp; serveur web Nginx</a></li>
+      <li><a href="#s0"><span class="toc-num">00</span>Architecture globale &amp; adressage</a></li>
+      <li>
+        <a href="#s1"><span class="toc-num">01</span>Mise en place de la ferme</a>
+        <ul class="toc-sub">
+          <li><a href="#s1a"><span class="toc-num">↳</span>Active Directory &amp; DNS</a></li>
+          <li><a href="#s1b"><span class="toc-num">↳</span>Serveur DHCP — 7 étendues VLAN</a></li>
+          <li><a href="#s1c"><span class="toc-num">↳</span>Serveur de base de données (PostgreSQL)</a></li>
+          <li><a href="#s1d"><span class="toc-num">↳</span>Configuration switch &amp; routeur Cisco</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#s2"><span class="toc-num">02</span>Connexion internet, pfSense &amp; VPN</a>
+        <ul class="toc-sub">
+          <li><a href="#s2a"><span class="toc-num">↳</span>Configuration du pare-feu pfSense</a></li>
+          <li><a href="#s2b"><span class="toc-num">↳</span>Accès internet &amp; routage par origine</a></li>
+          <li><a href="#s2c"><span class="toc-num">↳</span>Redirecteur DNS &amp; redirection RDP</a></li>
+          <li><a href="#s2d"><span class="toc-num">↳</span>PKI, LDAPS &amp; intégration AD dans pfSense</a></li>
+          <li><a href="#s2e"><span class="toc-num">↳</span>VPN OpenVPN avec authentification AD</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#s3"><span class="toc-num">03</span>Stockage réseau — TrueNAS</a>
+        <ul class="toc-sub">
+          <li><a href="#s3a"><span class="toc-num">↳</span>Configuration réseau &amp; accès web</a></li>
+          <li><a href="#s3b"><span class="toc-num">↳</span>Création du pool RAID1 &amp; jonction AD</a></li>
+          <li><a href="#s3c"><span class="toc-num">↳</span>Datasets SMB &amp; FTP avec permissions AD</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#s4"><span class="toc-num">04</span>ERP Odoo 19 &amp; serveur web Nginx</a>
+        <ul class="toc-sub">
+          <li><a href="#s4a"><span class="toc-num">↳</span>Installation &amp; configuration PostgreSQL</a></li>
+          <li><a href="#s4b"><span class="toc-num">↳</span>PhpPgAdmin</a></li>
+          <li><a href="#s4c"><span class="toc-num">↳</span>Installation Odoo 19 sous Debian 13</a></li>
+          <li><a href="#s4d"><span class="toc-num">↳</span>Configuration &amp; service systemd</a></li>
+          <li><a href="#s4e"><span class="toc-num">↳</span>Reverse proxy Nginx</a></li>
+        </ul>
+      </li>
     </ol>
   </div>
 
-  <!-- ARCHITECTURE -->
-  <div class="content-block" id="s-archi">
-    <h2>Architecture globale</h2>
+  <!-- 00 ARCHITECTURE -->
+  <div class="content-block" id="s0">
+    <h2>00 — Architecture globale &amp; adressage</h2>
     <div class="card-grid">
-      <div class="info-card">
-        <div class="info-card-title">Domaine AD</div>
-        <p>hpk07.labo — Windows Server 2022 — IP : 172.16.71.1</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title">Pare-feu</div>
-        <p>pfSense — WAN : 172.20.107.253/24 — LAN : 172.18.71.1/30</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title">Routeur / Switch</div>
-        <p>Cisco IOS — 7 VLANs (71→77) — Routage par origine</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title">NAS</div>
-        <p>TrueNAS — 172.16.71.3 — RAID1 — Datasets SMB/FTP/TFTP</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title">BDD</div>
-        <p>PostgreSQL Debian 13 — 172.16.71.4 — Utilisateur Odoo</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title">ERP</div>
-        <p>Odoo 19 — 172.16.71.11:8069 — Nginx reverse proxy</p>
-      </div>
+      <div class="info-card"><div class="info-card-title">AD / DNS</div><p>172.16.71.1 — Windows Server 2022 — domaine hpk07.labo</p></div>
+      <div class="info-card"><div class="info-card-title">pfSense</div><p>WAN : 172.20.107.253/24<br>LAN : 172.18.71.1/30</p></div>
+      <div class="info-card"><div class="info-card-title">Routeur Cisco</div><p>G0/0.207 : 172.18.71.254/30<br>G0/0.407 : 172.16.71.254/24</p></div>
+      <div class="info-card"><div class="info-card-title">TrueNAS</div><p>172.16.71.3 — VLAN serveurs 407<br>RAID1 (Mirror)</p></div>
+      <div class="info-card"><div class="info-card-title">PostgreSQL</div><p>172.16.71.4 — Debian 13<br>Port 5432</p></div>
+      <div class="info-card"><div class="info-card-title">Odoo 19</div><p>172.16.71.11:8069 — Debian 13<br>Via Nginx port 80</p></div>
     </div>
   </div>
 
-  <!-- PARTIE 1 : FERME -->
+  <!-- 01 FERME -->
   <div class="content-block" id="s1">
-    <h2>1 — Mise en place de la ferme</h2>
+    <h2>01 — Mise en place de la ferme</h2>
 
     <h3 id="s1a">Active Directory &amp; DNS</h3>
-    <p>Déploiement d'un contrôleur de domaine Windows Server 2022 pour le domaine <code style="color:var(--accent);font-family:var(--mono)">hpk07.labo</code>. Création des enregistrements DNS pour chaque serveur de l'infrastructure, dont la machine Debian 13 hébergeant PostgreSQL et Odoo.</p>
+    <p>Déploiement d'un contrôleur de domaine Windows Server 2022 pour le domaine <code style="color:var(--accent);font-family:var(--mono)">hpk07.labo</code>. Le rôle AD DS est installé avec les services DNS intégrés. Les enregistrements DNS sont créés pour chaque serveur de l'infrastructure, notamment pour la machine Debian 13 hébergeant PostgreSQL et Odoo.</p>
+    <div class="note-box"><p>&#128193; L'AD sert également de serveur DNS principal pour tous les VLANs. L'adresse 172.16.71.1 est fournie comme DNS dans toutes les étendues DHCP et dans la configuration réseau TrueNAS et pfSense.</p></div>
 
-    <h3 id="s1b">Serveur DHCP multi-VLAN</h3>
-    <p>Configuration du service DHCP Windows Server avec une étendue par VLAN, chacune configurée avec passerelle et DNS pointant vers le contrôleur de domaine.</p>
+    <h3 id="s1b">Serveur DHCP — 7 étendues VLAN</h3>
+    <p>Le service DHCP Windows Server est configuré avec une étendue dédiée par VLAN. Chaque étendue définit la plage d'adresses distribuées, l'exclusion de la passerelle, et les options DHCP (003 Routeur et 006 DNS).</p>
     <table class="vlan-table">
-      <thead><tr><th>VLAN</th><th>Nom</th><th>Plage DHCP</th><th>Passerelle</th><th>DNS</th></tr></thead>
+      <thead><tr><th>Nom</th><th>N° VLAN</th><th>Usage</th><th>Début</th><th>Fin</th><th>Passerelle</th><th>DNS</th></tr></thead>
       <tbody>
-        <tr><td>71</td><td>Informatique</td><td>192.168.71.100 – .175</td><td>192.168.71.254</td><td>172.16.71.1</td></tr>
-        <tr><td>72</td><td>Direction</td><td>192.168.72.100 – .175</td><td>192.168.72.254</td><td>172.16.71.1</td></tr>
-        <tr><td>73</td><td>Développement</td><td>192.168.73.100 – .175</td><td>192.168.73.254</td><td>172.16.71.1</td></tr>
-        <tr><td>74</td><td>Commercial</td><td>192.168.74.100 – .175</td><td>192.168.74.254</td><td>172.16.71.1</td></tr>
-        <tr><td>75</td><td>RH / Compta</td><td>192.168.75.100 – .175</td><td>192.168.75.254</td><td>172.16.71.1</td></tr>
-        <tr><td>76</td><td>Support</td><td>192.168.76.100 – .175</td><td>192.168.76.254</td><td>172.16.71.1</td></tr>
-        <tr><td>77</td><td>Visiteurs</td><td>192.168.77.100 – .175</td><td>192.168.77.254</td><td>172.16.71.1</td></tr>
+        <tr><td>VLAN71</td><td>71</td><td>Informatique</td><td>192.168.71.100</td><td>192.168.71.175</td><td>192.168.71.254</td><td>172.16.71.1</td></tr>
+        <tr><td>VLAN72</td><td>72</td><td>Direction</td><td>192.168.72.100</td><td>192.168.72.175</td><td>192.168.72.254</td><td>172.16.71.1</td></tr>
+        <tr><td>VLAN73</td><td>73</td><td>Développement</td><td>192.168.73.100</td><td>192.168.73.175</td><td>192.168.73.254</td><td>172.16.71.1</td></tr>
+        <tr><td>VLAN74</td><td>74</td><td>Commercial</td><td>192.168.74.100</td><td>192.168.74.175</td><td>192.168.74.254</td><td>172.16.71.1</td></tr>
+        <tr><td>VLAN75</td><td>75</td><td>RH / Compta</td><td>192.168.75.100</td><td>192.168.75.175</td><td>192.168.75.254</td><td>172.16.71.1</td></tr>
+        <tr><td>VLAN76</td><td>76</td><td>Support</td><td>192.168.76.100</td><td>192.168.76.175</td><td>192.168.76.254</td><td>172.16.71.1</td></tr>
+        <tr><td>VLAN77</td><td>77</td><td>Visiteurs</td><td>192.168.77.100</td><td>192.168.77.175</td><td>192.168.77.254</td><td>172.16.71.1</td></tr>
       </tbody>
     </table>
 
     <h3 id="s1c">Serveur de base de données (PostgreSQL)</h3>
-    <p>Installation de PostgreSQL sur Debian 13. Création de l'utilisateur <code style="color:var(--accent);font-family:var(--mono)">odoo</code> et de la base dédiée. PhpPgAdmin déployé pour l'administration graphique.</p>
-    <div class="code-block"><code>apt install postgresql
-sudo -i -u postgres
+    <p>Déployé sur Debian 13 (172.16.71.4). Mise à jour du système, installation de PostgreSQL et création de l'utilisateur dédié à Odoo.</p>
+    <div class="code-block">
+      <div class="code-label">Installation PostgreSQL — Debian 13</div>
+      <code>apt update && apt upgrade -y
+apt install postgresql -y</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">Création de l'utilisateur Odoo</div>
+      <code>sudo -i -u postgres
 createuser --createdb --username postgres --no-createrole --no-superuser odoo
 psql
-ALTER USER odoo WITH ENCRYPTED PASSWORD 'Carriat_1234';</code></div>
-    <p>Configuration des connexions distantes dans <code style="color:var(--accent);font-family:var(--mono)">pg_hba.conf</code> et <code style="color:var(--accent);font-family:var(--mono)">postgresql.conf</code> :</p>
-    <div class="code-block"><code><span class="code-comment"># postgresql.conf</span>
+ALTER USER odoo WITH ENCRYPTED PASSWORD 'Carriat_1234';</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">Autorisation des connexions distantes</div>
+      <code><span class="cc"># /etc/postgresql/17/main/postgresql.conf</span>
 listen_addresses = '*'
-<span class="code-comment"># pg_hba.conf</span>
-host  all  all  0.0.0.0/0  md5</code></div>
 
-    <h3 id="s1d">Configuration routeur &amp; commutateur Cisco</h3>
-    <p>Le switch Cisco est configuré avec 7 VLANs métier (71 à 77), un VLAN serveurs (407) et un VLAN internet (207). Le port G0/1 est configuré en TRUNK. Le routeur effectue du routage inter-VLAN via des sous-interfaces et du routage par origine (policy-based routing) pour diriger le trafic des VLANs vers pfSense.</p>
-    <div class="code-block"><code><span class="code-comment"># Access-list pour les réseaux internes</span>
-access-list 10 permit 172.16.71.0 0.0.0.255
-access-list 10 permit 192.168.7[1-7].0 0.0.0.255
-<span class="code-comment"># Route-map vers pfSense</span>
-route-map LUONG07 permit
- match ip address 10
- set ip next-hop 172.18.71.1
-<span class="code-comment"># Application sur toutes les sous-interfaces sauf G0/0.207</span>
-interface g0/0.[SOUS_INTERFACE]
- ip policy route-map LUONG07</code></div>
-    <table class="vlan-table" style="margin-top:1rem">
-      <thead><tr><th>Interface routeur</th><th>Adresse IP</th><th>Usage</th></tr></thead>
+<span class="cc"># /etc/postgresql/17/main/pg_hba.conf — ajouter la ligne :</span>
+host  all  all  0.0.0.0/0  md5</code>
+    </div>
+
+    <h3 id="s1d">Configuration switch &amp; routeur Cisco</h3>
+    <p>Le switch <strong style="color:var(--text)">SWITCH-NICO</strong> est configuré avec 7 VLANs métier, un VLAN serveurs (407) et un VLAN internet (207). Le port G0/1 est configuré en TRUNK vers le routeur Cisco. Les ports 1 à 14 sont assignés par paires aux VLANs métier, les ports 23 et 24 aux VLANs infrastructure.</p>
+    <table class="vlan-table">
+      <thead><tr><th>Ports</th><th>N° VLAN</th><th>Nom VLAN</th></tr></thead>
       <tbody>
-        <tr><td>G0/0.71 → .77</td><td>192.168.7x.254/24</td><td>Passerelles VLANs métier</td></tr>
+        <tr><td>1, 2</td><td>71</td><td>Informatique</td></tr>
+        <tr><td>3, 4</td><td>72</td><td>Direction</td></tr>
+        <tr><td>5, 6</td><td>73</td><td>Développement</td></tr>
+        <tr><td>7, 8</td><td>74</td><td>Commercial</td></tr>
+        <tr><td>9, 10</td><td>75</td><td>RH / Compta</td></tr>
+        <tr><td>11, 12</td><td>76</td><td>Support</td></tr>
+        <tr><td>13, 14</td><td>77</td><td>Visiteurs</td></tr>
+        <tr><td>23</td><td>407</td><td>Serveur</td></tr>
+        <tr><td>24</td><td>207</td><td>Internet</td></tr>
+        <tr><td>G0/1</td><td>—</td><td>TRUNK</td></tr>
+      </tbody>
+    </table>
+    <p>Le routeur Cisco est configuré avec des sous-interfaces pour le routage inter-VLAN. Chaque sous-interface porte l'adresse de passerelle du VLAN correspondant.</p>
+    <table class="vlan-table" style="margin-top:.5rem">
+      <thead><tr><th>Interface</th><th>Adresse IP</th><th>Rôle</th></tr></thead>
+      <tbody>
+        <tr><td>G0/0.71</td><td>192.168.71.254/24</td><td>Passerelle VLAN Informatique</td></tr>
+        <tr><td>G0/0.72</td><td>192.168.72.254/24</td><td>Passerelle VLAN Direction</td></tr>
+        <tr><td>G0/0.73</td><td>192.168.73.254/24</td><td>Passerelle VLAN Développement</td></tr>
+        <tr><td>G0/0.74</td><td>192.168.74.254/24</td><td>Passerelle VLAN Commercial</td></tr>
+        <tr><td>G0/0.75</td><td>192.168.75.254/24</td><td>Passerelle VLAN RH / Compta</td></tr>
+        <tr><td>G0/0.76</td><td>192.168.76.254/24</td><td>Passerelle VLAN Support</td></tr>
+        <tr><td>G0/0.77</td><td>192.168.77.254/24</td><td>Passerelle VLAN Visiteurs</td></tr>
         <tr><td>G0/0.207</td><td>172.18.71.254/30</td><td>Lien vers pfSense (ferme)</td></tr>
-        <tr><td>G0/0.407</td><td>172.16.71.254/24</td><td>VLAN serveurs</td></tr>
+        <tr><td>G0/0.407</td><td>172.16.71.254/24</td><td>VLAN Serveurs</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- PARTIE 2 : PFSENSE & VPN -->
+  <!-- 02 PFSENSE & VPN -->
   <div class="content-block" id="s2">
-    <h2>2 — Connexion internet, pfSense &amp; VPN</h2>
+    <h2>02 — Connexion internet, pfSense &amp; VPN</h2>
 
-    <h3 id="s2a">Configuration pfSense &amp; routes statiques</h3>
-    <p>pfSense est configuré avec deux interfaces : WAN (<code style="color:var(--accent);font-family:var(--mono)">EM0</code> — 172.20.107.253/24) et LAN (<code style="color:var(--accent);font-family:var(--mono)">EM1</code> — 172.18.71.1/30) connectée au routeur Cisco. Une route statique temporaire est ajoutée via le shell pfSense pour permettre l'accès initial au WebConfigurator depuis les VMs.</p>
-    <div class="code-block"><code><span class="code-comment"># Shell pfSense (option 8) — route temporaire</span>
-route add -net 172.16.71.0/24 172.18.71.2</code></div>
-    <p>Des routes statiques persistantes sont ensuite créées via <strong style="color:var(--text)">System &gt; Routing &gt; Static Routes</strong> pour joindre les VLANs internes. La règle LAN est modifiée pour autoriser Any en source. Le redirecteur DNS Windows est configuré vers 8.8.8.8. Une redirection NAT RDP (port 3389) permet d'accéder au serveur AD depuis l'extérieur via l'IP WAN du pfSense.</p>
-
-    <h3 id="s2b">PKI, LDAPS &amp; intégration AD pfSense</h3>
-    <p>Depuis 2022, pfSense utilise LDAPS (port 636) pour se connecter à l'AD. Une PKI d'entreprise est déployée sur le contrôleur de domaine pour émettre les certificats nécessaires.</p>
-    <ul class="step-list">
-      <li><span class="step-num">01</span><div class="step-text"><strong>Déploiement de l'autorité de certification (AD-CA)</strong> — Installation du rôle AD-Certificate et ADCS-Cert-Authority, configuration en CA racine d'entreprise HPK07-ROOT-CA (RSA 2048, SHA256, validité 5 ans).</div></li>
-      <li><span class="step-num">02</span><div class="step-text"><strong>Activation LDAPS</strong> — Ajout du modèle DomainController via <code style="color:var(--accent);font-family:var(--mono)">certutil -setcatemplates +DomainController</code>, installation automatique du certificat via <code style="color:var(--accent);font-family:var(--mono)">certutil -pulse</code>.</div></li>
-      <li><span class="step-num">03</span><div class="step-text"><strong>Export du certificat racine</strong> — Export en .cer puis ré-encodage en .pem (base64) via certutil pour import dans pfSense.</div></li>
-      <li><span class="step-num">04</span><div class="step-text"><strong>Création des OUs et groupes AD</strong> — OU Sécurité avec groupe "Observateurs pfSense", utilisateur de liaison <code style="color:var(--accent);font-family:var(--mono)">pfsense.connect</code>.</div></li>
-      <li><span class="step-num">05</span><div class="step-text"><strong>Configuration pfSense</strong> — Import du certificat CA, ajout du serveur LDAPS dans System &gt; User Manager, création du groupe "Observateurs pfSense" avec les droits dashboard, test via Diagnostics &gt; Authentication.</div></li>
-    </ul>
-    <div class="code-block"><code><span class="code-comment"># Installation PKI</span>
-Install-WindowsFeature -Name AD-Certificate, ADCS-Cert-Authority
-Install-AdcsCertificationAuthority -CAType EnterpriseRootCA `
-  -CACommonName "HPK07-ROOT-CA" -KeyLength 2048 `
-  -HashAlgorithm SHA256 -ValidityPeriod Years -ValidityPeriodUnits 5
-
-<span class="code-comment"># Création OU et groupes AD</span>
-New-ADOrganizationalUnit -Path "DC=hpk07,DC=labo" -Name "Sécurité" -PassThru
-New-ADGroup -Name 'Observateurs pfSense' -GroupCategory 'Security' `
-  -GroupScope 'DomainLocal' -Path 'OU=Sécurité,DC=hpk07,DC=labo'
-New-ADUser -Name "pfsense.connect" -Path "OU=Sécurité,DC=HPK07,DC=labo" `
-  -AccountPassword (ConvertTo-SecureString "Carriat_1234" -AsPlainText -Force) `
-  -Enabled $true -PasswordNeverExpires $true</code></div>
-
-    <h3 id="s2c">VPN OpenVPN avec authentification Active Directory</h3>
-    <p>Déploiement d'un serveur VPN OpenVPN sur pfSense avec authentification des utilisateurs via le groupe AD <code style="color:var(--accent);font-family:var(--mono)">VPN User</code>. Les utilisateurs VPN sont isolés dans leur propre OU AD.</p>
-    <ul class="step-list">
-      <li><span class="step-num">01</span><div class="step-text"><strong>OU et groupe VPN AD</strong> — Création de l'OU VPN et du groupe "VPN User" en PowerShell. Les utilisateurs autorisés sont ajoutés à ce groupe.</div></li>
-      <li><span class="step-num">02</span><div class="step-text"><strong>Certificats pfSense</strong> — Création d'une autorité de certification pfSense, d'un certificat serveur OpenVPN et d'un certificat utilisateur via System &gt; Certificates.</div></li>
-      <li><span class="step-num">03</span><div class="step-text"><strong>Configuration serveur OpenVPN</strong> — Plage tunnel VPN dédiée, réseaux internes accessibles via VPN, connexions simultanées limitées, Dynamic IP activé (maintien connexion sur changement d'IP), option <code style="color:var(--accent);font-family:var(--mono)">auth-nocache</code> pour la sécurité, diffusion du DNS interne aux clients.</div></li>
-      <li><span class="step-num">04</span><div class="step-text"><strong>Export et déploiement client</strong> — Installation du package openvpn-clientexport sur pfSense, export du profil "Inline Configurations – Most Clients", déploiement dans <code style="color:var(--accent);font-family:var(--mono)">C:\Program Files\OpenVPN Connect\config\</code>.</div></li>
-      <li><span class="step-num">05</span><div class="step-text"><strong>Règles de pare-feu VPN</strong> — Création des règles Firewall &gt; Rules permettant le trafic depuis le réseau tunnel vers les ressources internes.</div></li>
-    </ul>
-    <div class="code-block"><code><span class="code-comment"># Création OU et groupe VPN</span>
-New-ADOrganizationalUnit -Path "DC=hpk07,DC=labo" -Name "VPN" -PassThru
-New-ADGroup -Name 'VPN User' -GroupCategory 'Security' `
-  -GroupScope 'DomainLocal' -Path 'OU=VPN,DC=hpk07,DC=labo' `
-  -Description 'Utilisateur autorisé pour connexion VPN' -PassThru</code></div>
-  </div>
-
-  <!-- PARTIE 3 : TRUENAS -->
-  <div class="content-block" id="s3">
-    <h2>3 — Stockage réseau — TrueNAS</h2>
-    <p>Déploiement d'un serveur NAS TrueNAS intégré au domaine Active Directory. Configuration d'un pool de stockage en RAID1 (Mirror) avec trois datasets — SMB, FTP et TFTP — chacun avec des permissions adaptées aux groupes AD.</p>
-    <ul class="step-list">
-      <li><span class="step-num">01</span><div class="step-text"><strong>Configuration réseau</strong> — Attribution d'une IP statique (172.16.71.3), hostname, domaine, passerelle et DNS. Activation du redirect HTTP → HTTPS dans System &gt; General Settings.</div></li>
-      <li><span class="step-num">02</span><div class="step-text"><strong>Jonction au domaine AD</strong> — Via Credentials &gt; Directory Services &gt; Configure Active Directory. Renseignement du domaine hpk07.labo, compte d'administration, mot de passe et NetBIOS name.</div></li>
-      <li><span class="step-num">03</span><div class="step-text"><strong>Création du pool RAID1</strong> — Ajout de 2 disques supplémentaires, création du pool en mode Mirror (RAID1) via Storage &gt; Create Pool.</div></li>
-      <li><span class="step-num">04</span><div class="step-text"><strong>Dataset SMB</strong> — Créé avec le preset SMB. Permissions NTFS : utilisateurs du domaine ont le contrôle total. Accessible via <code style="color:var(--accent);font-family:var(--mono)">\\LUONG-HPK-NAS\SMB</code>.</div></li>
-      <li><span class="step-num">05</span><div class="step-text"><strong>Dataset FTP</strong> — Permissions différenciées : utilisateurs du domaine en lecture/exécution uniquement, admins du domaine en contrôle total.</div></li>
-    </ul>
-    <div class="note-box">
-      <p>&#128274; <strong style="color:var(--text)">Intégration AD :</strong> La jonction TrueNAS au domaine hpk07.labo permet d'utiliser directement les comptes et groupes Active Directory pour gérer les permissions sur les datasets, sans créer de comptes locaux supplémentaires.</p>
+    <h3 id="s2a">Configuration du pare-feu pfSense</h3>
+    <p>pfSense est configuré avec deux interfaces : <strong style="color:var(--text)">EM0 (WAN)</strong> sur 172.20.107.253/24 et <strong style="color:var(--text)">EM1 (LAN)</strong> sur 172.18.71.1/30, connectée au routeur Cisco. Pour permettre l'accès initial au WebConfigurator depuis les VMs internes, une route temporaire est ajoutée via le shell pfSense (option 8 du menu) :</p>
+    <div class="code-block">
+      <div class="code-label">Shell pfSense (option 8) — route temporaire</div>
+      <code>route add -net 172.16.71.0/24 172.18.71.2</code>
     </div>
+    <p>Accès WebConfigurator : <code style="color:var(--accent);font-family:var(--mono)">http://172.18.71.1</code> — login : Admin / mdp : pfsense</p>
+    <p>Des routes statiques persistantes sont ensuite créées via <strong style="color:var(--text)">System &gt; Routing &gt; Gateways</strong> (ajout de la gateway vers le routeur Cisco), puis <strong style="color:var(--text)">System &gt; Routing &gt; Static Routes</strong> pour joindre le réseau 172.16.71.0/24 et les VLANs 192.168.7x.0/24.</p>
+
+    <h3 id="s2b">Accès internet &amp; routage par origine</h3>
+    <p>Pour activer l'accès internet depuis les VLANs, deux modifications sont nécessaires sur pfSense :</p>
+    <ul class="step-list">
+      <li><span class="sn">pfSense</span><div class="st"><strong>Interface WAN</strong> — décocher les cases de blocage des réseaux privés et bogons entrants (<strong>Interfaces &gt; WAN</strong>).</div></li>
+      <li><span class="sn">pfSense</span><div class="st"><strong>Règle Firewall LAN</strong> — <strong>Firewall &gt; Rules &gt; LAN &gt; IPv4</strong> : mettre <code>Any</code> en source pour autoriser tout le trafic LAN vers internet.</div></li>
+    </ul>
+    <p>Sur le routeur Cisco, le routage par origine (policy-based routing) est configuré pour rediriger le trafic des VLANs internes vers pfSense :</p>
+    <div class="code-block">
+      <div class="code-label">Routeur Cisco — Policy-Based Routing</div>
+      <code><span class="cc">! Access-list pour tous les réseaux internes</span>
+access-list 10 permit 172.16.71.0 0.0.0.255
+access-list 10 permit 192.168.7[1-7].0 0.0.0.255
+
+<span class="cc">! Route-map : trafic matché envoyé vers pfSense</span>
+route-map LUONG07 permit
+ match ip address 10
+ set ip next-hop 172.18.71.1
+
+<span class="cc">! Application sur toutes les sous-interfaces sauf G0/0.207 (internet)</span>
+interface g0/0.71
+ ip policy route-map LUONG07
+interface g0/0.72
+ ip policy route-map LUONG07
+<span class="cc">! ... répéter pour .73 à .77 et .407</span></code>
+    </div>
+
+    <h3 id="s2c">Redirecteur DNS &amp; redirection RDP</h3>
+    <p><strong style="color:var(--text)">Redirecteur DNS :</strong> Sur le contrôleur de domaine, ouvrir les outils DNS, clic droit sur le serveur &gt; Propriétés &gt; onglet Redirecteurs. Ajouter l'IP <code style="color:var(--accent);font-family:var(--mono)">8.8.8.8</code> (DNS Google) pour la résolution des noms externes.</p>
+    <p><strong style="color:var(--text)">Redirection RDP :</strong> Depuis l'interface pfSense, créer une règle NAT (Firewall &gt; NAT &gt; Add Forward) pour rediriger le port 3389 de l'interface WAN vers l'adresse IP du serveur AD. Cela permet l'accès RDP au serveur AD depuis l'extérieur via l'IP WAN du pfSense.</p>
+
+    <h3 id="s2d">PKI, LDAPS &amp; intégration AD dans pfSense</h3>
+    <p>Depuis 2022, pfSense utilise exclusivement LDAPS (port 636, chiffré TLS) pour se connecter à l'Active Directory. Il est donc nécessaire de déployer une PKI interne sur le contrôleur de domaine pour émettre un certificat LDAPS valide.</p>
+
+    <h4>Étape 1 — Déploiement de la PKI (AD-CA)</h4>
+    <div class="code-block">
+      <div class="code-label">PowerShell — Installation des rôles PKI</div>
+      <code>Install-WindowsFeature -Name AD-Certificate, ADCS-Cert-Authority</code>
+    </div>
+    <p><strong style="color:var(--text)">AD-Certificate</strong> installe les composants de base de gestion des certificats dans Active Directory. <strong style="color:var(--text)">ADCS-Cert-Authority</strong> installe le rôle d'Autorité de Certification (CA), composant central permettant d'émettre, gérer et révoquer des certificats numériques.</p>
+    <div class="code-block">
+      <div class="code-label">PowerShell — Configuration de la CA racine d'entreprise</div>
+      <code>Install-AdcsCertificationAuthority -CAType EnterpriseRootCA `
+  -CACommonName "HPK07-ROOT-CA" `
+  -KeyLength 2048 `
+  -HashAlgorithm SHA256 `
+  -ValidityPeriod Years `
+  -ValidityPeriodUnits 5</code>
+    </div>
+    <p>Détail des paramètres :</p>
+    <ul class="step-list">
+      <li><span class="sn">-CAType</span><div class="st"><code>EnterpriseRootCA</code> — CA racine d'entreprise, première CA de la hiérarchie PKI, intégrée à l'AD.</div></li>
+      <li><span class="sn">-CACommonName</span><div class="st"><code>HPK07-ROOT-CA</code> — Nom commun (CN) visible dans les certificats émis.</div></li>
+      <li><span class="sn">-KeyLength</span><div class="st"><code>2048</code> bits — Bon équilibre sécurité/performance. La valeur 4096 est plus sécurisée mais impacte les performances.</div></li>
+      <li><span class="sn">-HashAlgorithm</span><div class="st"><code>SHA256</code> — Algorithme de hachage recommandé pour signer les certificats.</div></li>
+      <li><span class="sn">-ValidityPeriodUnits</span><div class="st"><code>5</code> ans — Durée de validité du certificat racine.</div></li>
+    </ul>
+
+    <h4>Étape 2 — Activation LDAPS &amp; export du certificat</h4>
+    <div class="code-block">
+      <div class="code-label">Activation du modèle DomainController pour LDAPS</div>
+      <code><span class="cc"># Ajoute le modèle DomainController à la liste des modèles émettables par la CA</span>
+certutil -setcatemplates +DomainController
+
+<span class="cc"># Installation automatique du certificat sur le contrôleur de domaine</span>
+certutil -pulse</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">PowerShell — Export du certificat racine au format PEM</div>
+      <code><span class="cc"># Lister les certificats racine et trouver l'empreinte de HPK07-ROOT-CA</span>
+Get-ChildItem -Path Cert:\LocalMachine\Root
+
+<span class="cc"># Récupérer le certificat par son empreinte (remplacer THUMBPRINT)</span>
+$cert = Get-ChildItem -Path Cert:\LocalMachine\Root\THUMBPRINT
+
+<span class="cc"># Exporter en .cer vers un dossier partagé</span>
+Export-Certificate -Cert $cert -FilePath \\LUONG-HPK-ADDS\Cert\root-ca-cert.cer -Type CERT
+
+<span class="cc"># Ré-encoder en .pem (base64) pour import dans pfSense</span>
+certutil -encode \\LUONG-HPK-ADDS\Cert\root-ca-cert.cer \\LUONG-HPK-ADDS\Cert\root-ca-cert.pem</code>
+    </div>
+
+    <h4>Étape 3 — Préparation AD : OUs, groupes et utilisateur de liaison</h4>
+    <div class="code-block">
+      <div class="code-label">PowerShell — Création OU Sécurité et groupe Observateurs pfSense</div>
+      <code><span class="cc"># Création de l'OU Sécurité</span>
+New-ADOrganizationalUnit -Path "DC=hpk07,DC=labo" -Name "Sécurité" -PassThru
+
+<span class="cc"># Création du groupe de sécurité pour l'accès au dashboard pfSense</span>
+New-ADGroup -Name 'Observateurs pfSense' `
+  -GroupCategory 'Security' `
+  -GroupScope 'DomainLocal' `
+  -Path 'OU=Sécurité,DC=hpk07,DC=labo' `
+  -Description 'Groupe de surveillance pfSense' -PassThru
+
+<span class="cc"># Création de l'utilisateur de liaison pfSense ↔ AD</span>
+New-ADUser -Name "pfsense.connect" `
+  -SamAccountName "pfsense.connect" `
+  -UserPrincipalName "pfsense.connect@hpk.labo" `
+  -Path "OU=Sécurité,DC=HPK07,DC=labo" `
+  -AccountPassword (ConvertTo-SecureString "Carriat_1234" -AsPlainText -Force) `
+  -Enabled $true `
+  -PasswordNeverExpires $true `
+  -CannotChangePassword $true</code>
+    </div>
+
+    <h4>Étape 4 — Configuration pfSense côté LDAPS</h4>
+    <ul class="step-list">
+      <li><span class="sn">01</span><div class="st"><strong>System &gt; General Setup</strong> — Renseigner les informations du domaine, décocher <em>DNS Server Override</em>.</div></li>
+      <li><span class="sn">02</span><div class="st"><strong>Services &gt; DNS Resolver</strong> — Désactiver le service DNS Resolver pour éviter les conflits avec le DNS AD.</div></li>
+      <li><span class="sn">03</span><div class="st"><strong>System &gt; Certificates &gt; Authorities</strong> — Importer le certificat racine CA en collant le contenu du fichier <code>root-ca-cert.pem</code> exporté depuis l'AD.</div></li>
+      <li><span class="sn">04</span><div class="st"><strong>System &gt; User Manager &gt; Authentication Servers</strong> — Ajouter le serveur LDAP(S) : type LDAP, protocole LDAPS (port 636), serveur = IP de l'AD, CA = HPK07-ROOT-CA importé, décocher Bind Anonymous, renseigner <code>pfsense.connect</code> et son mot de passe.</div></li>
+      <li><span class="sn">05</span><div class="st"><strong>Groupe pfSense</strong> — Créer un groupe dont le nom est exactement <em>Observateurs pfSense</em> (identique au groupe AD), lui attribuer les droits d'accès au dashboard.</div></li>
+      <li><span class="sn">06</span><div class="st"><strong>Diagnostics &gt; Authentication</strong> — Tester avec un compte membre du groupe AD. Le groupe <em>Observateurs pfSense</em> doit apparaître dans la fenêtre verte, confirmant l'association utilisateur ↔ groupe ↔ droits.</div></li>
+      <li><span class="sn">07</span><div class="st"><strong>System &gt; User Manager &gt; Settings</strong> — Modifier la méthode de connexion pour utiliser le serveur AD. Save &amp; Test.</div></li>
+    </ul>
+    <div class="note-box"><p>&#9989; <strong style="color:var(--text)">Résultat :</strong> Les utilisateurs membres du groupe <em>Observateurs pfSense</em> dans l'AD peuvent désormais se connecter au WebConfigurator pfSense avec leurs identifiants de domaine, avec les droits définis sur le groupe pfSense correspondant.</p></div>
+
+    <h3 id="s2e">VPN OpenVPN avec authentification Active Directory</h3>
+    <p>Déploiement d'un serveur VPN OpenVPN sur pfSense, avec authentification des utilisateurs via le groupe AD <code style="color:var(--accent);font-family:var(--mono)">VPN User</code> hébergé dans une OU dédiée.</p>
+
+    <h4>Préparation AD — OU et groupe VPN</h4>
+    <div class="code-block">
+      <div class="code-label">PowerShell — Création OU VPN et groupe VPN User</div>
+      <code>New-ADOrganizationalUnit -Path "DC=hpk07,DC=labo" -Name "VPN" -PassThru
+
+New-ADGroup -Name 'VPN User' `
+  -GroupCategory 'Security' `
+  -GroupScope 'DomainLocal' `
+  -Path 'OU=VPN,DC=hpk07,DC=labo' `
+  -Description 'Utilisateur autorisé pour connexion VPN' -PassThru</code>
+    </div>
+    <p>Les utilisateurs autorisés à se connecter au VPN sont créés dans l'OU VPN et ajoutés au groupe <em>VPN User</em>. La connexion LDAPS de pfSense est également mise à jour pour inclure l'OU VPN.</p>
+
+    <h4>Création des certificats pfSense</h4>
+    <ul class="step-list">
+      <li><span class="sn">CA</span><div class="st"><strong>System &gt; Certificates &gt; Authorities &gt; Add</strong> — Créer une autorité de certification interne à pfSense pour signer les certificats OpenVPN.</div></li>
+      <li><span class="sn">Serveur</span><div class="st"><strong>System &gt; Certificates &gt; Add/Sign</strong> — Créer un certificat serveur signé par la CA pfSense, type "Server Certificate".</div></li>
+      <li><span class="sn">Client</span><div class="st">Créer un certificat utilisateur (user certificate) pour les clients VPN.</div></li>
+    </ul>
+
+    <h4>Configuration du serveur OpenVPN</h4>
+    <ul class="step-list">
+      <li><span class="sn">01</span><div class="st"><strong>VPN &gt; OpenVPN &gt; Add</strong> — Sélectionner le serveur d'authentification AD, la CA pfSense et le certificat serveur.</div></li>
+      <li><span class="sn">02</span><div class="st"><strong>IPv4 Tunnel Network</strong> — Plage d'adresses dédiée aux clients VPN (ex : 10.0.8.0/24).</div></li>
+      <li><span class="sn">03</span><div class="st"><strong>IPv4 Local Networks</strong> — Renseigner tous les réseaux internes à rendre accessibles depuis le VPN (172.16.71.0/24, 192.168.71.0/24 ... 77.0/24).</div></li>
+      <li><span class="sn">04</span><div class="st"><strong>Concurrent Connections</strong> — Nombre maximum d'utilisateurs connectés simultanément.</div></li>
+      <li><span class="sn">05</span><div class="st"><strong>Dynamic IP</strong> — Cocher pour maintenir la connexion VPN lors d'un changement d'IP (utile pour les utilisateurs en 4G).</div></li>
+      <li><span class="sn">06</span><div class="st"><strong>Topology</strong> — Laisser sur <em>Subnet</em> pour permettre plus de connexions simultanées. Mettre <em>net30</em> pour isoler les clients entre eux.</div></li>
+      <li><span class="sn">07</span><div class="st"><strong>DNS</strong> — Renseigner le domaine et l'IP du DNS interne (172.16.71.1) pour diffuser la résolution DNS AD aux clients VPN.</div></li>
+      <li><span class="sn">08</span><div class="st"><strong>Custom Options</strong> — Ajouter <code>auth-nocache</code> pour interdire aux clients OpenVPN de mémoriser les identifiants.</div></li>
+    </ul>
+
+    <h4>Export de la configuration client &amp; règles firewall</h4>
+    <ul class="step-list">
+      <li><span class="sn">Export</span><div class="st"><strong>System &gt; Package Manager &gt; Available Packages</strong> — Installer le package <em>openvpn-clientexport</em>. Puis <strong>VPN &gt; OpenVPN &gt; Client Export</strong>, télécharger <em>Inline Configurations – Most Clients</em>. Remettre l'option <code>auth-nocache</code> dans les paramètres additionnels avant l'export. Placer le fichier dans <code>C:\Program Files\OpenVPN Connect\config\</code>.</div></li>
+      <li><span class="sn">Firewall</span><div class="st"><strong>Firewall &gt; Rules &gt; Add</strong> — Créer les règles autorisant le trafic depuis le réseau tunnel VPN vers les ressources internes.</div></li>
+      <li><span class="sn">Client</span><div class="st">Ouvrir OpenVPN Connect, <em>Upload File</em>, sélectionner le fichier .ovpn, entrer les identifiants AD du groupe VPN User.</div></li>
+    </ul>
   </div>
 
-  <!-- PARTIE 4 : ERP ODOO -->
-  <div class="content-block" id="s4">
-    <h2>4 — ERP Odoo 19 &amp; serveur web Nginx</h2>
-    <p>Déploiement d'Odoo 19 Community sur un serveur Debian 13 dédié (172.16.71.11), connecté à la base de données PostgreSQL distante (172.16.71.4), exposé via un reverse proxy Nginx.</p>
+  <!-- 03 TRUENAS -->
+  <div class="content-block" id="s3">
+    <h2>03 — Stockage réseau — TrueNAS</h2>
 
-    <h3>Installation Odoo 19</h3>
-    <div class="code-block"><code><span class="code-comment"># Dépendances système</span>
-apt install git python3-pip build-essential wget python3-dev \
+    <h3 id="s3a">Configuration réseau &amp; accès web</h3>
+    <p>Au démarrage de TrueNAS, refuser le DHCP et configurer une IP statique. Renseigner ensuite le hostname, le domaine (<code style="color:var(--accent);font-family:var(--mono)">hpk07.labo</code>), la passerelle (172.16.71.254) et le DNS (172.16.71.1) dans la section Network Settings.</p>
+    <p>Interface web accessible sur : <code style="color:var(--accent);font-family:var(--mono)">http://172.16.71.3</code></p>
+    <p>Activer le redirect HTTP → HTTPS : <strong>System &gt; General Settings &gt; GUI Settings</strong> → cocher <em>Web Interface HTTP → HTTPS Redirect</em>.</p>
+
+    <h3 id="s3b">Création du pool RAID1 &amp; jonction AD</h3>
+    <p>Ajouter 2 disques supplémentaires à la VM TrueNAS. Créer ensuite un pool de stockage en RAID1 (nommé <em>Mirror</em> dans TrueNAS) :</p>
+    <ul class="step-list">
+      <li><span class="sn">01</span><div class="st"><strong>Storage &gt; Create Pool</strong> — Sélectionner les 2 disques, choisir le type <em>Mirror</em> (RAID1), nommer le pool. Cliquer sur <em>Save And Go To Review</em> puis <em>Create Pool</em>.</div></li>
+      <li><span class="sn">02</span><div class="st"><strong>Credentials &gt; Directory Services &gt; Configure Active Directory</strong> — Renseigner le nom de domaine (<code>hpk07.labo</code>), un compte pouvant se connecter au domaine (ex : Administrateur), son mot de passe, et le NetBIOS name de la machine. Cocher <em>Enable</em> et valider.</div></li>
+    </ul>
+    <div class="note-box"><p>&#9989; <strong style="color:var(--text)">Résultat jonction AD :</strong> TrueNAS apparaît comme membre du domaine hpk07.labo et peut utiliser directement les comptes et groupes Active Directory pour les permissions des datasets, sans créer de comptes locaux.</p></div>
+
+    <h3 id="s3c">Datasets SMB &amp; FTP avec permissions AD</h3>
+    <ul class="step-list">
+      <li><span class="sn">SMB</span><div class="st"><strong>Storage &gt; Add Dataset</strong> — Créer le dataset <em>SMB</em> avec le preset <em>SMB</em>. Les permissions NTFS générées donnent le contrôle total aux utilisateurs du domaine AD. Accessible depuis les postes via <code>\\LUONG-HPK-NAS\SMB</code>.</div></li>
+      <li><span class="sn">FTP</span><div class="st"><strong>Storage &gt; Add Dataset</strong> — Créer le dataset <em>FTP</em>. Configurer les permissions manuellement : utilisateurs du domaine en <strong>lecture et exécution uniquement</strong>, admins du domaine en <strong>contrôle total</strong>.</div></li>
+      <li><span class="sn">TFTP</span><div class="st">Créer le dataset <em>TFTP</em> de la même façon, avec les permissions adaptées au service TFTP.</div></li>
+    </ul>
+  </div>
+
+  <!-- 04 ODOO -->
+  <div class="content-block" id="s4">
+    <h2>04 — ERP Odoo 19 &amp; serveur web Nginx</h2>
+
+    <h3 id="s4a">Installation &amp; configuration PostgreSQL</h3>
+    <p>Le serveur de base de données tourne sur Debian 13 (172.16.71.4), séparé du serveur Odoo pour des raisons de performance et de sécurité.</p>
+    <div class="code-block">
+      <div class="code-label">Installation PostgreSQL</div>
+      <code>apt update && apt upgrade -y
+apt install postgresql -y</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">Création utilisateur Odoo &amp; définition du mot de passe</div>
+      <code>sudo -i -u postgres
+createuser --createdb --username postgres --no-createrole --no-superuser odoo
+psql
+ALTER USER odoo WITH ENCRYPTED PASSWORD 'Carriat_1234';</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">Autorisation des connexions distantes</div>
+      <code><span class="cc"># /etc/postgresql/17/main/postgresql.conf</span>
+listen_addresses = '*'
+
+<span class="cc"># /etc/postgresql/17/main/pg_hba.conf — ajouter :</span>
+host  all  all  0.0.0.0/0  md5</code>
+    </div>
+    <p>Redémarrer PostgreSQL après modification.</p>
+
+    <h3 id="s4b">PhpPgAdmin</h3>
+    <p>Déploiement de PhpPgAdmin sur le serveur BDD pour l'administration graphique via navigateur.</p>
+    <div class="code-block">
+      <div class="code-label">Installation PhpPgAdmin + Apache2</div>
+      <code>apt install apache2 php php-pgsql phppgadmin -y</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">Configuration PhpPgAdmin — autoriser connexion non-admin</div>
+      <code><span class="cc"># /etc/phppgadmin/config.inc.php</span>
+<span class="cc"># Remplacer :</span>
+$conf['extra_login_security'] = true;
+<span class="cc"># Par :</span>
+$conf['extra_login_security'] = false;
+
+<span class="cc"># /etc/apache2/conf-available/phppgadmin.conf</span>
+<span class="cc"># Remplacer "require local" par :</span>
+require all granted</code>
+    </div>
+    <p>Redémarrer Apache2. PhpPgAdmin accessible sur : <code style="color:var(--accent);font-family:var(--mono)">http://172.16.71.4/phppgadmin</code> avec les identifiants <code style="color:var(--accent);font-family:var(--mono)">odoo / Carriat_1234</code>.</p>
+
+    <h3 id="s4c">Installation Odoo 19 sous Debian 13</h3>
+    <p>Odoo 19 est déployé sur un serveur Debian 13 dédié (172.16.71.11), depuis les sources GitHub, dans un environnement Python virtuel.</p>
+    <div class="code-block">
+      <div class="code-label">Dépendances système</div>
+      <code>apt install git python3-pip build-essential wget python3-dev \
   python3-venv python3-wheel libxslt-dev libzip-dev libldap2-dev \
   libsasl2-dev python3-setuptools node-less libjpeg-dev zlib1g-dev \
-  libpq-dev postgresql-client -y
+  libpq-dev -y
+apt install postgresql-client -y</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">Création de l'utilisateur système Odoo</div>
+      <code>useradd -m -d /opt/odoo -U -r -s /bin/bash odoo</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">Installation Odoo 19 depuis GitHub</div>
+      <code>su - odoo
+git clone https://www.github.com/odoo/odoo --depth 1 --branch 19.0
+python3 -m venv venv
+source venv/bin/activate
+pip install wheel
+cd odoo
+pip install -r requirements.txt
+deactivate
+exit</code>
+    </div>
 
-<span class="code-comment"># Utilisateur et installation Odoo</span>
-useradd -m -d /opt/odoo -U -r -s /bin/bash odoo
-su - odoo
-git clone https://github.com/odoo/odoo --depth 1 --branch 19.0
-python3 -m venv venv && source venv/bin/activate
-pip install wheel && pip install -r odoo/requirements.txt</code></div>
-
-    <h3>Configuration Odoo (/etc/odoo.conf)</h3>
-    <div class="code-block"><code>[options]
+    <h3 id="s4d">Configuration Odoo &amp; service systemd</h3>
+    <div class="code-block">
+      <div class="code-label">/etc/odoo.conf</div>
+      <code>[options]
 admin_passwd = carriat
-db_host     = 172.16.71.4
-db_port     = 5432
-db_user     = odoo
-db_password = Carriat_1234
-addons_path = /opt/odoo/odoo/addons
-logfile     = /var/log/odoo/odoo.log
-proxy_mode  = True</code></div>
-
-    <h3>Service systemd</h3>
-    <div class="code-block"><code>[Unit]
+db_host      = 172.16.71.4
+db_port      = 5432
+db_user      = odoo
+db_password  = Carriat_1234
+addons_path  = /opt/odoo/odoo/addons
+logfile      = /var/log/odoo/odoo.log
+proxy_mode   = True</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">Création du dossier de logs</div>
+      <code>mkdir /var/log/odoo
+chown odoo:odoo /var/log/odoo</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">/etc/systemd/system/odoo.service</div>
+      <code>[Unit]
 Description=Odoo
 After=network.target
 
@@ -336,14 +549,29 @@ User=odoo
 ExecStart=/opt/odoo/venv/bin/python3 /opt/odoo/odoo/odoo-bin -c /etc/odoo.conf
 
 [Install]
-WantedBy=multi-user.target</code></div>
-    <div class="code-block"><code>systemctl daemon-reload && systemctl enable odoo && systemctl start odoo</code></div>
+WantedBy=multi-user.target</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">Activation et démarrage du service</div>
+      <code>systemctl daemon-reexec
+systemctl daemon-reload
+systemctl enable odoo
+systemctl start odoo</code>
+    </div>
+    <p>Vérification : Odoo accessible sur <code style="color:var(--accent);font-family:var(--mono)">http://172.16.71.11:8069</code></p>
 
-    <h3>Reverse proxy Nginx</h3>
-    <div class="code-block"><code><span class="code-comment"># /etc/nginx/sites-available/odoo</span>
-server {
+    <h3 id="s4e">Reverse proxy Nginx</h3>
+    <p>Nginx est déployé sur le même serveur qu'Odoo pour exposer le service sur le port 80 et gérer le proxy vers le port interne 8069. Le paramètre <code style="color:var(--accent);font-family:var(--mono)">proxy_mode = True</code> dans odoo.conf est obligatoire pour que les headers X-Forwarded-For soient correctement interprétés.</p>
+    <div class="code-block">
+      <div class="code-label">Installation Nginx</div>
+      <code>apt install nginx -y</code>
+    </div>
+    <div class="code-block">
+      <div class="code-label">/etc/nginx/sites-available/odoo</div>
+      <code>server {
     listen 80;
     server_name _;
+
     proxy_read_timeout    720s;
     proxy_connect_timeout 720s;
     proxy_send_timeout    720s;
@@ -356,32 +584,34 @@ server {
         proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
-}</code></div>
-    <div class="code-block"><code>ln -s /etc/nginx/sites-available/odoo /etc/nginx/sites-enabled/
-systemctl restart nginx</code></div>
-    <div class="note-box">
-      <p>&#127760; <strong style="color:var(--text)">Accès Odoo :</strong> Odoo est accessible en interne sur <code style="color:var(--accent);font-family:var(--mono)">http://172.16.71.11</code> via Nginx (port 80), qui proxifie vers le service Odoo sur le port 8069. PhpPgAdmin est accessible sur <code style="color:var(--accent);font-family:var(--mono)">http://172.16.71.4/phppgadmin</code>.</p>
+}</code>
     </div>
+    <div class="code-block">
+      <div class="code-label">Activation du site et redémarrage Nginx</div>
+      <code>ln -s /etc/nginx/sites-available/odoo /etc/nginx/sites-enabled/
+systemctl restart nginx</code>
+    </div>
+    <div class="note-box"><p>&#127760; <strong style="color:var(--text)">Accès final :</strong> Odoo est accessible via <code style="color:var(--accent);font-family:var(--mono)">http://172.16.71.11</code> (Nginx port 80 → Odoo port 8069). PhpPgAdmin sur <code style="color:var(--accent);font-family:var(--mono)">http://172.16.71.4/phppgadmin</code>.</p></div>
   </div>
 
   <!-- RÉSULTATS -->
   <div class="content-block">
-    <h2>Résultats</h2>
+    <h2>Résultats &amp; bilan</h2>
     <div class="result-grid">
       <div class="result-card"><div class="result-num">7</div><div class="result-label">VLANs configurés</div></div>
       <div class="result-card"><div class="result-num">6+</div><div class="result-label">Serveurs déployés</div></div>
-      <div class="result-card"><div class="result-num">PKI</div><div class="result-label">CA interne LDAPS</div></div>
-      <div class="result-card"><div class="result-num">VPN</div><div class="result-label">OpenVPN + AD Auth</div></div>
-      <div class="result-card"><div class="result-num">RAID1</div><div class="result-label">NAS TrueNAS Mirror</div></div>
+      <div class="result-card"><div class="result-num">PKI</div><div class="result-label">CA interne + LDAPS</div></div>
+      <div class="result-card"><div class="result-num">VPN</div><div class="result-label">OpenVPN + auth AD</div></div>
+      <div class="result-card"><div class="result-num">RAID1</div><div class="result-label">TrueNAS Mirror</div></div>
       <div class="result-card"><div class="result-num">ERP</div><div class="result-label">Odoo 19 opérationnel</div></div>
     </div>
-    <p style="margin-top:1.5rem">L'infrastructure couvre l'ensemble du périmètre SI d'une PME : authentification centralisée AD, segmentation réseau complète par VLAN, accès sécurisé depuis l'extérieur via VPN OpenVPN authentifié par l'AD, stockage partagé haute disponibilité, et ERP Odoo 19 exposé via reverse proxy. Tous les services communiquent via le domaine hpk07.labo et les comptes Active Directory.</p>
+    <p style="margin-top:1.5rem">L'infrastructure couvre l'ensemble du périmètre SI d'une PME : authentification centralisée par Active Directory avec PKI interne, segmentation réseau complète en 7 VLANs gérés par routeur Cisco et DHCP Windows, accès internet sécurisé via pfSense avec routage par origine, accès distant chiffré via VPN OpenVPN authentifié par l'AD, stockage partagé haute disponibilité en RAID1 accessible en SMB/FTP par les comptes du domaine, et ERP Odoo 19 exposé en HTTP via Nginx. Tous les services communiquent au travers du domaine hpk07.labo.</p>
   </div>
 
 </div>
 
 <footer>
-  <code>// Nicolas LUONG · <span>Infrastructure Complète</span> · 2025</code>
+  <code>// Nicolas LUONG · <span>Infrastructure Complète d'Entreprise</span> · 2025</code>
 </footer>
 </body>
 </html>
